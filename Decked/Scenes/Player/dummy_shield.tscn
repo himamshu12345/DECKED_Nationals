@@ -1,0 +1,368 @@
+[gd_scene load_steps=54 format=3 uid="uid://cd6wuwoiqgdg6"]
+
+[ext_resource type="Script" uid="uid://bo48qlyfnoolv" path="res://Decked/Scripts/Player/player.gd" id="1_u3wfg"]
+[ext_resource type="Script" uid="uid://d0cgkch2xj4ff" path="res://Decked/Scripts/Player/Functions/Health.gd" id="2_a3drw"]
+[ext_resource type="Shader" uid="uid://bmih6a6rdsfk3" path="res://Decked/Assests/Backgrounds/NPCS/dummy.tres" id="3_c27rd"]
+[ext_resource type="Texture2D" uid="uid://cpd0o1uux0eb1" path="res://Decked/Assests/Backgrounds/NPCS/Dummy/dummyConfused.webp" id="3_vghmd"]
+[ext_resource type="Texture2D" uid="uid://bncvfbphpo404" path="res://Decked/Assests/PlayerBody/Isshin/lightningChargePunch.png" id="4_hghmx"]
+[ext_resource type="Texture2D" uid="uid://yq52wh00nwt1" path="res://Decked/Assests/Backgrounds/NPCS/Dummy/dummy.webp" id="4_ruxvt"]
+[ext_resource type="Texture2D" uid="uid://cruhdrcn70b3s" path="res://Decked/Assests/Backgrounds/NPCS/Dummy/dummyShield.webp" id="5_5fqul"]
+[ext_resource type="Script" uid="uid://h5acffb8kh4u" path="res://Decked/Scripts/Player/Combat/HurtBox.gd" id="6_71omy"]
+[ext_resource type="Texture2D" uid="uid://drplq3r38iv1x" path="res://Decked/Assests/Backgrounds/NPCS/Dummy/dummyStagger.webp" id="6_hghmx"]
+[ext_resource type="Script" uid="uid://dr6m376bbawc7" path="res://Decked/Scripts/Game Functions/StateMachine.gd" id="7_c27rd"]
+[ext_resource type="AudioStream" uid="uid://bxpf54q3l0lmf" path="res://Decked/Assests/Sound/Sound Effects/HitSound.wav" id="9_g2mwg"]
+[ext_resource type="Script" uid="uid://cfeaerr8pouwa" path="res://Decked/Scripts/Player/Functions/DummyIdle.gd" id="11_7b66t"]
+[ext_resource type="Script" uid="uid://0tcuo0rds81c" path="res://Decked/Scripts/Player/Combat/dummy_shield.gd" id="14_71omy"]
+[ext_resource type="Script" uid="uid://b7ikrseiomyi4" path="res://Decked/Scripts/Player/Combat/QuickStagger.gd" id="14_ugd0r"]
+[ext_resource type="AudioStream" uid="uid://sl5yn6lrdthx" path="res://Decked/Assests/Sound/Sound Effects/ShieldEffect.wav" id="15_c27rd"]
+[ext_resource type="AudioStream" uid="uid://bcb1fe6fy17wo" path="res://Decked/Assests/Sound/Sound Effects/QuickStagger.wav" id="15_ri2mh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_22dop"]
+shader = ExtResource("3_c27rd")
+shader_parameter/enabled = false
+shader_parameter/HitColor = Color(0.842893, 0.686629, 0.410642, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkyut"]
+atlas = ExtResource("4_hghmx")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n16y0"]
+atlas = ExtResource("4_hghmx")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxhmt"]
+atlas = ExtResource("4_hghmx")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0k68"]
+atlas = ExtResource("4_hghmx")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ftwo"]
+atlas = ExtResource("4_hghmx")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rhrl"]
+atlas = ExtResource("4_hghmx")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mm7ml"]
+atlas = ExtResource("4_hghmx")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8s0ea"]
+atlas = ExtResource("4_hghmx")
+region = Rect2(384, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ua127"]
+atlas = ExtResource("3_vghmd")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbglk"]
+atlas = ExtResource("3_vghmd")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ueciu"]
+atlas = ExtResource("3_vghmd")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p55eu"]
+atlas = ExtResource("3_vghmd")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ltvu"]
+atlas = ExtResource("3_vghmd")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5plct"]
+atlas = ExtResource("4_ruxvt")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffe6b"]
+atlas = ExtResource("6_hghmx")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_neqxs"]
+atlas = ExtResource("6_hghmx")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_av6et"]
+atlas = ExtResource("6_hghmx")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_palbu"]
+atlas = ExtResource("6_hghmx")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkrbg"]
+atlas = ExtResource("6_hghmx")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dabt3"]
+atlas = ExtResource("6_hghmx")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1frg"]
+atlas = ExtResource("6_hghmx")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_518qd"]
+atlas = ExtResource("5_5fqul")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22dop"]
+atlas = ExtResource("5_5fqul")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mi44d"]
+atlas = ExtResource("5_5fqul")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jn6hg"]
+atlas = ExtResource("5_5fqul")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lclgd"]
+atlas = ExtResource("5_5fqul")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etms3"]
+atlas = ExtResource("5_5fqul")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fetjh"]
+atlas = ExtResource("5_5fqul")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3upjk"]
+atlas = ExtResource("5_5fqul")
+region = Rect2(128, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6t8f5"]
+atlas = ExtResource("5_5fqul")
+region = Rect2(256, 256, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_navb5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkyut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n16y0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxhmt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0k68")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ftwo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rhrl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mm7ml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8s0ea")
+}],
+"loop": true,
+"name": &"ChargePunch",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ua127")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbglk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ueciu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p55eu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ltvu")
+}],
+"loop": false,
+"name": &"ConfusedStaggered",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5plct")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffe6b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_neqxs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_av6et")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_palbu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkrbg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dabt3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1frg")
+}],
+"loop": false,
+"name": &"QuickStagger",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_518qd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22dop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mi44d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jn6hg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lclgd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etms3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fetjh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3upjk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6t8f5")
+}],
+"loop": false,
+"name": &"Shield",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kh7ep"]
+radius = 7.07107
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k3ot7"]
+size = Vector2(33, 15)
+
+[sub_resource type="Animation" id="Animation_jn6hg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_mi44d"]
+resource_name = "hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lclgd"]
+_data = {
+&"RESET": SubResource("Animation_jn6hg"),
+&"hit": SubResource("Animation_mi44d")
+}
+
+[node name="Dummy_Shield" type="CharacterBody2D"]
+script = ExtResource("1_u3wfg")
+
+[node name="Health" type="Node" parent="." node_paths=PackedStringArray("statemachine", "hit_animation_player")]
+script = ExtResource("2_a3drw")
+statemachine = NodePath("../StateMachine")
+hit_animation_player = NodePath("../HitAnimationPlayer")
+max_health = 30
+metadata/_custom_type_script = "uid://d0cgkch2xj4ff"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_22dop")
+sprite_frames = SubResource("SpriteFrames_navb5")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kh7ep")
+
+[node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("hitAudio")]
+visible = false
+script = ExtResource("6_71omy")
+hitAudio = NodePath("Hit")
+metadata/_custom_type_script = "uid://h5acffb8kh4u"
+
+[node name="HurtBoxShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("RectangleShape2D_k3ot7")
+debug_color = Color(0.693082, 0.496307, 0, 0.42)
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="HurtBox"]
+stream = ExtResource("9_g2mwg")
+volume_db = 5.0
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("7_c27rd")
+initial_state = NodePath("DummyShield")
+metadata/_custom_type_script = "uid://dr6m376bbawc7"
+
+[node name="DummyIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("11_7b66t")
+player = NodePath("../../AnimatedSprite2D")
+
+[node name="QuickStagger" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animator", "audio")]
+script = ExtResource("14_ugd0r")
+player = NodePath("../..")
+animator = NodePath("../../AnimatedSprite2D")
+audio = NodePath("QuickStaggerSound")
+metadata/_custom_type_script = "uid://b7ikrseiomyi4"
+
+[node name="QuickStaggerSound" type="AudioStreamPlayer2D" parent="StateMachine/QuickStagger"]
+stream = ExtResource("15_ri2mh")
+
+[node name="DummyShield" type="Node" parent="StateMachine" node_paths=PackedStringArray("animator", "audio")]
+script = ExtResource("14_71omy")
+animator = NodePath("../../AnimatedSprite2D")
+audio = NodePath("ShieldSound")
+
+[node name="ShieldSound" type="AudioStreamPlayer2D" parent="StateMachine/DummyShield"]
+stream = ExtResource("15_c27rd")
+
+[node name="HitAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_lclgd")
+}

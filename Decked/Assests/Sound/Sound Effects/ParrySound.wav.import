@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bar6mgy4sts5d"
+path="res://.godot/imported/ParrySound.wav-6ec557edbdb917a410dc4182a97ce348.sample"
+
+[deps]
+
+source_file="res://Decked/Assests/Sound/Sound Effects/ParrySound.wav"
+dest_files=["res://.godot/imported/ParrySound.wav-6ec557edbdb917a410dc4182a97ce348.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

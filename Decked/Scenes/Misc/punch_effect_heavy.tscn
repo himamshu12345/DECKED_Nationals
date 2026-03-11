@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://bdlps8mvbmpbc"]
+
+[ext_resource type="Texture2D" uid="uid://hrdnmdlo6up1" path="res://Decked/Assests/Effects/POW.webp" id="1_o22wx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14wds"]
+atlas = ExtResource("1_o22wx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24g3d"]
+atlas = ExtResource("1_o22wx")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fscg"]
+atlas = ExtResource("1_o22wx")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qddxi"]
+atlas = ExtResource("1_o22wx")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1k6ck"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14wds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24g3d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fscg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qddxi")
+}],
+"loop": false,
+"name": &"Heavy",
+"speed": 10.0
+}]
+
+[node name="punchEffectHeavy" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_1k6ck")
+animation = &"Heavy"
+autoplay = "Heavy"

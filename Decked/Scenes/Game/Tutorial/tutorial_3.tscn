@@ -1,0 +1,219 @@
+[gd_scene load_steps=19 format=4 uid="uid://ch4ee2pudaxrs"]
+
+[ext_resource type="PackedScene" uid="uid://sqj3s17xci70" path="res://Decked/Scenes/Game/game_manager.tscn" id="1_80q56"]
+[ext_resource type="PackedScene" uid="uid://dr7g2fgmpq4ke" path="res://Decked/Scenes/Backgrounds/boxing_ring.tscn" id="3_an6oh"]
+[ext_resource type="Texture2D" uid="uid://bvek03ginpoki" path="res://Decked/Assests/Backgrounds/buttons.webp" id="3_marck"]
+[ext_resource type="PackedScene" uid="uid://pviiqotj3fpx" path="res://Decked/Scenes/Player/player_1.tscn" id="4_marck"]
+[ext_resource type="PackedScene" uid="uid://cd6wuwoiqgdg6" path="res://Decked/Scenes/Player/dummy_shield.tscn" id="6_80q56"]
+[ext_resource type="PackedScene" uid="uid://cne80hotdcbxu" path="res://Decked/Scenes/Player/health_bar_blue.tscn" id="6_m266f"]
+[ext_resource type="FontFile" uid="uid://bigeflro4ldvu" path="res://Decked/Assests/Fonts/PixeloidMono/PixeloidSans-Bold.ttf" id="7_an6oh"]
+[ext_resource type="Texture2D" uid="uid://dvba3isyrgkub" path="res://Decked/Assests/Backgrounds/redKeyCap.webp" id="8_marck"]
+[ext_resource type="Texture2D" uid="uid://b0t61686y6kw1" path="res://Decked/Assests/Backgrounds/brickGymTileSet (1).webp" id="9_yr154"]
+[ext_resource type="Texture2D" uid="uid://dosldsnqcolj3" path="res://Decked/Assests/Backgrounds/GoldBar.webp" id="10_228vx"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m266f"]
+texture = ExtResource("9_yr154")
+2:2/size_in_atlas = Vector2i(2, 2)
+2:2/0 = 0
+4:4/size_in_atlas = Vector2i(2, 2)
+4:4/0 = 0
+6:6/size_in_atlas = Vector2i(2, 2)
+6:6/0 = 0
+2:6/size_in_atlas = Vector2i(2, 2)
+2:6/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fh8cj"]
+texture = ExtResource("3_marck")
+1:0/0 = 0
+1:2/0 = 0
+3:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_fh8cj"]
+sources/0 = SubResource("TileSetAtlasSource_m266f")
+sources/1 = SubResource("TileSetAtlasSource_fh8cj")
+
+[sub_resource type="LabelSettings" id="LabelSettings_228vx"]
+shadow_color = Color(0.388235, 0.776471, 0.862745, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m266f"]
+shadow_color = Color(0.372549, 0.803922, 0.894118, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eytn1"]
+texture = ExtResource("10_228vx")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ehmrg"]
+font_color = Color(0.176471, 0.176471, 0.176471, 0.768627)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fh8cj"]
+shadow_color = Color(1, 0.522945, 0.988733, 1)
+
+[node name="Tutorial3" type="Node2D" groups=["tutorial"]]
+
+[node name="GameManager" parent="." instance=ExtResource("1_80q56")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAUAAkAAAAEAAQAAAAUAAsAAAACAAIAAAAUAA0AAAACAAIAAAAUAA8AAAACAAIAAAAUABEAAAACAAIAAAAUABMAAAACAAIAAAAUABUAAAACAAIAAAAUABcAAAACAAIAAAAUABkAAAACAAIAAAAUABsAAAACAAIAAAAUAB0AAAAEAAQAAAAWAAkAAAAEAAQAAAAWAAsAAAACAAIAAAAWAA0AAAACAAIAAAAWAA8AAAACAAIAAAAWABEAAAACAAIAAAAWABMAAAACAAIAAAAWABUAAAACAAIAAAAWABcAAAACAAIAAAAWABkAAAACAAIAAAAWABsAAAACAAIAAAAWAB0AAAAEAAQAAAAYAAkAAAAEAAQAAAAYAAsAAAACAAIAAAAYAA0AAAACAAIAAAAYAA8AAAACAAIAAAAYABEAAAACAAIAAAAYABMAAAACAAIAAAAYABUAAAACAAIAAAAYABcAAAACAAIAAAAYABkAAAACAAIAAAAYABsAAAACAAIAAAAYAB0AAAAEAAQAAAAaAAkAAAAEAAQAAAAaAAsAAAACAAIAAAAaAA0AAAACAAIAAAAaAA8AAAACAAIAAAAaABEAAAACAAIAAAAaABMAAAACAAIAAAAaABUAAAACAAIAAAAaABcAAAACAAIAAAAaABkAAAACAAIAAAAaABsAAAACAAIAAAAaAB0AAAAEAAQAAAAcAAkAAAAEAAQAAAAcAAsAAAACAAIAAAAcAA0AAAACAAIAAAAcAA8AAAACAAIAAAAcABEAAAACAAIAAAAcABMAAAACAAIAAAAcABUAAAACAAIAAAAcABcAAAACAAIAAAAcABkAAAACAAIAAAAcABsAAAACAAIAAAAcAB0AAAAEAAQAAAAeAAkAAAAEAAQAAAAeAAsAAAACAAIAAAAeAA0AAAACAAIAAAAeAA8AAAACAAIAAAAeABEAAAACAAIAAAAeABMAAAACAAIAAAAeABUAAAACAAIAAAAeABcAAAACAAIAAAAeABkAAAACAAIAAAAeABsAAAACAAIAAAAeAB0AAAAEAAQAAAAgAAkAAAAEAAQAAAAgAAsAAAACAAIAAAAgAA0AAAACAAIAAAAgAA8AAAACAAIAAAAgABEAAAACAAIAAAAgABMAAAACAAIAAAAgABUAAAACAAIAAAAgABcAAAACAAIAAAAgABkAAAACAAIAAAAgABsAAAACAAIAAAAgAB0AAAAEAAQAAAAiAAkAAAAEAAQAAAAiAAsAAAACAAIAAAAiAA0AAAACAAIAAAAiAA8AAAACAAIAAAAiABEAAAACAAIAAAAiABMAAAACAAIAAAAiABUAAAACAAIAAAAiABcAAAACAAIAAAAiABkAAAACAAIAAAAiABsAAAACAAIAAAAiAB0AAAAEAAQAAAAkAAkAAAAEAAQAAAAkAAsAAAACAAIAAAAkAA0AAAACAAIAAAAkAA8AAAACAAIAAAAkABEAAAACAAIAAAAkABMAAAACAAIAAAAkABUAAAACAAIAAAAkABcAAAACAAIAAAAkABkAAAACAAIAAAAkABsAAAACAAIAAAAkAB0AAAAEAAQAAAAmAAkAAAAEAAQAAAAmAAsAAAACAAIAAAAmAA0AAAACAAIAAAAmAA8AAAACAAIAAAAmABEAAAACAAIAAAAmABMAAAACAAIAAAAmABUAAAACAAIAAAAmABcAAAACAAIAAAAmABkAAAACAAIAAAAmABsAAAACAAIAAAAmAB0AAAAEAAQAAAAoAAkAAAAEAAQAAAAoAAsAAAACAAIAAAAoAA0AAAACAAIAAAAoAA8AAAACAAIAAAAoABEAAAACAAIAAAAoABMAAAACAAIAAAAoABUAAAACAAIAAAAoABcAAAACAAIAAAAoABkAAAACAAIAAAAoABsAAAACAAIAAAAoAB0AAAAEAAQAAAAqAAkAAAAEAAQAAAAqAAsAAAACAAIAAAAqAA0AAAACAAIAAAAqAA8AAAACAAIAAAAqABEAAAACAAIAAAAqABMAAAACAAIAAAAqABUAAAACAAIAAAAqABcAAAACAAIAAAAqABkAAAACAAIAAAAqABsAAAACAAIAAAAqAB0AAAAEAAQAAAAsAAkAAAAEAAQAAAAsAAsAAAACAAIAAAAsAA0AAAACAAIAAAAsAA8AAAACAAIAAAAsABEAAAACAAIAAAAsABMAAAACAAIAAAAsABUAAAACAAIAAAAsABcAAAACAAIAAAAsABkAAAACAAIAAAAsABsAAAACAAIAAAAsAB0AAAAEAAQAAAAuAAkAAAAEAAQAAAAuAAsAAAACAAIAAAAuAA0AAAACAAIAAAAuAA8AAAACAAIAAAAuABEAAAACAAIAAAAuABMAAAACAAIAAAAuABUAAAACAAIAAAAuABcAAAACAAIAAAAuABkAAAACAAIAAAAuABsAAAACAAIAAAAuAB0AAAAEAAQAAAAwAAkAAAAEAAQAAAAwAAsAAAACAAIAAAAwAA0AAAACAAIAAAAwAA8AAAACAAIAAAAwABEAAAACAAIAAAAwABMAAAACAAIAAAAwABUAAAACAAIAAAAwABcAAAACAAIAAAAwABkAAAACAAIAAAAwABsAAAACAAIAAAAwAB0AAAAEAAQAAAAyAAkAAAAEAAQAAAAyAAsAAAACAAIAAAAyAA0AAAACAAIAAAAyAA8AAAACAAIAAAAyABEAAAACAAIAAAAyABMAAAACAAIAAAAyABUAAAACAAIAAAAyABcAAAACAAIAAAAyABkAAAACAAIAAAAyABsAAAACAAIAAAAyAB0AAAAEAAQAAAA0AAkAAAAEAAQAAAA0AAsAAAACAAIAAAA0AA0AAAACAAIAAAA0AA8AAAACAAIAAAA0ABEAAAACAAIAAAA0ABMAAAACAAIAAAA0ABUAAAACAAIAAAA0ABcAAAACAAIAAAA0ABkAAAACAAIAAAA0ABsAAAACAAIAAAA0AB0AAAAEAAQAAAASABsAAAACAAIAAAASABkAAAACAAIAAAASABcAAAACAAIAAAASABUAAAACAAIAAAASABMAAAACAAIAAAASABEAAAACAAIAAAASAA8AAAACAAIAAAASAA0AAAACAAIAAAASAAsAAAACAAIAAAA2AAsAAAACAAIAAAA2AA0AAAACAAIAAAA2AA8AAAACAAIAAAA2ABEAAAACAAIAAAA2ABMAAAACAAIAAAA2ABUAAAACAAIAAAA2ABcAAAACAAIAAAA2ABkAAAACAAIAAAA2ABsAAAACAAIAAAASAB0AAAAEAAQAAAAQAB0AAAAEAAQAAAAQABsAAAAEAAQAAAAQABkAAAAEAAQAAAAQABcAAAAEAAQAAAAQABUAAAAEAAQAAAAQABMAAAAEAAQAAAAQABEAAAAEAAQAAAAQAA8AAAAEAAQAAAAQAA0AAAAEAAQAAAAQAAsAAAAEAAQAAAAQAAkAAAAEAAQAAAASAAkAAAAEAAQAAAA2AAkAAAAEAAQAAAA4AAkAAAAEAAQAAAA4AAsAAAAEAAQAAAA4AA0AAAAEAAQAAAA4AA8AAAAEAAQAAAA4ABEAAAAEAAQAAAA4ABMAAAAEAAQAAAA4ABUAAAAEAAQAAAA4ABcAAAAEAAQAAAA2AB0AAAAEAAQAAAA4AB0AAAAEAAQAAAA4ABsAAAAEAAQAAAA4ABkAAAAEAAQAAAA=")
+tile_set = SubResource("TileSet_fh8cj")
+
+[node name="Shield" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 823.0
+offset_top = 111.0
+offset_right = 863.0
+offset_bottom = 151.0
+
+[node name="Label" type="Label" parent="Shield"]
+layout_mode = 0
+offset_left = -96.0
+offset_top = 128.0
+offset_right = 8.0
+offset_bottom = 151.0
+theme_override_fonts/font = ExtResource("7_an6oh")
+text = "Hold"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Shield"]
+layout_mode = 0
+offset_left = -97.0
+offset_top = 181.0
+offset_right = 8.0
+offset_bottom = 223.333
+theme_override_fonts/font = ExtResource("7_an6oh")
+text = "To Shield"
+label_settings = SubResource("LabelSettings_228vx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="E" type="TextureRect" parent="Shield"]
+layout_mode = 0
+offset_left = -78.0
+offset_top = 135.0
+offset_right = -14.0
+offset_bottom = 199.0
+texture = ExtResource("8_marck")
+
+[node name="Label" type="Label" parent="Shield/E"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 46.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("7_an6oh")
+text = "K"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hits" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 458.0
+offset_top = 171.0
+offset_right = 498.0
+offset_bottom = 211.0
+
+[node name="Label" type="Label" parent="Hits"]
+layout_mode = 0
+offset_left = -154.0
+offset_top = 81.0
+offset_right = 30.0
+offset_bottom = 199.0
+scale = Vector2(0.84, 0.84)
+theme_override_fonts/font = ExtResource("7_an6oh")
+text = "Shield blocks 3 normal hits, and 1 charge punch"
+label_settings = SubResource("LabelSettings_m266f")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Boxing Ring" parent="Control" instance=ExtResource("3_an6oh")]
+layout_mode = 1
+offset_left = -105.0
+offset_top = -127.0
+offset_right = -105.0
+offset_bottom = -127.0
+
+[node name="HealthBarBlue" parent="Control/Boxing Ring" node_paths=PackedStringArray("player") instance=ExtResource("6_m266f")]
+offset_left = 237.972
+offset_top = -27.424
+offset_right = 277.972
+offset_bottom = 12.576
+player = NodePath("../Dummy_Shield")
+
+[node name="Camera2D" type="Camera2D" parent="Control/Boxing Ring"]
+position = Vector2(114.048, 113.724)
+zoom = Vector2(2, 2)
+
+[node name="Player1" parent="Control/Boxing Ring" instance=ExtResource("4_marck")]
+position = Vector2(112, 184)
+
+[node name="Dummy_Shield" parent="Control/Boxing Ring" instance=ExtResource("6_80q56")]
+position = Vector2(114, 114)
+
+[node name="Skip" type="Button" parent="."]
+offset_left = 785.0
+offset_top = 409.0
+offset_right = 862.0
+offset_bottom = 438.0
+theme_override_fonts/font = ExtResource("7_an6oh")
+text = "Skip"
+flat = true
+
+[node name="Next" type="Button" parent="."]
+offset_left = 305.0
+offset_top = 333.0
+offset_right = 382.0
+offset_bottom = 409.0
+scale = Vector2(1.88, 1.88)
+theme_override_fonts/font = ExtResource("7_an6oh")
+theme_override_styles/hover = SubResource("StyleBoxTexture_eytn1")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_eytn1")
+theme_override_styles/normal = SubResource("StyleBoxTexture_eytn1")
+text = "Next"
+
+[node name="Label" type="Label" parent="Next"]
+layout_mode = 0
+offset_left = 14.3617
+offset_top = 27.6596
+offset_right = 62.3617
+offset_bottom = 50.6596
+theme_override_fonts/font = ExtResource("7_an6oh")
+text = "Next"
+label_settings = SubResource("LabelSettings_ehmrg")
+
+[node name="Hits2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 856.0
+offset_top = 255.0
+offset_right = 896.0
+offset_bottom = 295.0
+
+[node name="Label" type="Label" parent="Hits2"]
+layout_mode = 0
+offset_left = -150.0
+offset_top = 45.0
+offset_right = 34.0
+offset_bottom = 163.0
+scale = Vector2(0.84, 0.84)
+theme_override_fonts/font = ExtResource("7_an6oh")
+text = "First few frames count as a parry"
+label_settings = SubResource("LabelSettings_fh8cj")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[connection signal="pressed" from="Skip" to="GameManager" method="_on_skip_pressed"]
+[connection signal="pressed" from="Next" to="GameManager" method="_on_nextpt4_pressed"]

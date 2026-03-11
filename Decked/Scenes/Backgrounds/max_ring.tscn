@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp2n1avrh804g"]
+
+[ext_resource type="Texture2D" uid="uid://x2xovf11uldh" path="res://Decked/Assests/Backgrounds/PunchoutRing.webp" id="1_bghvb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4khmp"]
+size = Vector2(219.75, 11)
+
+[node name="Max Ring" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 461.952
+offset_top = 210.6
+offset_right = -690.048
+offset_bottom = -437.4
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Max ring" type="TextureRect" parent="."]
+layout_mode = 1
+offset_right = 227.0
+offset_bottom = 240.0
+texture = ExtResource("1_bghvb")
+
+[node name="Borders" type="StaticBody2D" parent="Max ring"]
+
+[node name="Left" type="CollisionShape2D" parent="Max ring/Borders"]
+position = Vector2(4, 116.75)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_4khmp")
+debug_color = Color(0, 0, 0, 0.42)
+
+[node name="Left2" type="CollisionShape2D" parent="Max ring/Borders"]
+position = Vector2(221.5, 109)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_4khmp")
+debug_color = Color(0, 0, 0, 0.42)
+
+[node name="Top" type="CollisionShape2D" parent="Max ring/Borders"]
+position = Vector2(112.875, 4)
+shape = SubResource("RectangleShape2D_4khmp")
+debug_color = Color(0, 0, 0, 0.42)
+
+[node name="Bottom" type="CollisionShape2D" parent="Max ring/Borders"]
+position = Vector2(115, 222)
+shape = SubResource("RectangleShape2D_4khmp")
+debug_color = Color(0, 0, 0, 0.42)

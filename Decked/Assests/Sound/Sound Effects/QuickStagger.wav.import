@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bcb1fe6fy17wo"
+path="res://.godot/imported/QuickStagger.wav-50e7e7b065e30e840f67a4a5c0d09bbd.sample"
+
+[deps]
+
+source_file="res://Decked/Assests/Sound/Sound Effects/QuickStagger.wav"
+dest_files=["res://.godot/imported/QuickStagger.wav-50e7e7b065e30e840f67a4a5c0d09bbd.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

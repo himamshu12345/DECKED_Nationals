@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4nl38msixc1f"]
+
+[ext_resource type="Script" uid="uid://ccvf5xjixsf11" path="res://Decked/Scripts/Game Functions/Card/cardEffects.gd" id="1_02ko1"]
+[ext_resource type="Shader" uid="uid://d2x5w1e7552wb" path="res://Decked/Scripts/Game Functions/Card/card.gdshader" id="2_nf47p"]
+[ext_resource type="Texture2D" uid="uid://cj5ij0x0x0ask" path="res://Decked/Assests/Cards/KingIsshinCard.png" id="4_02ko1"]
+[ext_resource type="PackedScene" uid="uid://sqj3s17xci70" path="res://Decked/Scenes/Game/game_manager.tscn" id="4_wdvps"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b3773"]
+shader = ExtResource("2_nf47p")
+shader_parameter/fov = 90.0
+shader_parameter/cull_back = true
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
+
+[node name="Isshin Card" type="Control"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_02ko1")
+
+[node name="GameManager" parent="." instance=ExtResource("4_wdvps")]
+
+[node name="Front" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_b3773")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_02ko1")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -50.0
+offset_right = 33.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+flat = true
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Button" to="GameManager" method="_on_isshin_pressed"]

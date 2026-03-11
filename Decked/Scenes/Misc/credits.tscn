@@ -1,0 +1,184 @@
+[gd_scene load_steps=14 format=3 uid="uid://cwn0dhuvxyksq"]
+
+[ext_resource type="Texture2D" uid="uid://q6cn32uy0neh" path="res://Decked/Assests/Backgrounds/settingsMenu.webp" id="1_cofqm"]
+[ext_resource type="FontFile" uid="uid://bigeflro4ldvu" path="res://Decked/Assests/Fonts/PixeloidMono/PixeloidSans-Bold.ttf" id="1_mkyr3"]
+[ext_resource type="FontFile" uid="uid://c06ew55lxrijs" path="res://Decked/Assests/Fonts/PixeloidMono/PixeloidMono.ttf" id="2_jj62e"]
+[ext_resource type="Texture2D" uid="uid://dosldsnqcolj3" path="res://Decked/Assests/Backgrounds/GoldBar.webp" id="3_cofqm"]
+[ext_resource type="PackedScene" uid="uid://sqj3s17xci70" path="res://Decked/Scenes/Game/game_manager.tscn" id="4_jj62e"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3n3ap"]
+font_size = 32
+font_color = Color(1, 0.941176, 0.0509804, 1)
+shadow_size = 4
+shadow_color = Color(0.729412, 0.34902, 0.0313726, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qyx5o"]
+font_size = 24
+shadow_size = 4
+shadow_color = Color(0.710047, 0.710047, 0.710047, 0.34902)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kyn4b"]
+font_size = 24
+shadow_size = 4
+shadow_color = Color(0.710047, 0.710047, 0.710047, 0.34902)
+
+[sub_resource type="LabelSettings" id="LabelSettings_q8h46"]
+font_size = 24
+shadow_size = 4
+shadow_color = Color(0.710047, 0.710047, 0.710047, 0.34902)
+
+[sub_resource type="LabelSettings" id="LabelSettings_el5cj"]
+font_size = 24
+shadow_size = 4
+shadow_color = Color(0.710047, 0.710047, 0.710047, 0.34902)
+
+[sub_resource type="LabelSettings" id="LabelSettings_r0i2x"]
+font_size = 24
+shadow_size = 4
+shadow_color = Color(0.710047, 0.710047, 0.710047, 0.34902)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3n3ap"]
+texture = ExtResource("3_cofqm")
+
+[sub_resource type="LabelSettings" id="LabelSettings_041cp"]
+font_color = Color(0.279357, 0.279357, 0.279357, 1)
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_cofqm")
+
+[node name="Credits" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Art" type="Label" parent="Credits"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_mkyr3")
+text = "Art Design"
+label_settings = SubResource("LabelSettings_3n3ap")
+horizontal_alignment = 1
+
+[node name="Art Names" type="Label" parent="Credits"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jj62e")
+text = "Tai Brixen - Lead Artist
+Jose Peña
+Jameson Rupert"
+label_settings = SubResource("LabelSettings_qyx5o")
+horizontal_alignment = 1
+
+[node name="Coding" type="Label" parent="Credits"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_mkyr3")
+text = "Coding"
+label_settings = SubResource("LabelSettings_3n3ap")
+horizontal_alignment = 1
+
+[node name="Coding Names" type="Label" parent="Credits"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jj62e")
+text = "Himamshu Gajurel - Lead Developer
+Jameson Rupert
+Journey Allison"
+label_settings = SubResource("LabelSettings_kyn4b")
+horizontal_alignment = 1
+
+[node name="Music" type="Label" parent="Credits"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_mkyr3")
+text = "Music and Sound Design"
+label_settings = SubResource("LabelSettings_3n3ap")
+horizontal_alignment = 1
+
+[node name="Music Names" type="Label" parent="Credits"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jj62e")
+text = "Jose Pena - Original Sound Tracks
+Jameson Rupert - Sound Effects"
+label_settings = SubResource("LabelSettings_q8h46")
+horizontal_alignment = 1
+
+[node name="Documentation" type="Label" parent="Credits"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_mkyr3")
+text = "Documentation and Quality Assurance"
+label_settings = SubResource("LabelSettings_3n3ap")
+horizontal_alignment = 1
+
+[node name="Documentation Names" type="Label" parent="Credits"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jj62e")
+text = "Journey Allison"
+label_settings = SubResource("LabelSettings_el5cj")
+horizontal_alignment = 1
+
+[node name="Creative Director" type="Label" parent="Credits"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_mkyr3")
+text = "Creative Director"
+label_settings = SubResource("LabelSettings_3n3ap")
+horizontal_alignment = 1
+
+[node name="Creative Director Name" type="Label" parent="Credits"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jj62e")
+text = "adriel crawford"
+label_settings = SubResource("LabelSettings_r0i2x")
+horizontal_alignment = 1
+
+[node name="GameManager" parent="." instance=ExtResource("4_jj62e")]
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -305.0
+offset_top = -160.0
+offset_right = -228.0
+offset_bottom = -84.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(2.56091, 2.56091)
+theme_override_fonts/font = ExtResource("1_mkyr3")
+theme_override_styles/hover = SubResource("StyleBoxTexture_3n3ap")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_3n3ap")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3n3ap")
+text = "Back"
+
+[node name="Label" type="Label" parent="Back"]
+layout_mode = 0
+offset_left = 14.3617
+offset_top = 27.6596
+offset_right = 62.3617
+offset_bottom = 50.6596
+theme_override_fonts/font = ExtResource("1_mkyr3")
+text = "Back"
+label_settings = SubResource("LabelSettings_041cp")
+
+[connection signal="pressed" from="Back" to="GameManager" method="_on_menu_pressed"]

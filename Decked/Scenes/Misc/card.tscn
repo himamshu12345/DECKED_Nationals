@@ -1,0 +1,131 @@
+[gd_scene load_steps=8 format=3 uid="uid://bdeumhpl73tie"]
+
+[ext_resource type="Shader" uid="uid://d2x5w1e7552wb" path="res://Decked/Scripts/Game Functions/Card/card.gdshader" id="1_e2vft"]
+[ext_resource type="Texture2D" uid="uid://cqbysjyyjuigh" path="res://Decked/Assests/Cards/Back.png" id="1_ht1kl"]
+[ext_resource type="Script" uid="uid://ccvf5xjixsf11" path="res://Decked/Scripts/Game Functions/Card/cardEffects.gd" id="1_rgp4y"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rgp4y"]
+shader = ExtResource("1_e2vft")
+shader_parameter/fov = 90.0
+shader_parameter/cull_back = true
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
+
+[sub_resource type="Animation" id="Animation_h1mss"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Back:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Front:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
+}
+
+[sub_resource type="Animation" id="Animation_e2vft"]
+resource_name = "card flip"
+length = 0.5
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Back:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.812341, 1), Vector2(0.05, 1), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Front:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.22, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [-1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kaq38"]
+_data = {
+&"RESET": SubResource("Animation_h1mss"),
+&"card flip": SubResource("Animation_e2vft")
+}
+
+[node name="Card" type="Control"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rgp4y")
+
+[node name="Back" type="Sprite2D" parent="."]
+position = Vector2(64, 64)
+texture = ExtResource("1_ht1kl")
+
+[node name="Front" type="TextureRect" parent="."]
+z_index = -1
+material = SubResource("ShaderMaterial_rgp4y")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_kaq38")
+}
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -50.0
+offset_right = 33.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+disabled = true
+flat = true
+metadata/_edit_use_anchors_ = true
+
+[connection signal="mouse_entered" from="Front" to="." method="_on_front_mouse_entered"]
+[connection signal="mouse_exited" from="Front" to="." method="_on_front_mouse_exited"]

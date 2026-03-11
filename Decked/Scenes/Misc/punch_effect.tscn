@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://u0p86sjrm83i"]
+
+[ext_resource type="Texture2D" uid="uid://cv0jh7utdbcdj" path="res://Decked/Assests/Effects/lightPOW.webp" id="1_rmfpv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvjto"]
+atlas = ExtResource("1_rmfpv")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0quw"]
+atlas = ExtResource("1_rmfpv")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcqdj"]
+atlas = ExtResource("1_rmfpv")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5owf6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvjto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0quw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tcqdj")
+}],
+"loop": false,
+"name": &"Light",
+"speed": 10.0
+}]
+
+[node name="punchEffect" type="AnimatedSprite2D"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_5owf6")
+animation = &"Light"
+autoplay = "Light"

@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmvat4r8h7kax"]
+
+[ext_resource type="Texture2D" uid="uid://dg2p1tlqxggym" path="res://Decked/Assests/Backgrounds/bossSelectScreen.webp" id="1_37i8l"]
+[ext_resource type="PackedScene" uid="uid://sqj3s17xci70" path="res://Decked/Scenes/Game/game_manager.tscn" id="1_etswe"]
+[ext_resource type="PackedScene" uid="uid://bme7rhva8kdiy" path="res://Decked/Scenes/Misc/joe_card.tscn" id="3_wbxyb"]
+[ext_resource type="PackedScene" uid="uid://xo1xtjls3yvc" path="res://Decked/Scenes/Misc/max_card.tscn" id="4_7dejd"]
+[ext_resource type="PackedScene" uid="uid://d4nl38msixc1f" path="res://Decked/Scenes/Misc/isshin_card.tscn" id="5_r3djl"]
+
+[node name="BossSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -384.0
+offset_right = -96.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.4, 2.4)
+texture = ExtResource("1_37i8l")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = -476.0
+offset_top = -28.0
+offset_right = -84.0
+offset_bottom = 100.0
+scale = Vector2(2.5, 2.5)
+
+[node name="Joe Card" parent="HBoxContainer" instance=ExtResource("3_wbxyb")]
+layout_mode = 2
+
+[node name="Max Card" parent="HBoxContainer" instance=ExtResource("4_7dejd")]
+layout_mode = 2
+
+[node name="Isshin Card" parent="HBoxContainer" instance=ExtResource("5_r3djl")]
+layout_mode = 2
+
+[node name="GameManager" parent="." instance=ExtResource("1_etswe")]

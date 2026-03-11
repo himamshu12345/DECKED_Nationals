@@ -1,0 +1,105 @@
+[gd_scene load_steps=10 format=3 uid="uid://cvya40hymcv1f"]
+
+[ext_resource type="PackedScene" uid="uid://cne80hotdcbxu" path="res://Decked/Scenes/Player/health_bar_blue.tscn" id="1_4rogp"]
+[ext_resource type="PackedScene" uid="uid://sqj3s17xci70" path="res://Decked/Scenes/Game/game_manager.tscn" id="1_y0sty"]
+[ext_resource type="PackedScene" uid="uid://dr7g2fgmpq4ke" path="res://Decked/Scenes/Backgrounds/boxing_ring.tscn" id="2_4rogp"]
+[ext_resource type="PackedScene" uid="uid://c5f78yunul2y6" path="res://Decked/Scenes/Player/dummy.tscn" id="3_pksoh"]
+[ext_resource type="PackedScene" uid="uid://pviiqotj3fpx" path="res://Decked/Scenes/Player/player_1.tscn" id="4_hf7qh"]
+[ext_resource type="FontFile" uid="uid://bigeflro4ldvu" path="res://Decked/Assests/Fonts/PixeloidMono/PixeloidSans-Bold.ttf" id="6_pksoh"]
+[ext_resource type="FontFile" uid="uid://c06ew55lxrijs" path="res://Decked/Assests/Fonts/PixeloidMono/PixeloidMono.ttf" id="7_pksoh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hf7qh"]
+outline_size = 1
+shadow_size = 2
+shadow_color = Color(0.627451, 0, 0, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hf7qh"]
+
+[node name="Tutorial(2)" type="Node2D"]
+
+[node name="HealthBarBlue" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_4rogp")]
+offset_left = 242.0
+offset_top = -25.0
+offset_right = 282.0
+offset_bottom = 15.0
+player = NodePath("../Dummy_Idle")
+
+[node name="GameManager" parent="." instance=ExtResource("1_y0sty")]
+
+[node name="Boxing Ring" parent="." instance=ExtResource("2_4rogp")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -463.0
+offset_top = -204.0
+offset_right = -463.0
+offset_bottom = -204.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dummy_Idle" parent="." instance=ExtResource("3_pksoh")]
+position = Vector2(113, 113)
+
+[node name="Camera2D" type="Camera2D" parent="Dummy_Idle"]
+zoom = Vector2(2, 2)
+
+[node name="Player1" parent="." instance=ExtResource("4_hf7qh")]
+position = Vector2(112, 177)
+
+[node name="Movement" type="Label" parent="."]
+anchors_preset = -1
+anchor_right = 0.5
+offset_left = -169.0
+offset_top = 39.0
+offset_right = 55.0
+offset_bottom = 59.0
+grow_horizontal = 2
+scale = Vector2(0.720359, 1.20461)
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("7_pksoh")
+text = "HOLD SPACE TO CHARGE"
+label_settings = SubResource("LabelSettings_hf7qh")
+
+[node name="Movement3" type="Label" parent="."]
+anchors_preset = -1
+anchor_right = 0.5
+offset_left = -173.0
+offset_top = 66.0
+offset_right = 73.0
+offset_bottom = 100.0
+grow_horizontal = 2
+scale = Vector2(0.720359, 1.20461)
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("7_pksoh")
+text = "Charge can break shield"
+label_settings = SubResource("LabelSettings_hf7qh")
+
+[node name="Movement2" type="Label" parent="."]
+anchors_preset = -1
+anchor_right = 0.5
+offset_left = 237.0
+offset_top = 49.0
+offset_right = 461.0
+offset_bottom = 69.0
+grow_horizontal = 2
+scale = Vector2(0.720359, 1.20461)
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("7_pksoh")
+text = "To do: add one more
+tutorial where they
+have to block and dodge"
+label_settings = SubResource("LabelSettings_hf7qh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Menu" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_pksoh")
+text = "Menu"
+icon = SubResource("ViewportTexture_hf7qh")
+
+[connection signal="pressed" from="VBoxContainer/Menu" to="GameManager" method="_on_menu_pressed"]

@@ -1,0 +1,963 @@
+[gd_scene load_steps=69 format=4 uid="uid://bdbei1j4q8wyb"]
+
+[ext_resource type="Script" uid="uid://kctwi46bood" path="res://Decked/Scripts/Game Functions/2_player_mode.gd" id="1_2l5q1"]
+[ext_resource type="PackedScene" uid="uid://dr7g2fgmpq4ke" path="res://Decked/Scenes/Backgrounds/boxing_ring.tscn" id="1_6gek1"]
+[ext_resource type="PackedScene" uid="uid://sqj3s17xci70" path="res://Decked/Scenes/Game/game_manager.tscn" id="1_gvo4n"]
+[ext_resource type="PackedScene" uid="uid://pviiqotj3fpx" path="res://Decked/Scenes/Player/player_1.tscn" id="2_g2bny"]
+[ext_resource type="PackedScene" uid="uid://cxviwmlnfjaw6" path="res://Decked/Scenes/Player/player_2.tscn" id="3_gvo4n"]
+[ext_resource type="Texture2D" uid="uid://cm7u5f5rgsqnx" path="res://Decked/Assests/Backgrounds/tatamiSet.webp" id="4_v43vu"]
+[ext_resource type="Texture2D" uid="uid://cu0o3hcsei7sl" path="res://Decked/Assests/Backgrounds/randomSprites.webp" id="5_bpa11"]
+[ext_resource type="Texture2D" uid="uid://70cxilape12t" path="res://Decked/Assests/PlayerBody/Max/littleMac.png" id="6_bpa11"]
+[ext_resource type="PackedScene" uid="uid://c4l1u3ock5j2v" path="res://Decked/Scenes/Player/health_bar_red.tscn" id="6_u0qsw"]
+[ext_resource type="Texture2D" uid="uid://dif22tdeocoy5" path="res://Decked/Assests/Backgrounds/NPCS/whiteguy.webp" id="6_vbaqp"]
+[ext_resource type="Texture2D" uid="uid://cpv52ptatoacn" path="res://Decked/Assests/Backgrounds/NPCS/pinkGuy.webp" id="7_i7t12"]
+[ext_resource type="PackedScene" uid="uid://cne80hotdcbxu" path="res://Decked/Scenes/Player/health_bar_blue.tscn" id="7_nard7"]
+[ext_resource type="AudioStream" uid="uid://c212i5yj4ffqd" path="res://Decked/Assests/Sound/OST/FightOST.wav" id="8_jrub4"]
+[ext_resource type="Texture2D" uid="uid://2dqg35bu8qdu" path="res://Decked/Assests/Backgrounds/NPCS/LUFFY_exe.webp" id="8_tk7m7"]
+[ext_resource type="Texture2D" uid="uid://c0p5yycsibnb0" path="res://Decked/Assests/Backgrounds/NPCS/blackguy.webp" id="9_wnyx3"]
+[ext_resource type="Texture2D" uid="uid://kfgq0psig5ax" path="res://Decked/Assests/Backgrounds/NPCS/blueGreenGuy.webp" id="10_ynui0"]
+[ext_resource type="Texture2D" uid="uid://dtgrywd2h8tho" path="res://Decked/Assests/Backgrounds/NPCS/bebop.webp" id="11_f2sf3"]
+[ext_resource type="Texture2D" uid="uid://b0t61686y6kw1" path="res://Decked/Assests/Backgrounds/brickGymTileSet (1).webp" id="11_q1fad"]
+[ext_resource type="Texture2D" uid="uid://b3em8ceri0gdx" path="res://Decked/Assests/Backgrounds/NPCS/scott.png" id="12_v0wns"]
+[ext_resource type="PackedScene" uid="uid://vlqgsj46nokx" path="res://Decked/Scenes/Misc/pause_menu.tscn" id="18_6vqcq"]
+[ext_resource type="Texture2D" uid="uid://hf5xscpps0dn" path="res://Decked/Assests/Backgrounds/NPCS/cheering (1).webp" id="19_mv325"]
+[ext_resource type="Texture2D" uid="uid://boamidvngxph5" path="res://Decked/Assests/Backgrounds/NPCS/goBlue.webp" id="20_gp1am"]
+[ext_resource type="Texture2D" uid="uid://dwcwbbvqsbaj4" path="res://Decked/Assests/Backgrounds/NPCS/goRed.webp" id="21_fgwqw"]
+[ext_resource type="Texture2D" uid="uid://2gpyp11o27wx" path="res://Decked/Assests/Backgrounds/NPCS/handsup.webp" id="22_6tpcs"]
+[ext_resource type="Texture2D" uid="uid://bplfb7otdftua" path="res://Decked/Assests/Backgrounds/NPCS/spinningGuy.webp" id="23_y6gqg"]
+[ext_resource type="PackedScene" uid="uid://b4t705wynmid7" path="res://Decked/Scenes/Backgrounds/score_counter.tscn" id="26_i7t12"]
+[ext_resource type="PackedScene" uid="uid://b0txwgeh3rvps" path="res://Decked/Scenes/Backgrounds/ready_go.tscn" id="27_tk7m7"]
+[ext_resource type="Texture2D" uid="uid://dvba3isyrgkub" path="res://Decked/Assests/Backgrounds/redKeyCap.webp" id="28_ynui0"]
+[ext_resource type="FontFile" uid="uid://bigeflro4ldvu" path="res://Decked/Assests/Fonts/PixeloidMono/PixeloidSans-Bold.ttf" id="29_f2sf3"]
+[ext_resource type="Texture2D" uid="uid://t5exsam1ywcq" path="res://Decked/Assests/Backgrounds/blueKeyCap.webp" id="30_v0wns"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vxy6r"]
+texture = ExtResource("11_q1fad")
+2:2/size_in_atlas = Vector2i(2, 2)
+2:2/0 = 0
+4:4/size_in_atlas = Vector2i(2, 2)
+4:4/0 = 0
+6:6/size_in_atlas = Vector2i(2, 2)
+6:6/0 = 0
+2:6/size_in_atlas = Vector2i(2, 2)
+2:6/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gdcok"]
+texture = ExtResource("4_v43vu")
+1:1/size_in_atlas = Vector2i(2, 2)
+1:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_578fd"]
+texture = ExtResource("5_bpa11")
+5:5/size_in_atlas = Vector2i(2, 2)
+5:5/0 = 0
+1:5/size_in_atlas = Vector2i(2, 2)
+1:5/0 = 0
+5:3/size_in_atlas = Vector2i(2, 2)
+5:3/0 = 0
+3:3/size_in_atlas = Vector2i(2, 2)
+3:3/0 = 0
+1:3/size_in_atlas = Vector2i(2, 2)
+1:3/0 = 0
+3:1/size_in_atlas = Vector2i(2, 2)
+3:1/0 = 0
+1:1/size_in_atlas = Vector2i(2, 2)
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_synuv"]
+sources/0 = SubResource("TileSetAtlasSource_vxy6r")
+sources/1 = SubResource("TileSetAtlasSource_gdcok")
+sources/2 = SubResource("TileSetAtlasSource_578fd")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bpa11"]
+texture = ExtResource("11_q1fad")
+2:2/size_in_atlas = Vector2i(2, 2)
+2:2/0 = 0
+4:4/size_in_atlas = Vector2i(2, 2)
+4:4/0 = 0
+6:6/size_in_atlas = Vector2i(2, 2)
+6:6/0 = 0
+2:6/size_in_atlas = Vector2i(2, 2)
+2:6/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vbaqp"]
+texture = ExtResource("4_v43vu")
+1:1/size_in_atlas = Vector2i(2, 2)
+1:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i7t12"]
+texture = ExtResource("6_bpa11")
+0:0/size_in_atlas = Vector2i(3, 3)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tk7m7"]
+texture = ExtResource("5_bpa11")
+5:5/size_in_atlas = Vector2i(2, 2)
+5:5/0 = 0
+1:5/size_in_atlas = Vector2i(2, 2)
+1:5/0 = 0
+5:3/size_in_atlas = Vector2i(2, 2)
+5:3/0 = 0
+3:3/size_in_atlas = Vector2i(2, 2)
+3:3/0 = 0
+1:3/size_in_atlas = Vector2i(2, 2)
+1:3/0 = 0
+3:1/size_in_atlas = Vector2i(2, 2)
+3:1/0 = 0
+1:1/size_in_atlas = Vector2i(2, 2)
+1:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wnyx3"]
+texture = ExtResource("6_vbaqp")
+0:1/size_in_atlas = Vector2i(3, 1)
+0:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ynui0"]
+texture = ExtResource("7_i7t12")
+0:1/size_in_atlas = Vector2i(3, 1)
+0:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f2sf3"]
+texture = ExtResource("8_tk7m7")
+0:1/size_in_atlas = Vector2i(3, 2)
+0:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v0wns"]
+texture = ExtResource("9_wnyx3")
+0:1/size_in_atlas = Vector2i(3, 1)
+0:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mv325"]
+texture = ExtResource("10_ynui0")
+0:1/size_in_atlas = Vector2i(3, 1)
+0:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gp1am"]
+texture = ExtResource("11_f2sf3")
+0:1/size_in_atlas = Vector2i(3, 1)
+0:1/0 = 0
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fgwqw"]
+texture = ExtResource("12_v0wns")
+0:1/size_in_atlas = Vector2i(3, 1)
+0:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_iwg6d"]
+sources/0 = SubResource("TileSetAtlasSource_bpa11")
+sources/1 = SubResource("TileSetAtlasSource_vbaqp")
+sources/2 = SubResource("TileSetAtlasSource_tk7m7")
+sources/3 = SubResource("TileSetAtlasSource_wnyx3")
+sources/4 = SubResource("TileSetAtlasSource_ynui0")
+sources/5 = SubResource("TileSetAtlasSource_f2sf3")
+sources/6 = SubResource("TileSetAtlasSource_v0wns")
+sources/7 = SubResource("TileSetAtlasSource_mv325")
+sources/8 = SubResource("TileSetAtlasSource_gp1am")
+sources/9 = SubResource("TileSetAtlasSource_fgwqw")
+sources/10 = SubResource("TileSetAtlasSource_i7t12")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_madbs"]
+atlas = ExtResource("19_mv325")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0c65d"]
+atlas = ExtResource("19_mv325")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhmbt"]
+atlas = ExtResource("19_mv325")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1d1j"]
+atlas = ExtResource("20_gp1am")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_baesd"]
+atlas = ExtResource("20_gp1am")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1nr7k"]
+atlas = ExtResource("20_gp1am")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vply"]
+atlas = ExtResource("20_gp1am")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnw3e"]
+atlas = ExtResource("21_fgwqw")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_271i7"]
+atlas = ExtResource("21_fgwqw")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgf82"]
+atlas = ExtResource("22_6tpcs")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfats"]
+atlas = ExtResource("22_6tpcs")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_abrtw"]
+atlas = ExtResource("23_y6gqg")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_td0gn"]
+atlas = ExtResource("23_y6gqg")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcgat"]
+atlas = ExtResource("23_y6gqg")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1yrtn"]
+atlas = ExtResource("23_y6gqg")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wicaw"]
+atlas = ExtResource("23_y6gqg")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iggpr"]
+atlas = ExtResource("23_y6gqg")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_edbav"]
+atlas = ExtResource("23_y6gqg")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpwqe"]
+atlas = ExtResource("23_y6gqg")
+region = Rect2(48, 96, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_08pyd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_madbs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0c65d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhmbt")
+}],
+"loop": true,
+"name": &"Cheer",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1d1j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_baesd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1nr7k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vply")
+}],
+"loop": true,
+"name": &"Go Blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qnw3e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_271i7")
+}],
+"loop": true,
+"name": &"Go Red",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgf82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfats")
+}],
+"loop": true,
+"name": &"Hands Up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_abrtw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_td0gn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcgat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1yrtn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wicaw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iggpr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_edbav")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gpwqe")
+}],
+"loop": true,
+"name": &"Spinning",
+"speed": 7.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_i7t12"]
+font_color = Color(0.807843, 0.172549, 0.0431373, 1)
+shadow_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mv325"]
+shadow_color = Color(0.388235, 0.776471, 0.862745, 1)
+
+[node name="2PlayerMode" type="Node2D"]
+script = ExtResource("1_2l5q1")
+
+[node name="GameManager" parent="." instance=ExtResource("1_gvo4n")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAUAAkAAAAEAAQAAAAUAAsAAAACAAIAAAAUAA0AAAACAAIAAAAUAA8AAAACAAIAAAAUABEAAAACAAIAAAAUABMAAAACAAIAAAAUABUAAAACAAIAAAAUABcAAAACAAIAAAAUABkAAAACAAIAAAAUABsAAAACAAIAAAAUAB0AAAAEAAQAAAAWAAkAAAAEAAQAAAAWAAsAAAACAAIAAAAWAA0AAAACAAIAAAAWAA8AAAACAAIAAAAWABEAAAACAAIAAAAWABMAAAACAAIAAAAWABUAAAACAAIAAAAWABcAAAACAAIAAAAWABkAAAACAAIAAAAWABsAAAACAAIAAAAWAB0AAAAEAAQAAAAYAAkAAAAEAAQAAAAYAAsAAAACAAIAAAAYAA0AAAACAAIAAAAYAA8AAAACAAIAAAAYABEAAAACAAIAAAAYABMAAAACAAIAAAAYABUAAAACAAIAAAAYABcAAAACAAIAAAAYABkAAAACAAIAAAAYABsAAAACAAIAAAAYAB0AAAAEAAQAAAAaAAkAAAAEAAQAAAAaAAsAAAACAAIAAAAaAA0AAAACAAIAAAAaAA8AAAACAAIAAAAaABEAAAACAAIAAAAaABMAAAACAAIAAAAaABUAAAACAAIAAAAaABcAAAACAAIAAAAaABkAAAACAAIAAAAaABsAAAACAAIAAAAaAB0AAAAEAAQAAAAcAAkAAAAEAAQAAAAcAAsAAAACAAIAAAAcAA0AAAACAAIAAAAcAA8AAAACAAIAAAAcABEAAAACAAIAAAAcABMAAAACAAIAAAAcABUAAAACAAIAAAAcABcAAAACAAIAAAAcABkAAAACAAIAAAAcABsAAAACAAIAAAAcAB0AAAAEAAQAAAAeAAkAAAAEAAQAAAAeAAsAAAACAAIAAAAeAA0AAAACAAIAAAAeAA8AAAACAAIAAAAeABEAAAACAAIAAAAeABMAAAACAAIAAAAeABUAAAACAAIAAAAeABcAAAACAAIAAAAeABkAAAACAAIAAAAeABsAAAACAAIAAAAeAB0AAAAEAAQAAAAgAAkAAAAEAAQAAAAgAAsAAAACAAIAAAAgAA0AAAACAAIAAAAgAA8AAAACAAIAAAAgABEAAAACAAIAAAAgABMAAAACAAIAAAAgABUAAAACAAIAAAAgABcAAAACAAIAAAAgABkAAAACAAIAAAAgABsAAAACAAIAAAAgAB0AAAAEAAQAAAAiAAkAAAAEAAQAAAAiAAsAAAACAAIAAAAiAA0AAAACAAIAAAAiAA8AAAACAAIAAAAiABEAAAACAAIAAAAiABMAAAACAAIAAAAiABUAAAACAAIAAAAiABcAAAACAAIAAAAiABkAAAACAAIAAAAiABsAAAACAAIAAAAiAB0AAAAEAAQAAAAkAAkAAAAEAAQAAAAkAAsAAAACAAIAAAAkAA0AAAACAAIAAAAkAA8AAAACAAIAAAAkABEAAAACAAIAAAAkABMAAAACAAIAAAAkABUAAAACAAIAAAAkABcAAAACAAIAAAAkABkAAAACAAIAAAAkABsAAAACAAIAAAAkAB0AAAAEAAQAAAAmAAkAAAAEAAQAAAAmAAsAAAACAAIAAAAmAA0AAAACAAIAAAAmAA8AAAACAAIAAAAmABEAAAACAAIAAAAmABMAAAACAAIAAAAmABUAAAACAAIAAAAmABcAAAACAAIAAAAmABkAAAACAAIAAAAmABsAAAACAAIAAAAmAB0AAAAEAAQAAAAoAAkAAAAEAAQAAAAoAAsAAAACAAIAAAAoAA0AAAACAAIAAAAoAA8AAAACAAIAAAAoABEAAAACAAIAAAAoABMAAAACAAIAAAAoABUAAAACAAIAAAAoABcAAAACAAIAAAAoABkAAAACAAIAAAAoABsAAAACAAIAAAAoAB0AAAAEAAQAAAAqAAkAAAAEAAQAAAAqAAsAAAACAAIAAAAqAA0AAAACAAIAAAAqAA8AAAACAAIAAAAqABEAAAACAAIAAAAqABMAAAACAAIAAAAqABUAAAACAAIAAAAqABcAAAACAAIAAAAqABkAAAACAAIAAAAqABsAAAACAAIAAAAqAB0AAAAEAAQAAAAsAAkAAAAEAAQAAAAsAAsAAAACAAIAAAAsAA0AAAACAAIAAAAsAA8AAAACAAIAAAAsABEAAAACAAIAAAAsABMAAAACAAIAAAAsABUAAAACAAIAAAAsABcAAAACAAIAAAAsABkAAAACAAIAAAAsABsAAAACAAIAAAAsAB0AAAAEAAQAAAAuAAkAAAAEAAQAAAAuAAsAAAACAAIAAAAuAA0AAAACAAIAAAAuAA8AAAACAAIAAAAuABEAAAACAAIAAAAuABMAAAACAAIAAAAuABUAAAACAAIAAAAuABcAAAACAAIAAAAuABkAAAACAAIAAAAuABsAAAACAAIAAAAuAB0AAAAEAAQAAAAwAAkAAAAEAAQAAAAwAAsAAAACAAIAAAAwAA0AAAACAAIAAAAwAA8AAAACAAIAAAAwABEAAAACAAIAAAAwABMAAAACAAIAAAAwABUAAAACAAIAAAAwABcAAAACAAIAAAAwABkAAAACAAIAAAAwABsAAAACAAIAAAAwAB0AAAAEAAQAAAAyAAkAAAAEAAQAAAAyAAsAAAACAAIAAAAyAA0AAAACAAIAAAAyAA8AAAACAAIAAAAyABEAAAACAAIAAAAyABMAAAACAAIAAAAyABUAAAACAAIAAAAyABcAAAACAAIAAAAyABkAAAACAAIAAAAyABsAAAACAAIAAAAyAB0AAAAEAAQAAAA0AAkAAAAEAAQAAAA0AAsAAAACAAIAAAA0AA0AAAACAAIAAAA0AA8AAAACAAIAAAA0ABEAAAACAAIAAAA0ABMAAAACAAIAAAA0ABUAAAACAAIAAAA0ABcAAAACAAIAAAA0ABkAAAACAAIAAAA0ABsAAAACAAIAAAA0AB0AAAAEAAQAAAASABsAAAACAAIAAAASABkAAAACAAIAAAASABcAAAACAAIAAAASABUAAAACAAIAAAASABMAAAACAAIAAAASABEAAAACAAIAAAASAA8AAAACAAIAAAASAA0AAAACAAIAAAASAAsAAAACAAIAAAA2AAsAAAACAAIAAAA2AA0AAAACAAIAAAA2AA8AAAACAAIAAAA2ABEAAAACAAIAAAA2ABMAAAACAAIAAAA2ABUAAAACAAIAAAA2ABcAAAACAAIAAAA2ABkAAAACAAIAAAA2ABsAAAACAAIAAAASAB0AAAAEAAQAAAAQAB0AAAAEAAQAAAAQABsAAAAEAAQAAAAQABkAAAAEAAQAAAAQABcAAAAEAAQAAAAQABUAAAAEAAQAAAAQABMAAAAEAAQAAAAQABEAAAAEAAQAAAAQAA8AAAAEAAQAAAAQAA0AAAAEAAQAAAAQAAsAAAAEAAQAAAAQAAkAAAAEAAQAAAASAAkAAAAEAAQAAAA2AAkAAAAEAAQAAAA4AAkAAAAEAAQAAAA4AAsAAAAEAAQAAAA4AA0AAAAEAAQAAAA4AA8AAAAEAAQAAAA4ABEAAAAEAAQAAAA4ABMAAAAEAAQAAAA4ABUAAAAEAAQAAAA4ABcAAAAEAAQAAAA2AB0AAAAEAAQAAAA4AB0AAAAEAAQAAAA4ABsAAAAEAAQAAAA4ABkAAAAEAAQAAAA=")
+tile_set = SubResource("TileSet_synuv")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAUAAwAAgABAAEAAAAWAAwAAgABAAEAAAAYAAwAAgABAAEAAAAaAAwAAgABAAEAAAAcAAwAAgABAAEAAAASAA4AAgABAAMAADASABAAAgABAAMAADASAA8AAgABAAMAADASABEAAgABAAMAADASABIAAgABAAMAADASABMAAgABAAMAADASABQAAgABAAMAADASABUAAgABAAMAADASABYAAgABAAMAADAuABkAAgADAAEAADAwABkAAgADAAEAADAyABkAAgADAAEAADA0ABkAAgADAAEAADAuABUAAgADAAEAADAwABUAAgADAAEAADAyABUAAgADAAEAADA0ABUAAgADAAEAADAuABEAAgADAAEAADAwABEAAgADAAEAADAyABEAAgADAAEAADA0ABEAAgADAAEAADAbAAsAAgAFAAMAAAA=")
+tile_set = SubResource("TileSet_iwg6d")
+
+[node name="TileMapLayer3" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAUAAwAAgABAAEAAAAWAAwAAgABAAEAAAAYAAwAAgABAAEAAAAaAAwAAgABAAEAAAAcAAwAAgABAAEAAAASAA4AAgABAAMAADASABAAAgABAAMAADASAA8AAgABAAMAADASABEAAgABAAMAADASABIAAgABAAMAADASABMAAgABAAMAADASABQAAgABAAMAADASABUAAgABAAMAADASABYAAgABAAMAADAwABkABAAAAAEAAAAyABkABgAAAAEAAAA0ABkABwAAAAEAAAAuABUABAAAAAEAAAAwABUACQAAAAEAADAyABUAAwAAAAEAAAA0ABUABwAAAAEAAAAwABEABwAAAAEAAAA0ABEABgAAAAEAAAAbAAsAAgAFAAMAAAAuABkAAwAAAAEAAAAbAA8ABQAAAAEAAFAuABEACAAAAAEAADAyABEABgAAAAEAAAAaAA8ABwAAAAEAAGAZABEABgAAAAEAAGAYABMABgAAAAEAAGAaABcABAAAAAEAAGAcABgABAAAAAEAAGAYABYAAwAAAAEAAGAYAA8AAwAAAAEAAGAZABQACgAAAAAAAFA=")
+tile_set = SubResource("TileSet_iwg6d")
+
+[node name="Fight" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_jrub4")
+autoplay = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Boxing Ring" parent="Control" instance=ExtResource("1_6gek1")]
+layout_mode = 1
+offset_left = -105.0
+offset_top = -127.0
+offset_right = -105.0
+offset_bottom = -127.0
+
+[node name="Player1" parent="Control/Boxing Ring" instance=ExtResource("2_g2bny")]
+position = Vector2(26.472, 200.576)
+
+[node name="Player2" parent="Control/Boxing Ring" instance=ExtResource("3_gvo4n")]
+position = Vector2(199.972, 18.076)
+
+[node name="HealthBarRed" parent="Control/Boxing Ring" node_paths=PackedStringArray("player") instance=ExtResource("6_u0qsw")]
+offset_left = -154.028
+offset_top = 197.576
+offset_right = -114.028
+offset_bottom = 237.576
+player = NodePath("../Player1")
+
+[node name="HealthBarBlue" parent="Control/Boxing Ring" node_paths=PackedStringArray("player") instance=ExtResource("7_nard7")]
+offset_left = 237.972
+offset_top = -27.424
+offset_right = 277.972
+offset_bottom = 12.576
+player = NodePath("../Player2")
+
+[node name="Camera2D" type="Camera2D" parent="Control/Boxing Ring"]
+position = Vector2(114.048, 113.724)
+zoom = Vector2(2, 2)
+
+[node name="Cheerers" type="Control" parent="Control/Boxing Ring"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/Boxing Ring/Cheerers"]
+position = Vector2(-21.7917, 85.9931)
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_08pyd")
+animation = &"Cheer"
+autoplay = "Cheer"
+frame_progress = 0.605241
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Control/Boxing Ring/Cheerers"]
+position = Vector2(-19.8832, 121.405)
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_08pyd")
+animation = &"Hands Up"
+autoplay = "Hands Up"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Control/Boxing Ring/Cheerers"]
+position = Vector2(-19.6712, 156.393)
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_08pyd")
+animation = &"Cheer"
+autoplay = "Cheer"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="Control/Boxing Ring/Cheerers"]
+position = Vector2(-43.7672, 101.543)
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_08pyd")
+animation = &"Hands Up"
+autoplay = "Hands Up"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="Control/Boxing Ring/Cheerers"]
+position = Vector2(-49.5893, 139.871)
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_08pyd")
+animation = &"Cheer"
+autoplay = "Cheer"
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="Control/Boxing Ring/Cheerers"]
+position = Vector2(-94.9677, 82.1936)
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_08pyd")
+animation = &"Cheer"
+autoplay = "Cheer"
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="Control/Boxing Ring/Cheerers"]
+position = Vector2(-95.4809, 136.588)
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_08pyd")
+animation = &"Hands Up"
+autoplay = "Hands Up"
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="Control/Boxing Ring/Cheerers"]
+position = Vector2(-172.475, -4.36078)
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_08pyd")
+animation = &"Spinning"
+autoplay = "Spinning"
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="Control/Boxing Ring/Cheerers"]
+position = Vector2(-68.9798, 71.7055)
+sprite_frames = SubResource("SpriteFrames_08pyd")
+animation = &"Go Red"
+autoplay = "Go Red"
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="Control/Boxing Ring/Cheerers"]
+position = Vector2(-23.2129, 131.811)
+sprite_frames = SubResource("SpriteFrames_08pyd")
+animation = &"Go Blue"
+autoplay = "Go Blue"
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="Control/Boxing Ring/Cheerers"]
+position = Vector2(-50.5334, 107.905)
+sprite_frames = SubResource("SpriteFrames_08pyd")
+animation = &"Go Red"
+autoplay = "Go Red"
+
+[node name="AnimatedSprite2D12" type="AnimatedSprite2D" parent="Control/Boxing Ring/Cheerers"]
+position = Vector2(-49.5089, 164.254)
+sprite_frames = SubResource("SpriteFrames_08pyd")
+animation = &"Go Blue"
+autoplay = "Go Blue"
+
+[node name="StartGame" parent="Control/Boxing Ring" instance=ExtResource("27_tk7m7")]
+position = Vector2(114, 114)
+
+[node name="score_counter" parent="Control/Boxing Ring" instance=ExtResource("26_i7t12")]
+layout_mode = 0
+offset_left = 18.0
+offset_top = -23.0
+offset_right = 209.0
+offset_bottom = 0.0
+text = "2 Player"
+label_settings = SubResource("LabelSettings_i7t12")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Pause Menu" parent="Control" instance=ExtResource("18_6vqcq")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -329.0
+offset_top = -187.0
+offset_right = 823.0
+offset_bottom = 461.0
+scale = Vector2(0.585376, 0.539354)
+
+[node name="WASD" type="Control" parent="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 343.0
+offset_top = 326.0
+offset_right = 386.0
+offset_bottom = 326.0
+scale = Vector2(0.303945, 0.303945)
+
+[node name="W" type="TextureRect" parent="Control/WASD"]
+layout_mode = 2
+offset_left = -92.0
+offset_top = 139.0
+offset_right = -28.0
+offset_bottom = 203.0
+texture = ExtResource("28_ynui0")
+
+[node name="Label" type="Label" parent="Control/WASD/W"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 46.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("29_f2sf3")
+text = "W"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="A" type="TextureRect" parent="Control/WASD"]
+layout_mode = 2
+offset_left = -124.0
+offset_top = 171.0
+offset_right = -60.0
+offset_bottom = 235.0
+texture = ExtResource("28_ynui0")
+
+[node name="Label" type="Label" parent="Control/WASD/A"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 46.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("29_f2sf3")
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="S" type="TextureRect" parent="Control/WASD"]
+layout_mode = 2
+offset_left = -92.0
+offset_top = 171.0
+offset_right = -28.0
+offset_bottom = 235.0
+texture = ExtResource("28_ynui0")
+
+[node name="Label" type="Label" parent="Control/WASD/S"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 46.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("29_f2sf3")
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="D" type="TextureRect" parent="Control/WASD"]
+layout_mode = 2
+offset_left = -60.0
+offset_top = 171.0
+offset_right = 4.0
+offset_bottom = 235.0
+texture = ExtResource("28_ynui0")
+
+[node name="Label" type="Label" parent="Control/WASD/D"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 46.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("29_f2sf3")
+text = "D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Control/WASD"]
+layout_mode = 0
+offset_left = -112.0
+offset_top = 130.0
+offset_right = -8.0
+offset_bottom = 153.0
+theme_override_fonts/font = ExtResource("29_f2sf3")
+text = "Move With"
+
+[node name="Dash" type="Control" parent="Control/WASD"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -6.58022
+offset_top = -101.992
+offset_right = 33.4198
+offset_bottom = -61.9922
+
+[node name="Label" type="Label" parent="Control/WASD/Dash"]
+layout_mode = 0
+offset_left = -96.0
+offset_top = 128.0
+offset_right = 8.0
+offset_bottom = 151.0
+theme_override_fonts/font = ExtResource("29_f2sf3")
+text = "Press"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/WASD/Dash"]
+layout_mode = 0
+offset_left = -96.0
+offset_top = 189.0
+offset_right = 8.0
+offset_bottom = 212.0
+theme_override_fonts/font = ExtResource("29_f2sf3")
+text = "To Dash"
+horizontal_alignment = 1
+
+[node name="Q" type="TextureRect" parent="Control/WASD/Dash"]
+layout_mode = 0
+offset_left = -78.0
+offset_top = 135.0
+offset_right = -14.0
+offset_bottom = 199.0
+texture = ExtResource("28_ynui0")
+
+[node name="Label" type="Label" parent="Control/WASD/Dash/Q"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 46.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("29_f2sf3")
+text = "Q"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Punch" type="Control" parent="Control/WASD"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 98.702
+offset_top = 16.4504
+offset_right = 138.702
+offset_bottom = 56.4504
+
+[node name="Space" type="TextureRect" parent="Control/WASD/Punch"]
+layout_mode = 0
+offset_left = -121.0
+offset_top = 131.0
+offset_right = -57.0
+offset_bottom = 195.0
+scale = Vector2(2.35895, 1.12711)
+texture = ExtResource("28_ynui0")
+
+[node name="Label2" type="Label" parent="Control/WASD/Punch"]
+layout_mode = 0
+offset_left = -96.0
+offset_top = 189.0
+offset_right = 8.0
+offset_bottom = 212.0
+theme_override_fonts/font = ExtResource("29_f2sf3")
+text = "To Punch"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Control/WASD/Punch"]
+layout_mode = 0
+offset_left = -72.0
+offset_top = 154.0
+offset_right = -9.0
+offset_bottom = 182.0
+scale = Vector2(0.88, 0.88)
+theme_override_fonts/font = ExtResource("29_f2sf3")
+text = "Space"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Shield" type="Control" parent="Control/WASD"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 101.992
+offset_top = -101.992
+offset_right = 141.992
+offset_bottom = -61.9922
+
+[node name="Label" type="Label" parent="Control/WASD/Shield"]
+layout_mode = 0
+offset_left = -96.0
+offset_top = 128.0
+offset_right = 8.0
+offset_bottom = 151.0
+theme_override_fonts/font = ExtResource("29_f2sf3")
+text = "Hold"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/WASD/Shield"]
+layout_mode = 0
+offset_left = -97.0
+offset_top = 181.0
+offset_right = 8.0
+offset_bottom = 223.333
+theme_override_fonts/font = ExtResource("29_f2sf3")
+text = "To Shield"
+label_settings = SubResource("LabelSettings_mv325")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="E" type="TextureRect" parent="Control/WASD/Shield"]
+layout_mode = 0
+offset_left = -78.0
+offset_top = 135.0
+offset_right = -14.0
+offset_bottom = 199.0
+texture = ExtResource("28_ynui0")
+
+[node name="Label" type="Label" parent="Control/WASD/Shield/E"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 46.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("29_f2sf3")
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WASD2" type="Control" parent="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 737.0
+offset_top = 206.0
+offset_right = 780.0
+offset_bottom = 206.0
+scale = Vector2(0.303945, 0.303945)
+
+[node name="W" type="TextureRect" parent="Control/WASD2"]
+layout_mode = 2
+offset_left = -92.0
+offset_top = 139.0
+offset_right = -28.0
+offset_bottom = 203.0
+texture = ExtResource("30_v0wns")
+
+[node name="Label" type="Label" parent="Control/WASD2/W"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 46.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("29_f2sf3")
+text = "↑"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="A" type="TextureRect" parent="Control/WASD2"]
+layout_mode = 2
+offset_left = -124.0
+offset_top = 171.0
+offset_right = -60.0
+offset_bottom = 235.0
+texture = ExtResource("30_v0wns")
+
+[node name="Label" type="Label" parent="Control/WASD2/A"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 46.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("29_f2sf3")
+text = "←"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="S" type="TextureRect" parent="Control/WASD2"]
+layout_mode = 2
+offset_left = -92.0
+offset_top = 171.0
+offset_right = -28.0
+offset_bottom = 235.0
+texture = ExtResource("30_v0wns")
+
+[node name="Label" type="Label" parent="Control/WASD2/S"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 46.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("29_f2sf3")
+text = "↓"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="D" type="TextureRect" parent="Control/WASD2"]
+layout_mode = 2
+offset_left = -60.0
+offset_top = 171.0
+offset_right = 4.0
+offset_bottom = 235.0
+texture = ExtResource("30_v0wns")
+
+[node name="Label" type="Label" parent="Control/WASD2/D"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 46.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("29_f2sf3")
+text = "→"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Control/WASD2"]
+layout_mode = 0
+offset_left = -112.0
+offset_top = 130.0
+offset_right = -8.0
+offset_bottom = 153.0
+theme_override_fonts/font = ExtResource("29_f2sf3")
+text = "Move With"
+
+[node name="Dash" type="Control" parent="Control/WASD2"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -6.58022
+offset_top = -101.992
+offset_right = 33.4198
+offset_bottom = -61.9922
+
+[node name="Label" type="Label" parent="Control/WASD2/Dash"]
+layout_mode = 0
+offset_left = -96.0
+offset_top = 128.0
+offset_right = 8.0
+offset_bottom = 151.0
+theme_override_fonts/font = ExtResource("29_f2sf3")
+text = "Press"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/WASD2/Dash"]
+layout_mode = 0
+offset_left = -96.0
+offset_top = 189.0
+offset_right = 8.0
+offset_bottom = 212.0
+theme_override_fonts/font = ExtResource("29_f2sf3")
+text = "To Dash"
+horizontal_alignment = 1
+
+[node name="Q" type="TextureRect" parent="Control/WASD2/Dash"]
+layout_mode = 0
+offset_left = -78.0
+offset_top = 135.0
+offset_right = -14.0
+offset_bottom = 199.0
+texture = ExtResource("30_v0wns")
+
+[node name="Label" type="Label" parent="Control/WASD2/Dash/Q"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 46.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("29_f2sf3")
+text = "I"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Punch" type="Control" parent="Control/WASD2"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 121.733
+offset_top = 19.7402
+offset_right = 161.733
+offset_bottom = 59.7402
+
+[node name="Space" type="TextureRect" parent="Control/WASD2/Punch"]
+layout_mode = 0
+offset_left = -121.0
+offset_top = 131.0
+offset_right = -57.0
+offset_bottom = 195.0
+scale = Vector2(2.35895, 1.12711)
+texture = ExtResource("30_v0wns")
+
+[node name="Label2" type="Label" parent="Control/WASD2/Punch"]
+layout_mode = 0
+offset_left = -96.0
+offset_top = 189.0
+offset_right = 8.0
+offset_bottom = 212.0
+theme_override_fonts/font = ExtResource("29_f2sf3")
+text = "To Punch"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Control/WASD2/Punch"]
+layout_mode = 0
+offset_left = -72.0
+offset_top = 154.0
+offset_right = -9.0
+offset_bottom = 182.0
+scale = Vector2(0.88, 0.88)
+theme_override_fonts/font = ExtResource("29_f2sf3")
+text = "P"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Shield" type="Control" parent="Control/WASD2"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 121.733
+offset_top = -101.992
+offset_right = 161.733
+offset_bottom = -61.9924
+
+[node name="Label" type="Label" parent="Control/WASD2/Shield"]
+layout_mode = 0
+offset_left = -96.0
+offset_top = 128.0
+offset_right = 8.0
+offset_bottom = 151.0
+theme_override_fonts/font = ExtResource("29_f2sf3")
+text = "Hold"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/WASD2/Shield"]
+layout_mode = 0
+offset_left = -97.0
+offset_top = 181.0
+offset_right = 8.0
+offset_bottom = 223.333
+theme_override_fonts/font = ExtResource("29_f2sf3")
+text = "To Shield"
+label_settings = SubResource("LabelSettings_mv325")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="E" type="TextureRect" parent="Control/WASD2/Shield"]
+layout_mode = 0
+offset_left = -78.0
+offset_top = 135.0
+offset_right = -14.0
+offset_bottom = 199.0
+texture = ExtResource("30_v0wns")
+
+[node name="Label" type="Label" parent="Control/WASD2/Shield/E"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 46.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("29_f2sf3")
+text = "O"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://dcvbw4rrss3rf"]
+
+[ext_resource type="Texture2D" uid="uid://b1ns5xqrir7q6" path="res://Decked/Assests/HealthBar/shieldIndicator.webp" id="1_5qyec"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uairo"]
+atlas = ExtResource("1_5qyec")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18u53"]
+atlas = ExtResource("1_5qyec")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_syt02"]
+atlas = ExtResource("1_5qyec")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hrk4"]
+atlas = ExtResource("1_5qyec")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcocw"]
+atlas = ExtResource("1_5qyec")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpgs6"]
+atlas = ExtResource("1_5qyec")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dp85"]
+atlas = ExtResource("1_5qyec")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbp1f"]
+atlas = ExtResource("1_5qyec")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hq13b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uairo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18u53")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_syt02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hrk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcocw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpgs6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dp85")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbp1f")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="ShieldIndicator" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_hq13b")
+frame = 7
+frame_progress = 1.0

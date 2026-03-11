@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://ce0mx6r7gx6c2"]
+
+[ext_resource type="Texture2D" uid="uid://8o5p5he23baj" path="res://Decked/Assests/Backgrounds/cardSelectScreen (1).webp" id="1_mbib1"]
+[ext_resource type="Script" uid="uid://byc372tdhhfji" path="res://Decked/Scripts/Game Functions/Card/CardUI.gd" id="1_uyumy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vkg1"]
+atlas = ExtResource("1_mbib1")
+region = Rect2(0, 0, 480, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hs0h5"]
+atlas = ExtResource("1_mbib1")
+region = Rect2(480, 0, 480, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vl85o"]
+atlas = ExtResource("1_mbib1")
+region = Rect2(0, 320, 480, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0mav"]
+atlas = ExtResource("1_mbib1")
+region = Rect2(480, 320, 480, 320)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3fxyt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vkg1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hs0h5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vl85o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m0mav")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CardSelection" type="Control"]
+layout_mode = 3
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_uyumy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.4, 2.4)
+sprite_frames = SubResource("SpriteFrames_3fxyt")
+frame_progress = 0.0784172
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+offset_left = -476.0
+offset_top = -21.0
+offset_right = 101.0
+offset_bottom = 107.0
+scale = Vector2(2.5, 2.5)

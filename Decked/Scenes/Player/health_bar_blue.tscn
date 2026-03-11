@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=3 uid="uid://cne80hotdcbxu"]
+
+[ext_resource type="Script" uid="uid://c275g5dohtplm" path="res://Decked/Scripts/Player/Combat/HealthBar.gd" id="1_jw303"]
+[ext_resource type="Texture2D" uid="uid://i785n2u417ri" path="res://Decked/Assests/HealthBar/HealthFrameBlue.webp" id="2_br30b"]
+[ext_resource type="Texture2D" uid="uid://bdmlpnxyligav" path="res://Decked/Assests/HealthBar/leftGoldAsWhite(1).png" id="3_cvdfo"]
+[ext_resource type="Texture2D" uid="uid://d1n7ibyhgdmqm" path="res://Decked/Assests/HealthBar/rightGoldAsWhite (1).png" id="4_jyvet"]
+[ext_resource type="PackedScene" uid="uid://dm6p0k5j2v8a" path="res://Decked/Scenes/Player/DashIndicator.tscn" id="5_dash"]
+[ext_resource type="PackedScene" uid="uid://dcvbw4rrss3rf" path="res://Decked/Scenes/Player/shield_indicator.tscn" id="6_cvdfo"]
+
+[node name="HealthBarBlue" type="Control" node_paths=PackedStringArray("card_slots")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_jw303")
+card_slots = [NodePath("TextureRect"), NodePath("TextureRect2"), NodePath("TextureRect3"), NodePath("TextureRect4"), NodePath("TextureRect5")]
+
+[node name="Frame" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_br30b")
+
+[node name="LeftBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 2.0
+offset_right = 57.0
+offset_bottom = 66.0
+value = 100.0
+fill_mode = 1
+texture_progress = ExtResource("3_cvdfo")
+
+[node name="RightBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 2.0
+offset_right = 136.0
+offset_bottom = 66.0
+value = 100.0
+texture_progress = ExtResource("4_jyvet")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 85.0
+offset_bottom = 133.0
+scale = Vector2(0.2, 0.2)
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 5.0
+offset_right = 95.0
+offset_bottom = 133.0
+scale = Vector2(0.2, 0.2)
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 5.0
+offset_right = 105.0
+offset_bottom = 133.0
+scale = Vector2(0.2, 0.2)
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 5.0
+offset_right = 115.0
+offset_bottom = 133.0
+scale = Vector2(0.2, 0.2)
+
+[node name="TextureRect5" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 5.0
+offset_right = 125.0
+offset_bottom = 133.0
+scale = Vector2(0.2, 0.2)
+
+[node name="DashIndicator" parent="." instance=ExtResource("5_dash")]
+position = Vector2(120, 49)
+
+[node name="ShieldIndicator" parent="." instance=ExtResource("6_cvdfo")]
+position = Vector2(93, 56)

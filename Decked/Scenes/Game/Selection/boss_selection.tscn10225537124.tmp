@@ -1,0 +1,108 @@
+[gd_scene load_steps=11 format=3 uid="uid://dmvat4r8h7kax"]
+
+[ext_resource type="Texture2D" uid="uid://8o5p5he23baj" path="res://Decked/Assests/Backgrounds/cardSelectScreen (1).webp" id="1_easbv"]
+[ext_resource type="Script" uid="uid://iy7b2fjf3saq" path="res://Decked/Scripts/Game Functions/boss_selection.gd" id="2_script"]
+[ext_resource type="Texture2D" uid="uid://d04hltf0m5xkf" path="res://Decked/Assests/Cards/Ninjawhitewashed.webp" id="3_7dejd"]
+[ext_resource type="Texture2D" uid="uid://7c304xrqlkbi" path="res://Decked/Assests/Cards/littleMacCard.webp" id="4_r3djl"]
+[ext_resource type="Texture2D" uid="uid://exjq0nyb4h05" path="res://Decked/Assests/Cards/Wizard_Fistfight.webp" id="5_2ac34"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyumy"]
+atlas = ExtResource("1_easbv")
+region = Rect2(0, 0, 480, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3mjq"]
+atlas = ExtResource("1_easbv")
+region = Rect2(480, 0, 480, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18our"]
+atlas = ExtResource("1_easbv")
+region = Rect2(0, 320, 480, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xpj7s"]
+atlas = ExtResource("1_easbv")
+region = Rect2(480, 320, 480, 320)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k2uey"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyumy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3mjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18our")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xpj7s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.5
+}]
+
+[node name="Boss Selection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(572, 323)
+scale = Vector2(2.39792, 2)
+sprite_frames = SubResource("SpriteFrames_k2uey")
+autoplay = "default"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -30.0
+offset_right = 391.0
+offset_bottom = 98.0
+grow_vertical = 2
+scale = Vector2(3, 3)
+
+[node name="Joe Card" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_7dejd")
+
+[node name="Button" type="Button" parent="HBoxContainer/Joe Card"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 14.0
+offset_right = 97.0
+offset_bottom = 112.0
+flat = true
+
+[node name="Max Card" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_r3djl")
+
+[node name="Button" type="Button" parent="HBoxContainer/Max Card"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 14.0
+offset_right = 97.0
+offset_bottom = 112.0
+flat = true
+
+[node name="Isshin Card" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_2ac34")
+
+[node name="Button" type="Button" parent="HBoxContainer/Isshin Card"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 14.0
+offset_right = 97.0
+offset_bottom = 112.0
+flat = true

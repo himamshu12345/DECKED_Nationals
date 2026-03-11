@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvd3fealtalnu"]
+
+[ext_resource type="Script" uid="uid://hga275jfqjr7" path="res://Decked/Scripts/Game Functions/menu_music.gd" id="1_avep6"]
+
+[node name="MenuMusic" type="AudioStreamPlayer2D"]
+script = ExtResource("1_avep6")

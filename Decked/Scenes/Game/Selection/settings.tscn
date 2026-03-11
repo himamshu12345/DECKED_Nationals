@@ -1,0 +1,109 @@
+[gd_scene load_steps=10 format=3 uid="uid://boldfy77ijfub"]
+
+[ext_resource type="Script" uid="uid://dpeo6fg6p4bav" path="res://Decked/Scripts/Game Functions/settings.gd" id="1_3omue"]
+[ext_resource type="PackedScene" uid="uid://sqj3s17xci70" path="res://Decked/Scenes/Game/game_manager.tscn" id="2_hw2ai"]
+[ext_resource type="FontFile" uid="uid://bigeflro4ldvu" path="res://Decked/Assests/Fonts/PixeloidMono/PixeloidSans-Bold.ttf" id="2_pyvqx"]
+[ext_resource type="LabelSettings" uid="uid://bw1u7351aaamo" path="res://Decked/Assests/Fonts/menu.tres" id="3_eorlr"]
+[ext_resource type="Texture2D" uid="uid://q6cn32uy0neh" path="res://Decked/Assests/Backgrounds/settingsMenu.webp" id="3_hw2ai"]
+[ext_resource type="Texture2D" uid="uid://dosldsnqcolj3" path="res://Decked/Assests/Backgrounds/GoldBar.webp" id="6_jgo5p"]
+[ext_resource type="Texture2D" uid="uid://wjwtdbgtxo6k" path="res://Decked/Assests/Backgrounds/Slider Icon.png" id="7_jgo5p"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2js62"]
+texture = ExtResource("6_jgo5p")
+
+[sub_resource type="LabelSettings" id="LabelSettings_2hif2"]
+font_color = Color(0.279357, 0.279357, 0.279357, 1)
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3omue")
+
+[node name="GameManager" parent="." instance=ExtResource("2_hw2ai")]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_hw2ai")
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -305.0
+offset_top = -160.0
+offset_right = -228.0
+offset_bottom = -84.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(2.56091, 2.56091)
+theme_override_fonts/font = ExtResource("2_pyvqx")
+theme_override_styles/hover = SubResource("StyleBoxTexture_2js62")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2js62")
+theme_override_styles/normal = SubResource("StyleBoxTexture_2js62")
+text = "Back"
+
+[node name="Label" type="Label" parent="Back"]
+layout_mode = 0
+offset_left = 14.3617
+offset_top = 27.6596
+offset_right = 62.3617
+offset_bottom = 50.6596
+theme_override_fonts/font = ExtResource("2_pyvqx")
+text = "Back"
+label_settings = SubResource("LabelSettings_2hif2")
+
+[node name="VolumeOptions" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -444.672
+offset_top = -157.464
+offset_right = -269.672
+offset_bottom = -95.464
+scale = Vector2(5.08, 5.08)
+
+[node name="Label2" type="Label" parent="VolumeOptions"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_pyvqx")
+text = "Volume"
+label_settings = ExtResource("3_eorlr")
+
+[node name="Volume" type="HSlider" parent="VolumeOptions"]
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("7_jgo5p")
+theme_override_icons/grabber_highlight = ExtResource("7_jgo5p")
+theme_override_icons/grabber_disabled = ExtResource("7_jgo5p")
+max_value = 1.0
+step = 0.01
+
+[node name="Label" type="Label" parent="VolumeOptions"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_pyvqx")
+text = "Mute"
+label_settings = ExtResource("3_eorlr")
+
+[node name="CheckBox" type="CheckBox" parent="VolumeOptions/Label"]
+layout_mode = 2
+offset_left = 49.8205
+offset_top = -0.858261
+offset_right = 73.8205
+offset_bottom = 23.1417
+
+[connection signal="pressed" from="Back" to="GameManager" method="_on_menu_pressed"]
+[connection signal="value_changed" from="VolumeOptions/Volume" to="." method="_on_volume_value_changed"]
+[connection signal="toggled" from="VolumeOptions/Label/CheckBox" to="." method="_on_check_box_toggled"]

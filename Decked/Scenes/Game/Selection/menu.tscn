@@ -1,0 +1,226 @@
+[gd_scene load_steps=19 format=3 uid="uid://c4jfapdn1dq1s"]
+
+[ext_resource type="Script" uid="uid://31b3xummh6f8" path="res://Decked/Scenes/Game/Selection/menu.gd" id="1_gafs0"]
+[ext_resource type="PackedScene" uid="uid://sqj3s17xci70" path="res://Decked/Scenes/Game/game_manager.tscn" id="1_nrfrx"]
+[ext_resource type="Texture2D" uid="uid://csuj2i50d2xig" path="res://Decked/Assests/Backgrounds/main_menu.webp" id="2_f6pgs"]
+[ext_resource type="FontFile" uid="uid://bigeflro4ldvu" path="res://Decked/Assests/Fonts/PixeloidMono/PixeloidSans-Bold.ttf" id="3_87x7t"]
+[ext_resource type="LabelSettings" uid="uid://bw1u7351aaamo" path="res://Decked/Assests/Fonts/menu.tres" id="6_gafs0"]
+[ext_resource type="Texture2D" uid="uid://cheukj2fte7f0" path="res://Decked/Assests/Backgrounds/TITLE_TEXT.webp" id="6_qdjiu"]
+[ext_resource type="Texture2D" uid="uid://cvlm0jcxxfsbx" path="res://Decked/Assests/Backgrounds/VS Icon.png" id="7_lli0j"]
+[ext_resource type="Texture2D" uid="uid://bq0533np7yvmo" path="res://Decked/Assests/Backgrounds/Bot Icon.png" id="8_ltuce"]
+[ext_resource type="Texture2D" uid="uid://c3ogepo4l1i4g" path="res://Decked/Assests/Backgrounds/Settings Gear.png" id="9_cypir"]
+[ext_resource type="Texture2D" uid="uid://d4cbqsjp5yd3h" path="res://Decked/Assests/Backgrounds/Tutorial Icon.png" id="9_ltuce"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfugx"]
+atlas = ExtResource("6_qdjiu")
+region = Rect2(0, 0, 320, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8l01h"]
+atlas = ExtResource("6_qdjiu")
+region = Rect2(320, 0, 320, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ff307"]
+atlas = ExtResource("6_qdjiu")
+region = Rect2(640, 0, 320, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fw4w"]
+atlas = ExtResource("6_qdjiu")
+region = Rect2(0, 256, 320, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mopd4"]
+atlas = ExtResource("6_qdjiu")
+region = Rect2(320, 256, 320, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6g3u"]
+atlas = ExtResource("6_qdjiu")
+region = Rect2(640, 256, 320, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ys0o"]
+atlas = ExtResource("6_qdjiu")
+region = Rect2(0, 512, 320, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eemxu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfugx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8l01h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ff307")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fw4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mopd4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6g3u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ys0o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gafs0")
+
+[node name="GameManager" parent="." instance=ExtResource("1_nrfrx")]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_f6pgs")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control"]
+position = Vector2(15, 132)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_eemxu")
+autoplay = "default"
+frame_progress = 0.526171
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -428.0
+offset_top = 249.0
+offset_right = -140.0
+offset_bottom = 373.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+
+[node name="Player VS Player" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_87x7t")
+text = "Player Vs Player"
+flat = true
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/Player VS Player"]
+layout_mode = 0
+offset_left = 57.6667
+offset_top = 4.0
+offset_right = 228.667
+offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("3_87x7t")
+text = "Player Vs Player"
+label_settings = ExtResource("6_gafs0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/VBoxContainer/Player VS Player"]
+position = Vector2(47.6667, 14)
+texture = ExtResource("7_lli0j")
+
+[node name="Boss Fights" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_87x7t")
+text = "Boss Fights (Single Player)"
+flat = true
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/Boss Fights"]
+layout_mode = 0
+offset_left = 3.33333
+offset_top = 3.0
+offset_right = 283.333
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("3_87x7t")
+text = "Boss Fights (Single Player)"
+label_settings = ExtResource("6_gafs0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/VBoxContainer/Boss Fights"]
+position = Vector2(-6, 13)
+texture = ExtResource("8_ltuce")
+
+[node name="Button4" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_87x7t")
+text = "Tutorial"
+flat = true
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/Button4"]
+layout_mode = 0
+offset_left = 104.333
+offset_top = 4.0
+offset_right = 190.333
+offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("3_87x7t")
+text = "Tutorial"
+label_settings = ExtResource("6_gafs0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/VBoxContainer/Button4"]
+position = Vector2(92.3333, 14)
+texture = ExtResource("9_ltuce")
+
+[node name="Button3" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_87x7t")
+text = "Settings"
+flat = true
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/Button3"]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 4.0
+offset_right = 187.0
+offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("3_87x7t")
+text = "Settings"
+label_settings = ExtResource("6_gafs0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/VBoxContainer/Button3"]
+position = Vector2(92.3333, 14)
+texture = ExtResource("9_cypir")
+
+[node name="Button4" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -28.0
+offset_right = 88.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_87x7t")
+text = "Credits"
+flat = true
+
+[node name="Label" type="Label" parent="Button4"]
+layout_mode = 0
+offset_left = 5.99996
+offset_top = 3.0
+offset_right = 92.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("3_87x7t")
+text = "Credits"
+label_settings = ExtResource("6_gafs0")
+
+[connection signal="pressed" from="Control/VBoxContainer/Player VS Player" to="GameManager" method="_on_player_vs_player_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Boss Fights" to="GameManager" method="_on_boss_fights_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Button4" to="GameManager" method="_on_tutorial_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Button3" to="GameManager" method="_on_settings_pressed"]
+[connection signal="pressed" from="Button4" to="GameManager" method="_on_credits_pressed"]

@@ -1,0 +1,78 @@
+[gd_scene load_steps=13 format=3 uid="uid://dbjq8cptjpwdy"]
+
+[ext_resource type="Texture2D" uid="uid://cv76hxnfer5iw" path="res://Decked/Assests/Effects/lightningProjectile.webp" id="1_qbdtd"]
+[ext_resource type="Script" uid="uid://38kidv8b3y5t" path="res://Decked/Scripts/Player/Combat/HitBox.gd" id="2_qbdtd"]
+[ext_resource type="Script" uid="uid://cxrytur2hepxe" path="res://Decked/Scripts/Player/Combat/Projectile.gd" id="2_xpvdr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xpvdr"]
+atlas = ExtResource("1_qbdtd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ir0w2"]
+atlas = ExtResource("1_qbdtd")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vprmo"]
+atlas = ExtResource("1_qbdtd")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8tfk3"]
+atlas = ExtResource("1_qbdtd")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iwvkw"]
+atlas = ExtResource("1_qbdtd")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kjjg"]
+atlas = ExtResource("1_qbdtd")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cava4"]
+atlas = ExtResource("1_qbdtd")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xpvdr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xpvdr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ir0w2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vprmo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8tfk3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iwvkw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kjjg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cava4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ir0w2"]
+radius = 9.42809
+
+[node name="Projectile" type="AnimatedSprite2D"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_xpvdr")
+frame_progress = 0.688051
+script = ExtResource("2_xpvdr")
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("2_qbdtd")
+metadata/_custom_type_script = "uid://38kidv8b3y5t"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_ir0w2")

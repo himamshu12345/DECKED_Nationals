@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdbei1j4q8wyb"]
+
+[ext_resource type="PackedScene" uid="uid://dr7g2fgmpq4ke" path="res://Decked/Scenes/Backgrounds/boxing_ring.tscn" id="1_6gek1"]
+[ext_resource type="PackedScene" uid="uid://sqj3s17xci70" path="res://Decked/Scenes/Game/game_manager.tscn" id="1_gvo4n"]
+[ext_resource type="PackedScene" uid="uid://pviiqotj3fpx" path="res://Decked/Scenes/Player/player_1.tscn" id="2_g2bny"]
+[ext_resource type="PackedScene" uid="uid://cxviwmlnfjaw6" path="res://Decked/Scenes/Player/player_2.tscn" id="3_gvo4n"]
+[ext_resource type="Script" uid="uid://bo48qlyfnoolv" path="res://Decked/Scripts/Player/player.gd" id="4_tchm4"]
+
+[node name="2PlayerMode" type="Node2D"]
+
+[node name="GameManager" parent="." instance=ExtResource("1_gvo4n")]
+
+[node name="Boxing Ring" parent="." instance=ExtResource("1_6gek1")]
+offset_left = 464.0
+offset_top = 216.0
+offset_right = 464.0
+offset_bottom = 216.0
+
+[node name="Player1" parent="." instance=ExtResource("2_g2bny")]
+position = Vector2(575, 403)
+motion_mode = 1
+script = ExtResource("4_tchm4")
+
+[node name="Camera2D" type="Camera2D" parent="Player1"]
+zoom = Vector2(5, 5)
+
+[node name="Player2" parent="." instance=ExtResource("3_gvo4n")]
+position = Vector2(577, 286)

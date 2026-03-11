@@ -1,0 +1,165 @@
+[gd_scene load_steps=15 format=4 uid="uid://cvya40hymcv1f"]
+
+[ext_resource type="PackedScene" uid="uid://sqj3s17xci70" path="res://Decked/Scenes/Game/game_manager.tscn" id="1_wlgms"]
+[ext_resource type="Texture2D" uid="uid://bvek03ginpoki" path="res://Decked/Assests/Backgrounds/buttons.webp" id="3_sipk0"]
+[ext_resource type="PackedScene" uid="uid://dr7g2fgmpq4ke" path="res://Decked/Scenes/Backgrounds/boxing_ring.tscn" id="3_yqd35"]
+[ext_resource type="PackedScene" uid="uid://pviiqotj3fpx" path="res://Decked/Scenes/Player/player_1.tscn" id="4_sipk0"]
+[ext_resource type="PackedScene" uid="uid://c5f78yunul2y6" path="res://Decked/Scenes/Player/dummy.tscn" id="5_3ufmv"]
+[ext_resource type="PackedScene" uid="uid://cne80hotdcbxu" path="res://Decked/Scenes/Player/health_bar_blue.tscn" id="6_jc24h"]
+[ext_resource type="Texture2D" uid="uid://dvba3isyrgkub" path="res://Decked/Assests/Backgrounds/redKeyCap.webp" id="7_tqo4d"]
+[ext_resource type="FontFile" uid="uid://bigeflro4ldvu" path="res://Decked/Assests/Fonts/PixeloidMono/PixeloidSans-Bold.ttf" id="8_pdtx4"]
+[ext_resource type="Texture2D" uid="uid://b0t61686y6kw1" path="res://Decked/Assests/Backgrounds/brickGymTileSet (1).webp" id="10_3itif"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ywiow"]
+texture = ExtResource("10_3itif")
+2:2/size_in_atlas = Vector2i(2, 2)
+2:2/0 = 0
+4:4/size_in_atlas = Vector2i(2, 2)
+4:4/0 = 0
+6:6/size_in_atlas = Vector2i(2, 2)
+6:6/0 = 0
+2:6/size_in_atlas = Vector2i(2, 2)
+2:6/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqd35"]
+texture = ExtResource("3_sipk0")
+1:0/0 = 0
+1:2/0 = 0
+3:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_pdtx4"]
+sources/0 = SubResource("TileSetAtlasSource_ywiow")
+sources/1 = SubResource("TileSetAtlasSource_yqd35")
+
+[sub_resource type="LabelSettings" id="LabelSettings_hf7qh"]
+font_color = Color(0.929412, 0.760784, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_oi367"]
+shadow_color = Color(0.929412, 0.760784, 0, 0.494118)
+
+[node name="Tutorial2" type="Node2D" groups=["tutorial"]]
+
+[node name="GameManager" parent="." instance=ExtResource("1_wlgms")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAUAAkAAAAEAAQAAAAUAAsAAAACAAIAAAAUAA0AAAACAAIAAAAUAA8AAAACAAIAAAAUABEAAAACAAIAAAAUABMAAAACAAIAAAAUABUAAAACAAIAAAAUABcAAAACAAIAAAAUABkAAAACAAIAAAAUABsAAAACAAIAAAAUAB0AAAAEAAQAAAAWAAkAAAAEAAQAAAAWAAsAAAACAAIAAAAWAA0AAAACAAIAAAAWAA8AAAACAAIAAAAWABEAAAACAAIAAAAWABMAAAACAAIAAAAWABUAAAACAAIAAAAWABcAAAACAAIAAAAWABkAAAACAAIAAAAWABsAAAACAAIAAAAWAB0AAAAEAAQAAAAYAAkAAAAEAAQAAAAYAAsAAAACAAIAAAAYAA0AAAACAAIAAAAYAA8AAAACAAIAAAAYABEAAAACAAIAAAAYABMAAAACAAIAAAAYABUAAAACAAIAAAAYABcAAAACAAIAAAAYABkAAAACAAIAAAAYABsAAAACAAIAAAAYAB0AAAAEAAQAAAAaAAkAAAAEAAQAAAAaAAsAAAACAAIAAAAaAA0AAAACAAIAAAAaAA8AAAACAAIAAAAaABEAAAACAAIAAAAaABMAAAACAAIAAAAaABUAAAACAAIAAAAaABcAAAACAAIAAAAaABkAAAACAAIAAAAaABsAAAACAAIAAAAaAB0AAAAEAAQAAAAcAAkAAAAEAAQAAAAcAAsAAAACAAIAAAAcAA0AAAACAAIAAAAcAA8AAAACAAIAAAAcABEAAAACAAIAAAAcABMAAAACAAIAAAAcABUAAAACAAIAAAAcABcAAAACAAIAAAAcABkAAAACAAIAAAAcABsAAAACAAIAAAAcAB0AAAAEAAQAAAAeAAkAAAAEAAQAAAAeAAsAAAACAAIAAAAeAA0AAAACAAIAAAAeAA8AAAACAAIAAAAeABEAAAACAAIAAAAeABMAAAACAAIAAAAeABUAAAACAAIAAAAeABcAAAACAAIAAAAeABkAAAACAAIAAAAeABsAAAACAAIAAAAeAB0AAAAEAAQAAAAgAAkAAAAEAAQAAAAgAAsAAAACAAIAAAAgAA0AAAACAAIAAAAgAA8AAAACAAIAAAAgABEAAAACAAIAAAAgABMAAAACAAIAAAAgABUAAAACAAIAAAAgABcAAAACAAIAAAAgABkAAAACAAIAAAAgABsAAAACAAIAAAAgAB0AAAAEAAQAAAAiAAkAAAAEAAQAAAAiAAsAAAACAAIAAAAiAA0AAAACAAIAAAAiAA8AAAACAAIAAAAiABEAAAACAAIAAAAiABMAAAACAAIAAAAiABUAAAACAAIAAAAiABcAAAACAAIAAAAiABkAAAACAAIAAAAiABsAAAACAAIAAAAiAB0AAAAEAAQAAAAkAAkAAAAEAAQAAAAkAAsAAAACAAIAAAAkAA0AAAACAAIAAAAkAA8AAAACAAIAAAAkABEAAAACAAIAAAAkABMAAAACAAIAAAAkABUAAAACAAIAAAAkABcAAAACAAIAAAAkABkAAAACAAIAAAAkABsAAAACAAIAAAAkAB0AAAAEAAQAAAAmAAkAAAAEAAQAAAAmAAsAAAACAAIAAAAmAA0AAAACAAIAAAAmAA8AAAACAAIAAAAmABEAAAACAAIAAAAmABMAAAACAAIAAAAmABUAAAACAAIAAAAmABcAAAACAAIAAAAmABkAAAACAAIAAAAmABsAAAACAAIAAAAmAB0AAAAEAAQAAAAoAAkAAAAEAAQAAAAoAAsAAAACAAIAAAAoAA0AAAACAAIAAAAoAA8AAAACAAIAAAAoABEAAAACAAIAAAAoABMAAAACAAIAAAAoABUAAAACAAIAAAAoABcAAAACAAIAAAAoABkAAAACAAIAAAAoABsAAAACAAIAAAAoAB0AAAAEAAQAAAAqAAkAAAAEAAQAAAAqAAsAAAACAAIAAAAqAA0AAAACAAIAAAAqAA8AAAACAAIAAAAqABEAAAACAAIAAAAqABMAAAACAAIAAAAqABUAAAACAAIAAAAqABcAAAACAAIAAAAqABkAAAACAAIAAAAqABsAAAACAAIAAAAqAB0AAAAEAAQAAAAsAAkAAAAEAAQAAAAsAAsAAAACAAIAAAAsAA0AAAACAAIAAAAsAA8AAAACAAIAAAAsABEAAAACAAIAAAAsABMAAAACAAIAAAAsABUAAAACAAIAAAAsABcAAAACAAIAAAAsABkAAAACAAIAAAAsABsAAAACAAIAAAAsAB0AAAAEAAQAAAAuAAkAAAAEAAQAAAAuAAsAAAACAAIAAAAuAA0AAAACAAIAAAAuAA8AAAACAAIAAAAuABEAAAACAAIAAAAuABMAAAACAAIAAAAuABUAAAACAAIAAAAuABcAAAACAAIAAAAuABkAAAACAAIAAAAuABsAAAACAAIAAAAuAB0AAAAEAAQAAAAwAAkAAAAEAAQAAAAwAAsAAAACAAIAAAAwAA0AAAACAAIAAAAwAA8AAAACAAIAAAAwABEAAAACAAIAAAAwABMAAAACAAIAAAAwABUAAAACAAIAAAAwABcAAAACAAIAAAAwABkAAAACAAIAAAAwABsAAAACAAIAAAAwAB0AAAAEAAQAAAAyAAkAAAAEAAQAAAAyAAsAAAACAAIAAAAyAA0AAAACAAIAAAAyAA8AAAACAAIAAAAyABEAAAACAAIAAAAyABMAAAACAAIAAAAyABUAAAACAAIAAAAyABcAAAACAAIAAAAyABkAAAACAAIAAAAyABsAAAACAAIAAAAyAB0AAAAEAAQAAAA0AAkAAAAEAAQAAAA0AAsAAAACAAIAAAA0AA0AAAACAAIAAAA0AA8AAAACAAIAAAA0ABEAAAACAAIAAAA0ABMAAAACAAIAAAA0ABUAAAACAAIAAAA0ABcAAAACAAIAAAA0ABkAAAACAAIAAAA0ABsAAAACAAIAAAA0AB0AAAAEAAQAAAASABsAAAACAAIAAAASABkAAAACAAIAAAASABcAAAACAAIAAAASABUAAAACAAIAAAASABMAAAACAAIAAAASABEAAAACAAIAAAASAA8AAAACAAIAAAASAA0AAAACAAIAAAASAAsAAAACAAIAAAA2AAsAAAACAAIAAAA2AA0AAAACAAIAAAA2AA8AAAACAAIAAAA2ABEAAAACAAIAAAA2ABMAAAACAAIAAAA2ABUAAAACAAIAAAA2ABcAAAACAAIAAAA2ABkAAAACAAIAAAA2ABsAAAACAAIAAAASAB0AAAAEAAQAAAAQAB0AAAAEAAQAAAAQABsAAAAEAAQAAAAQABkAAAAEAAQAAAAQABcAAAAEAAQAAAAQABUAAAAEAAQAAAAQABMAAAAEAAQAAAAQABEAAAAEAAQAAAAQAA8AAAAEAAQAAAAQAA0AAAAEAAQAAAAQAAsAAAAEAAQAAAAQAAkAAAAEAAQAAAASAAkAAAAEAAQAAAA2AAkAAAAEAAQAAAA4AAkAAAAEAAQAAAA4AAsAAAAEAAQAAAA4AA0AAAAEAAQAAAA4AA8AAAAEAAQAAAA4ABEAAAAEAAQAAAA4ABMAAAAEAAQAAAA4ABUAAAAEAAQAAAA4ABcAAAAEAAQAAAA2AB0AAAAEAAQAAAA4AB0AAAAEAAQAAAA4ABsAAAAEAAQAAAA4ABkAAAAEAAQAAAA=")
+tile_set = SubResource("TileSet_pdtx4")
+
+[node name="Punch" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 835.0
+offset_top = 141.0
+offset_right = 875.0
+offset_bottom = 181.0
+
+[node name="Space" type="TextureRect" parent="Punch"]
+layout_mode = 0
+offset_left = -121.0
+offset_top = 131.0
+offset_right = -57.0
+offset_bottom = 195.0
+scale = Vector2(2.35895, 1.12711)
+texture = ExtResource("7_tqo4d")
+
+[node name="Label" type="Label" parent="Punch"]
+layout_mode = 0
+offset_left = -96.0
+offset_top = 128.0
+offset_right = 8.0
+offset_bottom = 151.0
+theme_override_fonts/font = ExtResource("8_pdtx4")
+text = "Hold"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Punch"]
+layout_mode = 0
+offset_left = -97.0
+offset_top = 190.0
+offset_right = 8.0
+offset_bottom = 232.333
+theme_override_fonts/font = ExtResource("8_pdtx4")
+text = "To Charge
+Punch"
+label_settings = SubResource("LabelSettings_hf7qh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="Punch"]
+layout_mode = 0
+offset_left = -72.0
+offset_top = 154.0
+offset_right = -9.0
+offset_bottom = 182.0
+scale = Vector2(0.88, 0.88)
+theme_override_fonts/font = ExtResource("8_pdtx4")
+text = "Space"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Charge" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 3.0
+offset_top = -5.0
+offset_right = 43.0
+offset_bottom = 35.0
+
+[node name="Label" type="Label" parent="Charge"]
+layout_mode = 0
+offset_left = 298.0
+offset_top = 287.0
+offset_right = 482.0
+offset_bottom = 405.0
+scale = Vector2(0.84, 0.84)
+theme_override_fonts/font = ExtResource("8_pdtx4")
+text = "Charge damage increases the longer you hold (Caps at 5 charge levels)"
+label_settings = SubResource("LabelSettings_oi367")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Boxing Ring" parent="Control" instance=ExtResource("3_yqd35")]
+layout_mode = 1
+offset_left = -105.0
+offset_top = -127.0
+offset_right = -105.0
+offset_bottom = -127.0
+
+[node name="HealthBarBlue" parent="Control/Boxing Ring" node_paths=PackedStringArray("player") instance=ExtResource("6_jc24h")]
+offset_left = 237.972
+offset_top = -27.424
+offset_right = 277.972
+offset_bottom = 12.576
+player = NodePath("../Dummy_IdlePt2")
+
+[node name="Camera2D" type="Camera2D" parent="Control/Boxing Ring"]
+position = Vector2(114.048, 113.724)
+zoom = Vector2(2, 2)
+
+[node name="Player1" parent="Control/Boxing Ring" instance=ExtResource("4_sipk0")]
+position = Vector2(112, 184)
+
+[node name="Dummy_IdlePt2" parent="Control/Boxing Ring" instance=ExtResource("5_3ufmv")]
+position = Vector2(113, 113)
+
+[node name="Skip" type="Button" parent="."]
+offset_left = 785.0
+offset_top = 409.0
+offset_right = 862.0
+offset_bottom = 438.0
+theme_override_fonts/font = ExtResource("8_pdtx4")
+text = "Skip"
+flat = true

@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://b0txwgeh3rvps"]
+
+[ext_resource type="Texture2D" uid="uid://bg3i5nm5x35aw" path="res://Decked/Assests/Backgrounds/ReadyGoACTUAL.webp" id="1_tasnb"]
+[ext_resource type="Script" uid="uid://c7s6r8srinlhn" path="res://Decked/Scripts/Game Functions/start_game.gd" id="2_mk3ho"]
+[ext_resource type="AudioStream" uid="uid://dvhyishobwi26" path="res://Decked/Assests/Sound/Sound Effects/ReadyGo.wav" id="3_mk3ho"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttfvq"]
+atlas = ExtResource("1_tasnb")
+region = Rect2(0, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1m0nt"]
+atlas = ExtResource("1_tasnb")
+region = Rect2(192, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcilk"]
+atlas = ExtResource("1_tasnb")
+region = Rect2(384, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oh5ue"]
+atlas = ExtResource("1_tasnb")
+region = Rect2(0, 128, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2v3ue"]
+atlas = ExtResource("1_tasnb")
+region = Rect2(192, 128, 192, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mk3ho"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttfvq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1m0nt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcilk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oh5ue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2v3ue")
+}],
+"loop": false,
+"name": &"Start",
+"speed": 1.0
+}]
+
+[node name="StartGame" type="AnimatedSprite2D" node_paths=PackedStringArray("audio")]
+sprite_frames = SubResource("SpriteFrames_mk3ho")
+animation = &"Start"
+autoplay = "Start"
+frame = 4
+frame_progress = 1.0
+script = ExtResource("2_mk3ho")
+audio = NodePath("AudioStreamPlayer2D")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_mk3ho")

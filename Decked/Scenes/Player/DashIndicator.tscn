@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://dm6p0k5j2v8a"]
+
+[ext_resource type="Texture2D" uid="uid://chq7kgilweyyc" path="res://Decked/Assests/HealthBar/DashIndicator.webp" id="1_tex"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lakp3"]
+atlas = ExtResource("1_tex")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7msq"]
+atlas = ExtResource("1_tex")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vul7c"]
+atlas = ExtResource("1_tex")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fr3gf"]
+atlas = ExtResource("1_tex")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6x28"]
+atlas = ExtResource("1_tex")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71ibi"]
+atlas = ExtResource("1_tex")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nmwt5"]
+atlas = ExtResource("1_tex")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ulrnq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lakp3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7msq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vul7c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fr3gf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6x28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71ibi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nmwt5")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="DashIndicator" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ulrnq")
+frame = 6
+frame_progress = 1.0

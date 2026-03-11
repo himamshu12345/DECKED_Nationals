@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4t705wynmid7"]
+
+[ext_resource type="FontFile" uid="uid://bigeflro4ldvu" path="res://Decked/Assests/Fonts/PixeloidMono/PixeloidSans-Bold.ttf" id="1_k3f7w"]
+[ext_resource type="Script" uid="uid://deqgehv6xoyl1" path="res://Decked/Scripts/Game Functions/score_counter.gd" id="2_7wjkt"]
+
+[node name="Score Counter" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("1_k3f7w")
+script = ExtResource("2_7wjkt")

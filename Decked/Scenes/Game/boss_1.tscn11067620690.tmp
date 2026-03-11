@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://7c5an7flpau5"]
+
+[ext_resource type="PackedScene" uid="uid://sqj3s17xci70" path="res://Decked/Scenes/Game/game_manager.tscn" id="1_236td"]
+[ext_resource type="PackedScene" uid="uid://dr7g2fgmpq4ke" path="res://Decked/Scenes/Backgrounds/boxing_ring.tscn" id="1_hngm5"]
+[ext_resource type="PackedScene" uid="uid://cpot5dr7waflp" path="res://Decked/Scenes/Boss/boss_1.tscn" id="2_k1mw5"]
+[ext_resource type="PackedScene" uid="uid://pviiqotj3fpx" path="res://Decked/Scenes/Player/player_1.tscn" id="3_1aljk"]
+[ext_resource type="AudioStream" uid="uid://c212i5yj4ffqd" path="res://Decked/Assests/Sound/OST/FightOST.wav" id="5_gycp6"]
+[ext_resource type="PackedScene" uid="uid://c4l1u3ock5j2v" path="res://Decked/Scenes/Player/health_bar_red.tscn" id="6_8wygg"]
+[ext_resource type="PackedScene" uid="uid://cne80hotdcbxu" path="res://Decked/Scenes/Player/health_bar_blue.tscn" id="7_2t3sq"]
+
+[node name="Boss 1" type="Node2D"]
+
+[node name="GameManager" parent="." instance=ExtResource("1_236td")]
+
+[node name="Boxing Ring" parent="." instance=ExtResource("1_hngm5")]
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 1.0
+offset_bottom = 7.0
+
+[node name="Boss1" parent="." instance=ExtResource("2_k1mw5")]
+position = Vector2(573, 269)
+
+[node name="Player1" parent="." instance=ExtResource("3_1aljk")]
+position = Vector2(577, 401)
+
+[node name="Fight" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_gycp6")
+autoplay = true
+
+[node name="HealthBarRed" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_8wygg")]
+offset_left = 313.0
+offset_top = 379.0
+offset_right = 353.0
+offset_bottom = 419.0
+player = NodePath("../Player1")
+
+[node name="HealthBarBlue" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_2t3sq")]
+offset_left = 695.0
+offset_top = 215.0
+offset_right = 735.0
+offset_bottom = 255.0
+player = NodePath("../Boss1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(577, 331)
+zoom = Vector2(2, 2)
