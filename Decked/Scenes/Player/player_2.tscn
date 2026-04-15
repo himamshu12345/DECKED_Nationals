@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=3 uid="uid://cxviwmlnfjaw6"]
+[gd_scene format=3 uid="uid://cxviwmlnfjaw6"]
 
 [ext_resource type="Script" uid="uid://bo48qlyfnoolv" path="res://Decked/Scripts/Player/player.gd" id="1_g6e5w"]
 [ext_resource type="Texture2D" uid="uid://jcv8k6p8f458" path="res://Decked/Assests/PlayerBody/Blue/ChargePunchAnimationBluegif.webp" id="1_wernh"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://cpjusg5teesb5" path="res://Decked/Assests/PlayerBody/Blue/BlueLefttPunch.webp" id="4_yis4d"]
 [ext_resource type="Texture2D" uid="uid://cfby40kr1qhgh" path="res://Decked/Assests/PlayerBody/Blue/ConfusedFIXEDBLUE.webp" id="5_5f5mv"]
 [ext_resource type="Texture2D" uid="uid://dkscjevcwbdax" path="res://Decked/Assests/PlayerBody/Blue/StaggerFIXEDBlue.webp" id="5_p7p3p"]
-[ext_resource type="Texture2D" uid="uid://bw76aakgoqwxv" path="res://Decked/Assests/PlayerBody/Blue/shieldblue.webp" id="7_wjp88"]
 [ext_resource type="Script" uid="uid://h5acffb8kh4u" path="res://Decked/Scripts/Player/Combat/HurtBox.gd" id="8_2jrx8"]
 [ext_resource type="Texture2D" uid="uid://bnmimufatrh3k" path="res://Decked/Assests/PlayerBody/Blue/BlueLefttPunchWind(1).webp" id="8_i4qkb"]
 [ext_resource type="Script" uid="uid://38kidv8b3y5t" path="res://Decked/Scripts/Player/Combat/HitBox.gd" id="9_g6e5w"]
@@ -18,6 +17,7 @@
 [ext_resource type="Script" uid="uid://dr6m376bbawc7" path="res://Decked/Scripts/Game Functions/StateMachine.gd" id="10_vsavn"]
 [ext_resource type="Script" uid="uid://dsl5lgeb7ftac" path="res://Decked/Scenes/Backgrounds/Idle.gd" id="11_fl0m1"]
 [ext_resource type="AudioStream" uid="uid://bxpf54q3l0lmf" path="res://Decked/Assests/Sound/Sound Effects/HitSound.wav" id="12_hag33"]
+[ext_resource type="Texture2D" uid="uid://babs7rg5it4lg" path="res://Decked/Assests/PlayerBody/Blue/BlueMetalBlock.webp" id="12_rf0up"]
 [ext_resource type="Script" uid="uid://d3776evutpngo" path="res://Decked/Scripts/Player/Functions/Move.gd" id="12_ui78d"]
 [ext_resource type="Script" uid="uid://8b3toc6iwfh" path="res://Decked/Scripts/Player/Combat/Punch.gd" id="13_5cxmt"]
 [ext_resource type="Script" uid="uid://bjve2ednhskxd" path="res://Decked/Scripts/Player/Combat/ChargePunch.gd" id="15_024pl"]
@@ -220,40 +220,32 @@ atlas = ExtResource("10_rf0up")
 region = Rect2(128, 128, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_whyge"]
-atlas = ExtResource("7_wjp88")
+atlas = ExtResource("12_rf0up")
 region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ohito"]
-atlas = ExtResource("7_wjp88")
+atlas = ExtResource("12_rf0up")
 region = Rect2(128, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gfy1k"]
-atlas = ExtResource("7_wjp88")
+atlas = ExtResource("12_rf0up")
 region = Rect2(256, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yrb3k"]
-atlas = ExtResource("7_wjp88")
+atlas = ExtResource("12_rf0up")
 region = Rect2(0, 128, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hrokl"]
-atlas = ExtResource("7_wjp88")
+atlas = ExtResource("12_rf0up")
 region = Rect2(128, 128, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v0xoj"]
-atlas = ExtResource("7_wjp88")
+atlas = ExtResource("12_rf0up")
 region = Rect2(256, 128, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j54ko"]
-atlas = ExtResource("7_wjp88")
+atlas = ExtResource("12_rf0up")
 region = Rect2(0, 256, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fol1x"]
-atlas = ExtResource("7_wjp88")
-region = Rect2(128, 256, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_olhi6"]
-atlas = ExtResource("7_wjp88")
-region = Rect2(256, 256, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ypemn"]
 atlas = ExtResource("5_p7p3p")
@@ -473,12 +465,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_j54ko")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fol1x")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_olhi6")
 }],
 "loop": false,
 "name": &"Shield",
@@ -560,9 +546,7 @@ size = Vector2(31, 9)
 [sub_resource type="Resource" id="Resource_alyxy"]
 script = ExtResource("20_06c16")
 position = Vector2(-0.5, -14.5)
-disabled = false
 shape = SubResource("RectangleShape2D_57myw")
-debug_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5annw"]
 size = Vector2(31, 9)
@@ -570,9 +554,7 @@ size = Vector2(31, 9)
 [sub_resource type="Resource" id="Resource_5f5mv"]
 script = ExtResource("20_06c16")
 position = Vector2(-0.5, -14.5)
-disabled = false
 shape = SubResource("RectangleShape2D_5annw")
-debug_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Resource" id="Resource_uapcj"]
 script = ExtResource("21_024pl")
@@ -601,80 +583,78 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player2" type="CharacterBody2D"]
+[node name="Player2" type="CharacterBody2D" unique_id=1095754983]
 script = ExtResource("1_g6e5w")
 
-[node name="Health" type="Node" parent="." node_paths=PackedStringArray("statemachine", "hit_animation_player", "parryAudio")]
+[node name="Health" type="Node" parent="." unique_id=1471495016 node_paths=PackedStringArray("statemachine", "hit_animation_player", "parryAudio")]
 script = ExtResource("2_vsavn")
 statemachine = NodePath("../StateMachine")
 hit_animation_player = NodePath("../HitAnimationPlayer")
 parryAudio = NodePath("ParryAudio")
 metadata/_custom_type_script = "uid://d0cgkch2xj4ff"
 
-[node name="ParryAudio" type="AudioStreamPlayer2D" parent="Health"]
+[node name="ParryAudio" type="AudioStreamPlayer2D" parent="Health" unique_id=792065480]
 stream = ExtResource("3_rf0up")
 volume_db = 5.0
 
-[node name="AnimatedPlayerBody" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedPlayerBody" type="AnimatedSprite2D" parent="." unique_id=496842128]
 material = SubResource("ShaderMaterial_alyxy")
 sprite_frames = SubResource("SpriteFrames_jvpui")
-animation = &"ConfusedStaggered"
+animation = &"Shield"
 
-[node name="HitAnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_5f5mv")
-}
+[node name="HitAnimationPlayer" type="AnimationPlayer" parent="." unique_id=421192268]
+libraries/ = SubResource("AnimationLibrary_5f5mv")
 
-[node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("hitAudio")]
+[node name="HurtBox" type="Area2D" parent="." unique_id=306042111 node_paths=PackedStringArray("hitAudio")]
 visible = false
 script = ExtResource("8_2jrx8")
 hitAudio = NodePath("Hit")
 
-[node name="HurtBoxShape2D" type="CollisionShape2D" parent="HurtBox"]
+[node name="HurtBoxShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1168359572]
 position = Vector2(-0.5, 4.5)
 shape = SubResource("RectangleShape2D_2ff2d")
 debug_color = Color(0.693082, 0.496307, 0, 0.42)
 
-[node name="Hit" type="AudioStreamPlayer2D" parent="HurtBox"]
+[node name="Hit" type="AudioStreamPlayer2D" parent="HurtBox" unique_id=813209]
 stream = ExtResource("12_hag33")
 volume_db = 5.0
 
-[node name="HitBox" type="Area2D" parent="."]
+[node name="HitBox" type="Area2D" parent="." unique_id=392922828]
 script = ExtResource("9_g6e5w")
 
-[node name="HitBoxShape2D2" type="CollisionShape2D" parent="HitBox"]
+[node name="HitBoxShape2D2" type="CollisionShape2D" parent="HitBox" unique_id=62447251]
 position = Vector2(-0.5, -14.5)
 shape = SubResource("RectangleShape2D_i4qkb")
 disabled = true
 debug_color = Color(0.990857, 0, 0.273061, 0.42)
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node" parent="." unique_id=736310650 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("10_vsavn")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "sprite")]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=893725489 node_paths=PackedStringArray("player", "sprite")]
 script = ExtResource("11_fl0m1")
 player = NodePath("../../AnimatedPlayerBody")
 input_prefix = "p2_"
 sprite = NodePath("../../DashImage")
 
-[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animator")]
+[node name="Move" type="Node" parent="StateMachine" unique_id=864336754 node_paths=PackedStringArray("player", "animator")]
 script = ExtResource("12_ui78d")
 player = NodePath("../..")
 animator = NodePath("../../AnimatedPlayerBody")
 input_prefix = "p2_"
 
-[node name="Punch" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "hitbox", "audio")]
+[node name="Punch" type="Node" parent="StateMachine" unique_id=857951309 node_paths=PackedStringArray("player", "hitbox", "audio")]
 script = ExtResource("13_5cxmt")
 player = NodePath("../../AnimatedPlayerBody")
 input_prefix = "p2_"
 hitbox = NodePath("../../HitBox")
 audio = NodePath("PunchSound")
 
-[node name="PunchSound" type="AudioStreamPlayer2D" parent="StateMachine/Punch"]
+[node name="PunchSound" type="AudioStreamPlayer2D" parent="StateMachine/Punch" unique_id=1000308134]
 stream = ExtResource("17_5f5mv")
 
-[node name="ChargePunch" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animator", "hitbox", "charge_audio", "projectile_audio", "charge_released_audio")]
+[node name="ChargePunch" type="Node" parent="StateMachine" unique_id=573088287 node_paths=PackedStringArray("player", "animator", "hitbox", "charge_audio", "projectile_audio", "charge_released_audio")]
 script = ExtResource("15_024pl")
 player = NodePath("../..")
 animator = NodePath("../../AnimatedPlayerBody")
@@ -684,54 +664,54 @@ charge_audio = NodePath("ChargeAudio")
 projectile_audio = NodePath("ProjectileAudio")
 charge_released_audio = NodePath("ChargePunchReleased")
 
-[node name="ChargeAudio" type="AudioStreamPlayer2D" parent="StateMachine/ChargePunch"]
+[node name="ChargeAudio" type="AudioStreamPlayer2D" parent="StateMachine/ChargePunch" unique_id=661548890]
 stream = ExtResource("21_i4qkb")
 
-[node name="ProjectileAudio" type="AudioStreamPlayer2D" parent="StateMachine/ChargePunch"]
+[node name="ProjectileAudio" type="AudioStreamPlayer2D" parent="StateMachine/ChargePunch" unique_id=782942322]
 stream = ExtResource("20_hag33")
 
-[node name="ChargePunchReleased" type="AudioStreamPlayer2D" parent="StateMachine/ChargePunch"]
+[node name="ChargePunchReleased" type="AudioStreamPlayer2D" parent="StateMachine/ChargePunch" unique_id=1211282044]
 stream = ExtResource("17_5f5mv")
 volume_db = 10.0
 
-[node name="Shield" type="Node" parent="StateMachine" node_paths=PackedStringArray("animator", "audio")]
+[node name="Shield" type="Node" parent="StateMachine" unique_id=516195548 node_paths=PackedStringArray("animator", "audio")]
 script = ExtResource("16_57myw")
 animator = NodePath("../../AnimatedPlayerBody")
 input_prefix = "p2_"
 audio = NodePath("ShieldSound")
 
-[node name="ShieldSound" type="AudioStreamPlayer2D" parent="StateMachine/Shield"]
+[node name="ShieldSound" type="AudioStreamPlayer2D" parent="StateMachine/Shield" unique_id=39218932]
 stream = ExtResource("20_uapcj")
 volume_db = -5.0
 
-[node name="Death" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "audio")]
+[node name="Death" type="Node" parent="StateMachine" unique_id=1538555270 node_paths=PackedStringArray("player", "audio")]
 script = ExtResource("19_06c16")
 player = NodePath("../../AnimatedPlayerBody")
 audio = NodePath("DeathSound")
 
-[node name="DeathSound" type="AudioStreamPlayer2D" parent="StateMachine/Death"]
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="StateMachine/Death" unique_id=256778134]
 stream = ExtResource("22_s5ptn")
 
-[node name="QuickStagger" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animator", "audio")]
+[node name="QuickStagger" type="Node" parent="StateMachine" unique_id=242976422 node_paths=PackedStringArray("player", "animator", "audio")]
 script = ExtResource("20_024pl")
 player = NodePath("../..")
 animator = NodePath("../../AnimatedPlayerBody")
 input_prefix = "p2_"
 audio = NodePath("QuickStaggerSound")
 
-[node name="QuickStaggerSound" type="AudioStreamPlayer2D" parent="StateMachine/QuickStagger"]
+[node name="QuickStaggerSound" type="AudioStreamPlayer2D" parent="StateMachine/QuickStagger" unique_id=1601698786]
 stream = ExtResource("24_emjwh")
 
-[node name="ConfusedStaggered" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animator", "audio")]
+[node name="ConfusedStaggered" type="Node" parent="StateMachine" unique_id=106826708 node_paths=PackedStringArray("player", "animator", "audio")]
 script = ExtResource("21_57myw")
 player = NodePath("../..")
 animator = NodePath("../../AnimatedPlayerBody")
 audio = NodePath("ConfusedStaggerSound")
 
-[node name="ConfusedStaggerSound" type="AudioStreamPlayer2D" parent="StateMachine/ConfusedStaggered"]
+[node name="ConfusedStaggerSound" type="AudioStreamPlayer2D" parent="StateMachine/ConfusedStaggered" unique_id=623164244]
 stream = ExtResource("26_sjjwh")
 
-[node name="Dash" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "sprite", "audio")]
+[node name="Dash" type="Node" parent="StateMachine" unique_id=178963234 node_paths=PackedStringArray("player", "sprite", "audio")]
 script = ExtResource("23_5annw")
 player = NodePath("../..")
 input_prefix = "p2_"
@@ -739,22 +719,22 @@ sprite = NodePath("../../DashImage")
 audio = NodePath("DashSound")
 metadata/_custom_type_script = "uid://4xig1txipk5x"
 
-[node name="DashSound" type="AudioStreamPlayer2D" parent="StateMachine/Dash"]
+[node name="DashSound" type="AudioStreamPlayer2D" parent="StateMachine/Dash" unique_id=856258720]
 stream = ExtResource("26_8autt")
 
-[node name="HitBox Animation" type="Node" parent="." node_paths=PackedStringArray("animated_sprite", "collision_shape")]
+[node name="HitBox Animation" type="Node" parent="." unique_id=1587625847 node_paths=PackedStringArray("animated_sprite", "collision_shape")]
 script = ExtResource("19_5cxmt")
 animated_sprite = NodePath("../AnimatedPlayerBody")
 collision_shape = NodePath("../HitBox/HitBoxShape2D2")
 shape_frames = SubResource("Resource_uapcj")
 metadata/_custom_type_script = "uid://cbfmux35ubvni"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=903546240]
 position = Vector2(1.42109e-14, 4)
 rotation = 1.5708
 scale = Vector2(1.16, 1.16)
 shape = SubResource("CapsuleShape2D_5f5mv")
 
-[node name="DashImage" type="AnimatedSprite2D" parent="."]
+[node name="DashImage" type="AnimatedSprite2D" parent="." unique_id=165891781]
 position = Vector2(0, 4)
 sprite_frames = SubResource("SpriteFrames_2ff2d")
