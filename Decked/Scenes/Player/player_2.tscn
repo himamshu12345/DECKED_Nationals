@@ -604,6 +604,21 @@ animation = &"Idle"
 [node name="HitAnimationPlayer" type="AnimationPlayer" parent="." unique_id=421192268]
 libraries/ = SubResource("AnimationLibrary_5f5mv")
 
+[node name="HitParticles" type="CPUParticles2D" parent="." unique_id=1389317075]
+position = Vector2(0, 25)
+emitting = false
+amount = 6
+lifetime = 0.29000000000000004
+one_shot = true
+preprocess = 0.03
+explosiveness = 0.5
+randomness = 0.59
+emission_shape = 1
+emission_sphere_radius = 17.7
+gravity = Vector2(0, 0)
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+
 [node name="HurtBox" type="Area2D" parent="." unique_id=306042111 node_paths=PackedStringArray("hitAudio")]
 visible = false
 script = ExtResource("8_2jrx8")
