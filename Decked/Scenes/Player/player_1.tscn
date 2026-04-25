@@ -8,15 +8,14 @@
 [ext_resource type="Shader" uid="uid://cu4p27f7s6d0p" path="res://Decked/Assests/PlayerBody/Red/Player1Flash.tres" id="2_ujvst"]
 [ext_resource type="AudioStream" uid="uid://bwrc3lpald45a" path="res://Decked/Assests/Sound/Sound Effects/ParryEffect.wav" id="3_cpgxm"]
 [ext_resource type="Texture2D" uid="uid://c4sxo0ce1jed6" path="res://Decked/Assests/PlayerBody/Red/deathAnimationSpriteSheet.webp" id="3_cxbs8"]
-[ext_resource type="Texture2D" uid="uid://tysvnr3vubt5" path="res://Decked/Assests/PlayerBody/Red/LeftPunch-sheet.webp" id="4_aibyj"]
 [ext_resource type="Texture2D" uid="uid://u28pouhbpt22" path="res://Decked/Assests/PlayerBody/Red/StaggerFIXEDRED.webp" id="5_erbp0"]
+[ext_resource type="Texture2D" uid="uid://bmh3d53gup3cs" path="res://Decked/Assests/PlayerBody/Red/rightPunch (1).webp" id="8_cpgxm"]
 [ext_resource type="Script" uid="uid://dr6m376bbawc7" path="res://Decked/Scripts/Game Functions/StateMachine.gd" id="8_cxbs8"]
 [ext_resource type="Texture2D" uid="uid://d2nidkqcgagch" path="res://Decked/Assests/PlayerBody/Red/leftPunchACTUAL.webp" id="8_frq0u"]
 [ext_resource type="Script" uid="uid://h5acffb8kh4u" path="res://Decked/Scripts/Player/Combat/HurtBox.gd" id="8_womvn"]
 [ext_resource type="Script" uid="uid://38kidv8b3y5t" path="res://Decked/Scripts/Player/Combat/HitBox.gd" id="9_a8s7n"]
 [ext_resource type="Script" uid="uid://dsl5lgeb7ftac" path="res://Decked/Scenes/Backgrounds/Idle.gd" id="9_aibyj"]
 [ext_resource type="Script" uid="uid://d3776evutpngo" path="res://Decked/Scripts/Player/Functions/Move.gd" id="10_aibyj"]
-[ext_resource type="Texture2D" uid="uid://1myurgmdsi3o" path="res://Decked/Assests/PlayerBody/Red/rightPunch.webp" id="10_cpgxm"]
 [ext_resource type="Script" uid="uid://8b3toc6iwfh" path="res://Decked/Scripts/Player/Combat/Punch.gd" id="11_erbp0"]
 [ext_resource type="Texture2D" uid="uid://b3ffrbrnnhtqy" path="res://Decked/Assests/PlayerBody/Red/blockingMetal.webp" id="12_cpgxm"]
 [ext_resource type="AudioStream" uid="uid://bxpf54q3l0lmf" path="res://Decked/Assests/Sound/Sound Effects/HitSound.wav" id="12_d4ral"]
@@ -155,8 +154,8 @@ region = Rect2(96, 288, 96, 96)
 atlas = ExtResource("3_cxbs8")
 region = Rect2(192, 288, 96, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ancbd"]
-atlas = ExtResource("4_aibyj")
+[sub_resource type="AtlasTexture" id="AtlasTexture_iuuau"]
+atlas = ExtResource("8_cpgxm")
 region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0lvlb"]
@@ -203,20 +202,20 @@ region = Rect2(256, 128, 128, 128)
 atlas = ExtResource("5_erbp0")
 region = Rect2(0, 256, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iuuau"]
-atlas = ExtResource("10_cpgxm")
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwlh1"]
+atlas = ExtResource("8_cpgxm")
 region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uwlh1"]
-atlas = ExtResource("10_cpgxm")
+[sub_resource type="AtlasTexture" id="AtlasTexture_02uw6"]
+atlas = ExtResource("8_cpgxm")
 region = Rect2(128, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_02uw6"]
-atlas = ExtResource("10_cpgxm")
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8nqc"]
+atlas = ExtResource("8_cpgxm")
 region = Rect2(0, 128, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_a8nqc"]
-atlas = ExtResource("10_cpgxm")
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gsub"]
+atlas = ExtResource("8_cpgxm")
 region = Rect2(128, 128, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0xn0v"]
@@ -350,7 +349,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ancbd")
+"texture": SubResource("AtlasTexture_iuuau")
 }],
 "loop": false,
 "name": &"Idle",
@@ -401,9 +400,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_iuuau")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_uwlh1")
 }, {
 "duration": 1.0,
@@ -411,6 +407,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a8nqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3gsub")
 }],
 "loop": false,
 "name": &"Right Punch",
@@ -571,12 +570,25 @@ volume_db = 5.0
 [node name="AnimatedPlayerBody" type="AnimatedSprite2D" parent="." unique_id=1903000399]
 material = SubResource("ShaderMaterial_l7c70")
 sprite_frames = SubResource("SpriteFrames_xurk0")
-animation = &"Shield"
-frame = 6
-frame_progress = 1.0
+animation = &"Idle"
 
 [node name="HitAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1315976386]
 libraries/ = SubResource("AnimationLibrary_siakh")
+
+[node name="HitParticles" type="CPUParticles2D" parent="." unique_id=885445933]
+position = Vector2(0, 25)
+emitting = false
+amount = 6
+lifetime = 0.29000000000000004
+one_shot = true
+preprocess = 0.03
+explosiveness = 0.5
+randomness = 0.59
+emission_shape = 1
+emission_sphere_radius = 17.7
+gravity = Vector2(0, 0)
+scale_amount_min = 2.0
+scale_amount_max = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1465514578]
 visible = false

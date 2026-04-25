@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2nidkqcgagch"
-path="res://.godot/imported/leftPunchACTUAL.webp-0220d2838b5c6d4bdccaf402ef5c07ce.ctex"
+uid="uid://bex84enjve88m"
+path="res://.godot/imported/boxing_ringUPDATED.webp-5d70ea4d7f28394c179e1cf3237c4101.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Decked/Assests/PlayerBody/Red/leftPunchACTUAL.webp"
-dest_files=["res://.godot/imported/leftPunchACTUAL.webp-0220d2838b5c6d4bdccaf402ef5c07ce.ctex"]
+source_file="res://Decked/Assests/Backgrounds/boxing_ringUPDATED.webp"
+dest_files=["res://.godot/imported/boxing_ringUPDATED.webp-5d70ea4d7f28394c179e1cf3237c4101.ctex"]
 
 [params]
 

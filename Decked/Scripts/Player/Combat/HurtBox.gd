@@ -29,6 +29,9 @@ func _on_area_entered(area: Area2D) -> void:
 			_play_animation(impact_position, hitbox.damage)
 			health.take_damage(hitbox.damage, enemy_state, enemy)
 			hitAudio.play()
+		
+		var knockback_direction = (owner.global_position - hitbox.owner.global_position).normalized()
+		owner.apply_knockback(knockback_direction, 50.0, 0.12)
 				
 func _play_animation(impact_position: Vector2, damage: int) -> void:
 	

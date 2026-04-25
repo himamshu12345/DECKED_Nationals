@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2nidkqcgagch"
-path="res://.godot/imported/leftPunchACTUAL.webp-0220d2838b5c6d4bdccaf402ef5c07ce.ctex"
+uid="uid://67o3ds2il5yv"
+path="res://.godot/imported/deathAnimationSpriteSheet (1).webp-01d1db130e41e72c9db6a52b027150b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Decked/Assests/PlayerBody/Red/leftPunchACTUAL.webp"
-dest_files=["res://.godot/imported/leftPunchACTUAL.webp-0220d2838b5c6d4bdccaf402ef5c07ce.ctex"]
+source_file="res://Decked/Assests/PlayerBody/Red/deathAnimationSpriteSheet (1).webp"
+dest_files=["res://.godot/imported/deathAnimationSpriteSheet (1).webp-01d1db130e41e72c9db6a52b027150b2.ctex"]
 
 [params]
 

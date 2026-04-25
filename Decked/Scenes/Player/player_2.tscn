@@ -7,13 +7,12 @@
 [ext_resource type="Shader" uid="uid://csv8i78vr8dks" path="res://Decked/Assests/PlayerBody/Blue/Player2Flash.tres" id="3_alyxy"]
 [ext_resource type="Texture2D" uid="uid://cfr3aqlwxbblk" path="res://Decked/Assests/PlayerBody/Blue/deathAnimationBlueSpriteSheet.webp" id="3_ml3xr"]
 [ext_resource type="AudioStream" uid="uid://bwrc3lpald45a" path="res://Decked/Assests/Sound/Sound Effects/ParryEffect.wav" id="3_rf0up"]
-[ext_resource type="Texture2D" uid="uid://cpjusg5teesb5" path="res://Decked/Assests/PlayerBody/Blue/BlueLefttPunch.webp" id="4_yis4d"]
 [ext_resource type="Texture2D" uid="uid://cfby40kr1qhgh" path="res://Decked/Assests/PlayerBody/Blue/ConfusedFIXEDBLUE.webp" id="5_5f5mv"]
 [ext_resource type="Texture2D" uid="uid://dkscjevcwbdax" path="res://Decked/Assests/PlayerBody/Blue/StaggerFIXEDBlue.webp" id="5_p7p3p"]
 [ext_resource type="Script" uid="uid://h5acffb8kh4u" path="res://Decked/Scripts/Player/Combat/HurtBox.gd" id="8_2jrx8"]
-[ext_resource type="Texture2D" uid="uid://bnmimufatrh3k" path="res://Decked/Assests/PlayerBody/Blue/BlueLefttPunchWind(1).webp" id="8_i4qkb"]
+[ext_resource type="Texture2D" uid="uid://ct188aklo8fnw" path="res://Decked/Assests/PlayerBody/Blue/BlueRightPunch (1).webp" id="8_i4qkb"]
 [ext_resource type="Script" uid="uid://38kidv8b3y5t" path="res://Decked/Scripts/Player/Combat/HitBox.gd" id="9_g6e5w"]
-[ext_resource type="Texture2D" uid="uid://nt6fr5dc3t7p" path="res://Decked/Assests/PlayerBody/Blue/BlueLefttPunchWind.webp" id="10_rf0up"]
+[ext_resource type="Texture2D" uid="uid://dyre2hfcbb33v" path="res://Decked/Assests/PlayerBody/Blue/BlueLefttPunch (1).webp" id="9_rf0up"]
 [ext_resource type="Script" uid="uid://dr6m376bbawc7" path="res://Decked/Scripts/Game Functions/StateMachine.gd" id="10_vsavn"]
 [ext_resource type="Script" uid="uid://dsl5lgeb7ftac" path="res://Decked/Scenes/Backgrounds/Idle.gd" id="11_fl0m1"]
 [ext_resource type="AudioStream" uid="uid://bxpf54q3l0lmf" path="res://Decked/Assests/Sound/Sound Effects/HitSound.wav" id="12_hag33"]
@@ -156,23 +155,23 @@ atlas = ExtResource("3_ml3xr")
 region = Rect2(192, 288, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ken0l"]
-atlas = ExtResource("4_yis4d")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nj4w1"]
 atlas = ExtResource("8_i4qkb")
 region = Rect2(0, 0, 128, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_nj4w1"]
+atlas = ExtResource("9_rf0up")
+region = Rect2(0, 0, 128, 128)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_kby80"]
-atlas = ExtResource("8_i4qkb")
+atlas = ExtResource("9_rf0up")
 region = Rect2(128, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gfhlk"]
-atlas = ExtResource("8_i4qkb")
+[sub_resource type="AtlasTexture" id="AtlasTexture_fol1x"]
+atlas = ExtResource("9_rf0up")
 region = Rect2(0, 128, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s2s23"]
-atlas = ExtResource("8_i4qkb")
+[sub_resource type="AtlasTexture" id="AtlasTexture_olhi6"]
+atlas = ExtResource("9_rf0up")
 region = Rect2(128, 128, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xreha"]
@@ -203,20 +202,20 @@ region = Rect2(256, 128, 128, 128)
 atlas = ExtResource("5_p7p3p")
 region = Rect2(0, 256, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tv4xi"]
-atlas = ExtResource("10_rf0up")
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfhlk"]
+atlas = ExtResource("8_i4qkb")
 region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_laj0f"]
-atlas = ExtResource("10_rf0up")
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2s23"]
+atlas = ExtResource("8_i4qkb")
 region = Rect2(128, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_puduw"]
-atlas = ExtResource("10_rf0up")
+[sub_resource type="AtlasTexture" id="AtlasTexture_tv4xi"]
+atlas = ExtResource("8_i4qkb")
 region = Rect2(0, 128, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fsu3j"]
-atlas = ExtResource("10_rf0up")
+[sub_resource type="AtlasTexture" id="AtlasTexture_laj0f"]
+atlas = ExtResource("8_i4qkb")
 region = Rect2(128, 128, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_whyge"]
@@ -392,10 +391,10 @@ animations = [{
 "texture": SubResource("AtlasTexture_kby80")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gfhlk")
+"texture": SubResource("AtlasTexture_fol1x")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s2s23")
+"texture": SubResource("AtlasTexture_olhi6")
 }],
 "loop": false,
 "name": &"Left Punch",
@@ -429,16 +428,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_gfhlk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2s23")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_tv4xi")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_laj0f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_puduw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fsu3j")
 }],
 "loop": false,
 "name": &"Right Punch",
@@ -600,7 +599,7 @@ volume_db = 5.0
 [node name="AnimatedPlayerBody" type="AnimatedSprite2D" parent="." unique_id=496842128]
 material = SubResource("ShaderMaterial_alyxy")
 sprite_frames = SubResource("SpriteFrames_jvpui")
-animation = &"Shield"
+animation = &"Idle"
 
 [node name="HitAnimationPlayer" type="AnimationPlayer" parent="." unique_id=421192268]
 libraries/ = SubResource("AnimationLibrary_5f5mv")

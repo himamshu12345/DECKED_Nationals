@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2nidkqcgagch"
-path="res://.godot/imported/leftPunchACTUAL.webp-0220d2838b5c6d4bdccaf402ef5c07ce.ctex"
+uid="uid://ct188aklo8fnw"
+path="res://.godot/imported/BlueRightPunch (1).webp-878e530103852e95ddef2f5d77782d99.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Decked/Assests/PlayerBody/Red/leftPunchACTUAL.webp"
-dest_files=["res://.godot/imported/leftPunchACTUAL.webp-0220d2838b5c6d4bdccaf402ef5c07ce.ctex"]
+source_file="res://Decked/Assests/PlayerBody/Blue/BlueRightPunch (1).webp"
+dest_files=["res://.godot/imported/BlueRightPunch (1).webp-878e530103852e95ddef2f5d77782d99.ctex"]
 
 [params]
 
