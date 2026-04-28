@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4sxo0ce1jed6"
-path="res://.godot/imported/deathAnimationSpriteSheet.webp-886f1c57fbb9dd5449cea40d3024e8a7.ctex"
+uid="uid://jlw7cebv4d8v"
+path="res://.godot/imported/YellowFlash.webp-1f63c343ae7d97fc2e975a29efa17a4a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Decked/Assests/PlayerBody/Red/deathAnimationSpriteSheet.webp"
-dest_files=["res://.godot/imported/deathAnimationSpriteSheet.webp-886f1c57fbb9dd5449cea40d3024e8a7.ctex"]
+source_file="res://Decked/Assests/Effects/YellowFlash.webp"
+dest_files=["res://.godot/imported/YellowFlash.webp-1f63c343ae7d97fc2e975a29efa17a4a.ctex"]
 
 [params]
 

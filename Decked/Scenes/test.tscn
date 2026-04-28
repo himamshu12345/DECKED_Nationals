@@ -1,24 +1,24 @@
-[gd_scene format=3 uid="uid://jss1lw60usl1"]
+[gd_scene load_steps=4 format=3 uid="uid://jss1lw60usl1"]
 
 [ext_resource type="PackedScene" uid="uid://pviiqotj3fpx" path="res://Decked/Scenes/Player/player_1.tscn" id="1_5lhnc"]
 [ext_resource type="PackedScene" uid="uid://dr7g2fgmpq4ke" path="res://Decked/Scenes/Backgrounds/boxing_ring.tscn" id="1_fh02e"]
 [ext_resource type="PackedScene" uid="uid://cxviwmlnfjaw6" path="res://Decked/Scenes/Player/player_2.tscn" id="2_fh02e"]
 
-[node name="Test" type="Node2D" unique_id=926622520 groups=["tutorial"]]
+[node name="Test" type="Node2D" groups=["tutorial"]]
 
-[node name="Boxing Ring" parent="." unique_id=1747423336 instance=ExtResource("1_fh02e")]
-offset_left = -112.048004
-offset_top = -117.399994
-offset_right = -112.048004
-offset_bottom = -117.399994
+[node name="Boxing Ring" parent="." instance=ExtResource("1_fh02e")]
+offset_left = -112.048
+offset_top = -117.4
+offset_right = -112.048
+offset_bottom = -117.4
 metadata/_edit_use_anchors_ = true
 
-[node name="Player1" parent="." unique_id=1369014447 instance=ExtResource("1_5lhnc")]
+[node name="Player1" parent="." instance=ExtResource("1_5lhnc")]
 position = Vector2(2, 60)
 
-[node name="Player2" parent="." unique_id=1095754983 instance=ExtResource("2_fh02e")]
+[node name="Player2" parent="." instance=ExtResource("2_fh02e")]
 position = Vector2(-1, -50)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=957376361]
+[node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2, 8)
 zoom = Vector2(2.25, 2.25)

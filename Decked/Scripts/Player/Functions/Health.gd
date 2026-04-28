@@ -65,7 +65,6 @@ func take_damage(amount: int, enemy_state: String, attacker: Node = null) -> voi
 		statemachine.current_state.on_idle_hit()
 
 	current_health = max(current_health - amount, 0)
-	hit_animation_player.play("hit")
 	health_changed.emit(current_health)
 
 	if current_health == 0:

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4sxo0ce1jed6"
-path="res://.godot/imported/deathAnimationSpriteSheet.webp-886f1c57fbb9dd5449cea40d3024e8a7.ctex"
+uid="uid://bukjanrj01xqo"
+path="res://.godot/imported/blueFlash.webp-c41e66c69bf0847c9c0fb6175b32a4f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Decked/Assests/PlayerBody/Red/deathAnimationSpriteSheet.webp"
-dest_files=["res://.godot/imported/deathAnimationSpriteSheet.webp-886f1c57fbb9dd5449cea40d3024e8a7.ctex"]
+source_file="res://Decked/Assests/Effects/blueFlash.webp"
+dest_files=["res://.godot/imported/blueFlash.webp-c41e66c69bf0847c9c0fb6175b32a4f6.ctex"]
 
 [params]
 

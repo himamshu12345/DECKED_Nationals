@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4sxo0ce1jed6"
-path="res://.godot/imported/deathAnimationSpriteSheet.webp-886f1c57fbb9dd5449cea40d3024e8a7.ctex"
+uid="uid://cns6poixa3jce"
+path="res://.godot/imported/TilesetStairsStands.webp-a1f0ad4bdcf3b6148231f51c91ab1483.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Decked/Assests/PlayerBody/Red/deathAnimationSpriteSheet.webp"
-dest_files=["res://.godot/imported/deathAnimationSpriteSheet.webp-886f1c57fbb9dd5449cea40d3024e8a7.ctex"]
+source_file="res://Decked/Assests/Backgrounds/TilesetStairsStands.webp"
+dest_files=["res://.godot/imported/TilesetStairsStands.webp-a1f0ad4bdcf3b6148231f51c91ab1483.ctex"]
 
 [params]
 
