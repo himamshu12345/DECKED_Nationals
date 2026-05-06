@@ -69,6 +69,10 @@ func Enter():
 
 	dash_used.emit()
 
+	var stamina = _get_stamina()
+	if stamina:
+		stamina.consume(Stamina.COST_DASH)
+
 	audio.play()
 
 
@@ -123,3 +127,9 @@ func _spawn_trail(delta):
 func Exit():
 	sprite.visible = false
 	player.visible = true
+
+
+func _get_stamina() -> Stamina:
+	if owner:
+		return owner.get_node_or_null("Stamina")
+	return null

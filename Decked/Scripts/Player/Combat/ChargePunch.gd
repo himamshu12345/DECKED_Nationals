@@ -37,6 +37,10 @@ func Enter():
 	chargeHits = 0
 	animator.play("ChargePunch")
 	charge_audio.play()
+
+	var stamina = _get_stamina()
+	if stamina:
+		stamina.pause_regen(true)
 	
 	if input_prefix == "":
 		damage += GameManager.p1_stats["damage_bonus"]
@@ -53,14 +57,24 @@ func Exit():
 	charge_audio.stop()
 	charge_released_audio.play()
 
+	var stamina = _get_stamina()
+	if stamina:
+		stamina.pause_regen(false)
 
-func Update(_delta: float):
+
+func Update(delta: float):
 	var punch = input_prefix + "Punch"
 	var shield = input_prefix + "Shield"
 
 	chargeFrames += 1
 	chargeLevel = int(chargeFrames / FRAMES_PER_CHARGE)
 	chargeLevel = clamp(chargeLevel, 0, MAX_CHARGE_LEVELS)
+
+	# Drain stamina while actively holding the charge
+	if Input.is_action_pressed(punch) and not punchReleased:
+		var stamina = _get_stamina()
+		if stamina:
+			stamina.consume(Stamina.COST_CHARGE_PER_SEC * delta)
 
 	if Input.is_action_just_released(punch) and not punchReleased:
 		punchReleased = true
@@ -115,4 +129,9 @@ func shoot_projectile():
 	var forward_direction = Vector2(0, -1).rotated(owner.rotation)
 	projectile.instigator = owner
 	projectile.initialize(forward_direction, damage)
-	
+
+
+func _get_stamina() -> Stamina:
+	if owner:
+		return owner.get_node_or_null("Stamina")
+	return null

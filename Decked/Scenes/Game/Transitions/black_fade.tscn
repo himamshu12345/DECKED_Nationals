@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://by86tk1tuxdum"]
+[gd_scene load_steps=7 format=3 uid="uid://by86tk1tuxdum"]
 
 [ext_resource type="Script" uid="uid://ctgf0gwkp0l0q" path="res://Decked/Scripts/Game Functions/BlackFade.gd" id="1_u7qe8"]
+[ext_resource type="Texture2D" uid="uid://dkiu4hh1en7cs" path="res://Decked/Assests/Backgrounds/transitionStart.webp" id="2_yfb2v"]
 
 [sub_resource type="Animation" id="Animation_yfb2v"]
 resource_name = "FadeToBlack"
@@ -8,14 +9,14 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.499772),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19]
 }
 
 [sub_resource type="Animation" id="Animation_ttkyp"]
@@ -24,14 +25,14 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+"times": PackedFloat32Array(0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [19, 18, 17, 16, 15, 13, 12, 11, 10, 9, 8, 7, 6, 0]
 }
 
 [sub_resource type="Animation" id="Animation_ipu0d"]
@@ -39,14 +40,14 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7uvy4"]
@@ -60,7 +61,7 @@ _data = {
 script = ExtResource("1_u7qe8")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-modulate = Color(1, 1, 1, 0)
+modulate = Color(0, 0, 0, 1)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -71,3 +72,10 @@ grow_vertical = 2
 libraries = {
 &"": SubResource("AnimationLibrary_7uvy4")
 }
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(570.753, 321.5)
+scale = Vector2(3.64607, 3.64607)
+texture = ExtResource("2_yfb2v")
+hframes = 5
+vframes = 4

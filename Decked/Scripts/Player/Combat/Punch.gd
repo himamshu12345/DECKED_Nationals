@@ -62,7 +62,10 @@ func perform_punch():
 	audio.play()
 	hitbox.enable()
 
-
+	var stamina = _get_stamina()
+	if stamina:
+		stamina.consume(Stamina.COST_PUNCH)
+		
 func _on_animation_finished():
 	if player.animation == "Left Punch" or player.animation == "Right Punch":
 		hitbox.disable()
@@ -89,3 +92,9 @@ func Physics_Update(_delta: float):
 	if owner is CharacterBody2D:
 		owner.velocity = direction * current_speed
 		owner.move_and_slide()
+
+
+func _get_stamina() -> Stamina:
+	if owner:
+		return owner.get_node_or_null("Stamina")
+	return null

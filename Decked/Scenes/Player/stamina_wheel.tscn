@@ -1,48 +1,40 @@
-[gd_scene load_steps=9 format=3 uid="uid://b22txcuvca5rh"]
+[gd_scene load_steps=8 format=3 uid="uid://cuw0f50wmx3f4"]
 
-[ext_resource type="Script" uid="uid://b5p8owqygfotk" path="res://Decked/Scripts/Player/Combat/stamina_wheel.gd" id="1_5bd6s"]
-[ext_resource type="Texture2D" uid="uid://biesuiypa4k7u" path="res://Decked/Assests/HealthBar/middleColor.webp" id="1_w73na"]
-[ext_resource type="Texture2D" uid="uid://b0osf13msyf4h" path="res://Decked/Assests/HealthBar/smallOutline.webp" id="2_5bd6s"]
-[ext_resource type="Texture2D" uid="uid://bb22w2hfbvv0h" path="res://Decked/Assests/HealthBar/smallInside.webp" id="3_co4pc"]
-[ext_resource type="Texture2D" uid="uid://736jtbcskwec" path="res://Decked/Assests/HealthBar/BigInside.webp" id="5_58e01"]
-[ext_resource type="Texture2D" uid="uid://oxpjp6ydtpa2" path="res://Decked/Assests/HealthBar/bigOutline (1).webp" id="5_co4pc"]
-[ext_resource type="PackedScene" uid="uid://dm6p0k5j2v8a" path="res://Decked/Scenes/Player/DashIndicator.tscn" id="6_jad18"]
-[ext_resource type="PackedScene" uid="uid://dcvbw4rrss3rf" path="res://Decked/Scenes/Player/shield_indicator.tscn" id="7_kmvax"]
+[ext_resource type="Texture2D" uid="uid://b0osf13msyf4h" path="res://Decked/Assests/HealthBar/smallOutline.webp" id="1_w73na"]
+[ext_resource type="Texture2D" uid="uid://bb22w2hfbvv0h" path="res://Decked/Assests/HealthBar/smallInside.webp" id="2_5bd6s"]
+[ext_resource type="Texture2D" uid="uid://oxpjp6ydtpa2" path="res://Decked/Assests/HealthBar/bigOutline (1).webp" id="3_co4pc"]
+[ext_resource type="Texture2D" uid="uid://736jtbcskwec" path="res://Decked/Assests/HealthBar/BigInside.webp" id="4_tegh2"]
+[ext_resource type="Texture2D" uid="uid://biesuiypa4k7u" path="res://Decked/Assests/HealthBar/middleColor.webp" id="5_58e01"]
+[ext_resource type="PackedScene" uid="uid://dcvbw4rrss3rf" path="res://Decked/Scenes/Player/shield_indicator.tscn" id="6_jad18"]
+[ext_resource type="PackedScene" uid="uid://dm6p0k5j2v8a" path="res://Decked/Scenes/Player/DashIndicator.tscn" id="7_kmvax"]
 
-[node name="Stamina Wheel" type="Node2D"]
-script = ExtResource("1_5bd6s")
+[node name="StaminaWheel" type="Node2D"]
 
-[node name="Indicator" type="TextureRect" parent="."]
-offset_left = -5.0
-offset_top = -1.0
-offset_right = 43.0
-offset_bottom = 47.0
-texture = ExtResource("1_w73na")
-
-[node name="Health" type="TextureProgressBar" parent="."]
-offset_left = -5.0
-offset_top = -1.0
-offset_right = 43.0
-offset_bottom = 47.0
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
 value = 100.0
 fill_mode = 4
-texture_under = ExtResource("2_5bd6s")
-texture_progress = ExtResource("3_co4pc")
+texture_under = ExtResource("1_w73na")
+texture_progress = ExtResource("2_5bd6s")
 
-[node name="Stamina" type="TextureProgressBar" parent="."]
-offset_left = -5.0
-offset_top = -1.0
-offset_right = 43.0
-offset_bottom = 47.0
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
 value = 100.0
 fill_mode = 4
-texture_under = ExtResource("5_co4pc")
-texture_progress = ExtResource("5_58e01")
+texture_under = ExtResource("3_co4pc")
+texture_progress = ExtResource("4_tegh2")
 
-[node name="ShieldIndicator" parent="." instance=ExtResource("7_kmvax")]
-position = Vector2(19, 7)
-scale = Vector2(0.28125, 0.28125)
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_58e01")
 
-[node name="DashIndicator" parent="." instance=ExtResource("6_jad18")]
-position = Vector2(19, 38.4)
+[node name="ShieldIndicator" parent="." instance=ExtResource("6_jad18")]
+position = Vector2(24, 8)
+scale = Vector2(0.3125, 0.3125)
+
+[node name="DashIndicator" parent="." instance=ExtResource("7_kmvax")]
+position = Vector2(24, 39.25)
 scale = Vector2(0.21875, 0.21875)

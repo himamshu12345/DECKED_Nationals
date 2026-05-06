@@ -33,6 +33,10 @@ func Enter():
 	if cooldown_timer > 0.0:
 		transition_state.emit(self, "Idle")
 		return
+
+	var stamina = _get_stamina()
+	if stamina:
+		stamina.consume(Stamina.COST_BLOCK)
 		
 	_reset_shield_counter()
 	shielding.emit(true)
@@ -110,3 +114,9 @@ func Physics_Update(_delta: float):
 	if owner is CharacterBody2D:
 		owner.velocity = direction * current_speed
 		owner.move_and_slide()
+
+
+func _get_stamina() -> Stamina:
+	if owner:
+		return owner.get_node_or_null("Stamina")
+	return null
