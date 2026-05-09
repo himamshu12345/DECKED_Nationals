@@ -7,15 +7,18 @@ extends Node2D
 @onready var stamina_bar: TextureProgressBar = $Stamina
 @onready var indicator: TextureRect = $Indicator
 
-# Charge-level colours (index 0 = no charge, 1-5 = levels 1-5)
+
 const CHARGE_COLORS: Array[Color] = [
-	Color(1.0,  1.0,  1.0,  1.0),   # 0 – white / neutral
-	Color(1.0,  0.894, 0.302, 1.0),  # 1 – yellow
-	Color(1.0,  0.549, 0.0,  1.0),   # 2 – orange
-	Color(1.0,  0.231, 0.0,  1.0),   # 3 – red-orange
-	Color(0.8,  0.0,  0.0,  1.0),    # 4 – deep red
-	Color(0.608, 0.0, 1.0,  1.0),    # 5 – purple
+	Color(0.5,  0.5,   0.5,   1.0), # 0 – Gray (Default/Neutral)
+	Color(1.0,  0.894, 0.302, 1.0), # 1 – Yellow
+	Color(1.0,  0.549, 0.0,   1.0), # 2 – Orange
+	Color(1.0,  0.231, 0.0,   1.0), # 3 – Red-orange
+	Color(0.8,  0.0,   0.0,   1.0), # 4 – Deep red
+	Color(0.608, 0.0,   1.0,   1.0), # 5 – Purple
 ]
+
+# Dedicated color for the stamina bar itself
+const STAMINA_GREEN = Color(0.2, 0.8, 0.2, 1.0)
 
 var _health_node: Health = null
 var _stamina_node: Stamina = null
@@ -23,8 +26,14 @@ var _flash_timer: float = 0.0
 const FLASH_DURATION: float = 0.4
 
 func _ready() -> void:
+	# Set UI Base Colors
+	health_bar.modulate = Color("fff00d")
+	stamina_bar.modulate = STAMINA_GREEN
+	indicator.modulate = CHARGE_COLORS[0]
+	
 	if not player:
 		return
+		
 	_health_node  = player.get_node_or_null("Health")
 	_stamina_node = player.get_node_or_null("Stamina")
 
@@ -45,29 +54,37 @@ func _process(delta: float) -> void:
 	if _flash_timer > 0.0:
 		_flash_timer -= delta
 		var t = _flash_timer / FLASH_DURATION
-		stamina_bar.modulate = Color(1.0, t * 0.2, t * 0.2, 1.0)
+		# Flash effect (Reddish-white)
+		stamina_bar.modulate = Color(1.0, t * 0.4, t * 0.4, 1.0)
 	else:
-		stamina_bar.modulate = Color.WHITE
+		# Return to dedicated Green
+		stamina_bar.modulate = STAMINA_GREEN
 
-	# Update centre indicator colour from current charge level
+	# Update centre indicator separately
 	_update_indicator()
 
 func _update_indicator() -> void:
 	if not player:
 		return
+		
 	var sm = player.get_node_or_null("StateMachine")
 	if not sm:
 		return
+		
 	var state = sm.current_state
 	if state == null:
 		indicator.modulate = CHARGE_COLORS[0]
 		return
+		
+	# Update color based on ChargePunch level
 	if state.get_class() == "Node" and state.get_script() != null:
 		var script_name = state.get_script().get_global_name()
 		if script_name == "ChargePunch":
 			var level = clamp(state.chargeLevel, 0, CHARGE_COLORS.size() - 1)
 			indicator.modulate = CHARGE_COLORS[level]
 			return
+			
+	# Default indicator is Gray
 	indicator.modulate = CHARGE_COLORS[0]
 
 func _on_health_changed(new_health: int) -> void:

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bo48qlyfnoolv" path="res://Decked/Scripts/Player/player.gd" id="1_g6e5w"]
 [ext_resource type="Texture2D" uid="uid://jcv8k6p8f458" path="res://Decked/Assests/PlayerBody/Blue/ChargePunchAnimationBluegif.webp" id="1_wernh"]
-[ext_resource type="Script" uid="uid://e6rgke0v6idw" path="res://Decked/Scripts/Player/Functions/Stamina.gd" id="2_01tny"]
+[ext_resource type="Script" uid="uid://e6rgke0v6idw" path="res://Decked/Scripts/Player/Combat/Stamina.gd" id="2_01tny"]
 [ext_resource type="Texture2D" uid="uid://dif22tdeocoy5" path="res://Decked/Assests/Backgrounds/NPCS/whiteguy.webp" id="2_5f5mv"]
 [ext_resource type="Script" uid="uid://d0cgkch2xj4ff" path="res://Decked/Scripts/Player/Functions/Health.gd" id="2_vsavn"]
 [ext_resource type="Shader" uid="uid://csv8i78vr8dks" path="res://Decked/Assests/PlayerBody/Blue/Player2Flash.tres" id="3_alyxy"]
