@@ -1,4 +1,4 @@
-class_name StaminaWheel
+class_name HealthBar
 extends Node2D
 
 @export var player: CharacterBody2D

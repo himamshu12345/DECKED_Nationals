@@ -1,10 +1,9 @@
-[gd_scene load_steps=111 format=3 uid="uid://pviiqotj3fpx"]
+[gd_scene load_steps=116 format=3 uid="uid://pviiqotj3fpx"]
 
 [ext_resource type="Texture2D" uid="uid://c8ejs54a4kmx7" path="res://Decked/Assests/PlayerBody/Red/ChargePunchRedFixed-sheet.webp" id="1_cqywd"]
 [ext_resource type="Script" uid="uid://d0cgkch2xj4ff" path="res://Decked/Scripts/Player/Functions/Health.gd" id="1_g1f8n"]
 [ext_resource type="Script" uid="uid://bo48qlyfnoolv" path="res://Decked/Scripts/Player/player.gd" id="1_qe5sp"]
 [ext_resource type="Texture2D" uid="uid://dif22tdeocoy5" path="res://Decked/Assests/Backgrounds/NPCS/whiteguy.webp" id="1_wtuoc"]
-[ext_resource type="Texture2D" uid="uid://ckcnlrsjonmjp" path="res://Decked/Assests/PlayerBody/Red/ConfusedStaggered.png" id="2_5ftou"]
 [ext_resource type="Script" uid="uid://e6rgke0v6idw" path="res://Decked/Scripts/Player/Combat/Stamina.gd" id="2_7vif1"]
 [ext_resource type="Shader" uid="uid://cu4p27f7s6d0p" path="res://Decked/Assests/PlayerBody/Red/Player1Flash.tres" id="2_ujvst"]
 [ext_resource type="PackedScene" uid="uid://cuw0f50wmx3f4" path="res://Decked/Scenes/Player/stamina_wheel.tscn" id="3_83f0n"]
@@ -15,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bmh3d53gup3cs" path="res://Decked/Assests/PlayerBody/Red/rightPunch (1).webp" id="8_cpgxm"]
 [ext_resource type="Script" uid="uid://dr6m376bbawc7" path="res://Decked/Scripts/Game Functions/StateMachine.gd" id="8_cxbs8"]
 [ext_resource type="Texture2D" uid="uid://d2nidkqcgagch" path="res://Decked/Assests/PlayerBody/Red/leftPunchACTUAL.webp" id="8_frq0u"]
+[ext_resource type="Texture2D" uid="uid://cl2qbstclryr2" path="res://Decked/Assests/PlayerBody/Red/Confused.webp" id="8_iuuau"]
 [ext_resource type="Script" uid="uid://h5acffb8kh4u" path="res://Decked/Scripts/Player/Combat/HurtBox.gd" id="8_womvn"]
 [ext_resource type="Script" uid="uid://38kidv8b3y5t" path="res://Decked/Scripts/Player/Combat/HitBox.gd" id="9_a8s7n"]
 [ext_resource type="Script" uid="uid://dsl5lgeb7ftac" path="res://Decked/Scenes/Backgrounds/Idle.gd" id="9_aibyj"]
@@ -40,6 +40,7 @@
 [ext_resource type="AudioStream" uid="uid://bcb1fe6fy17wo" path="res://Decked/Assests/Sound/Sound Effects/QuickStagger.wav" id="24_itot2"]
 [ext_resource type="AudioStream" uid="uid://b4wak31xth4yj" path="res://Decked/Assests/Sound/Sound Effects/DashSound.wav" id="25_u1odx"]
 [ext_resource type="AudioStream" uid="uid://cg3bc2ykcka3f" path="res://Decked/Assests/Sound/Sound Effects/ConfusedStagger.wav" id="26_t8gea"]
+[ext_resource type="Script" uid="uid://3x8xbrdygn6m" path="res://Decked/Scripts/Player/Combat/StaminaExhausted.gd" id="36_ud2n2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l7c70"]
 shader = ExtResource("2_ujvst")
@@ -78,25 +79,41 @@ region = Rect2(256, 128, 128, 128)
 atlas = ExtResource("1_cqywd")
 region = Rect2(384, 128, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_52evm"]
-atlas = ExtResource("2_5ftou")
-region = Rect2(0, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_203r6"]
+atlas = ExtResource("8_iuuau")
+region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mjvh6"]
-atlas = ExtResource("2_5ftou")
-region = Rect2(64, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_65wyq"]
+atlas = ExtResource("8_iuuau")
+region = Rect2(128, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fxh12"]
-atlas = ExtResource("2_5ftou")
-region = Rect2(128, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_dnfjl"]
+atlas = ExtResource("8_iuuau")
+region = Rect2(256, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_koc8w"]
-atlas = ExtResource("2_5ftou")
-region = Rect2(0, 64, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rec7"]
+atlas = ExtResource("8_iuuau")
+region = Rect2(0, 128, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_luut1"]
-atlas = ExtResource("2_5ftou")
-region = Rect2(64, 64, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wkyu"]
+atlas = ExtResource("8_iuuau")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mohe8"]
+atlas = ExtResource("8_iuuau")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wl66e"]
+atlas = ExtResource("8_iuuau")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urb2b"]
+atlas = ExtResource("8_iuuau")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0qdn"]
+atlas = ExtResource("8_iuuau")
+region = Rect2(128, 128, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p0o7p"]
 atlas = ExtResource("7_0lvlb")
@@ -311,22 +328,39 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_52evm")
+"texture": SubResource("AtlasTexture_203r6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mjvh6")
+"texture": SubResource("AtlasTexture_65wyq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fxh12")
+"texture": SubResource("AtlasTexture_dnfjl")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_koc8w")
+"texture": SubResource("AtlasTexture_4rec7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_luut1")
+"texture": SubResource("AtlasTexture_6wkyu")
 }],
 "loop": false,
 "name": &"ConfusedStaggered",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mohe8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wl66e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urb2b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0qdn")
+}],
+"loop": true,
+"name": &"ConfusedStaggeredLoop",
 "speed": 5.0
 }, {
 "frames": [{
@@ -572,7 +606,7 @@ volume_db = 5.0
 [node name="AnimatedPlayerBody" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_l7c70")
 sprite_frames = SubResource("SpriteFrames_xurk0")
-animation = &"Idle"
+animation = &"ConfusedStaggeredLoop"
 
 [node name="HitAnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -638,7 +672,6 @@ animator = NodePath("../../AnimatedPlayerBody")
 [node name="Punch" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "hitbox", "audio")]
 script = ExtResource("11_erbp0")
 player = NodePath("../../AnimatedPlayerBody")
-input_prefix = null
 hitbox = NodePath("../../HitBox")
 audio = NodePath("PunchSound")
 
@@ -707,6 +740,12 @@ audio = NodePath("DashSound")
 
 [node name="DashSound" type="AudioStreamPlayer2D" parent="StateMachine/Dash"]
 stream = ExtResource("25_u1odx")
+
+[node name="StaminaExhausted" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animator")]
+script = ExtResource("36_ud2n2")
+player = NodePath("../..")
+animator = NodePath("../../AnimatedPlayerBody")
+metadata/_custom_type_script = "uid://3x8xbrdygn6m"
 
 [node name="HitBox Animation" type="Node" parent="." node_paths=PackedStringArray("animated_sprite", "collision_shape")]
 script = ExtResource("18_0kpkt")

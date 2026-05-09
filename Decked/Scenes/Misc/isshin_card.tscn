@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ccvf5xjixsf11" path="res://Decked/Scripts/Game Functions/Card/cardEffects.gd" id="1_02ko1"]
 [ext_resource type="Shader" uid="uid://d2x5w1e7552wb" path="res://Decked/Scripts/Game Functions/Card/card.gdshader" id="2_nf47p"]
-[ext_resource type="Texture2D" uid="uid://cj5ij0x0x0ask" path="res://Decked/Assests/Cards/KingIsshinCard.png" id="4_02ko1"]
+[ext_resource type="Texture2D" uid="uid://bpuwo3td7k8tb" path="res://Decked/Assests/Cards/KingIsshinCard.webp" id="4_02ko1"]
 [ext_resource type="PackedScene" uid="uid://sqj3s17xci70" path="res://Decked/Scenes/Game/game_manager.tscn" id="4_wdvps"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b3773"]

@@ -48,6 +48,15 @@ func Enter():
 func Update(_delta: float):
 	parry_timer += _delta
 	
+	var stamina = _get_stamina()
+	if stamina:
+		stamina.consume(Stamina.COST_BLOCK_PER_SEC * _delta)
+		if stamina.is_exhausted:
+			transition_state.emit(self, "StaminaExhausted")
+			cooldown_timer = SHIELD_COOLDOWN
+			return
+
+	
 	var left = input_prefix + "left"
 	var right = input_prefix + "right"
 	var up = input_prefix + "up"

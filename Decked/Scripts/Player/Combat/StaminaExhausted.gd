@@ -1,7 +1,6 @@
 extends State
 class_name StaminaExhausted
 
-const LOCK_DURATION: float = 1.2
 const SPEED_MULT: float = 0.4
 const BASE_SPEED: float = 50.0
 
@@ -9,18 +8,15 @@ const BASE_SPEED: float = 50.0
 @export var animator: AnimatedSprite2D
 @export var input_prefix: String = ""
 
-var _timer: float = 0.0
-
 func Enter() -> void:
-	_timer = LOCK_DURATION
-	animator.play("QuickStagger")
+	animator.play("ConfusedStaggeredLoop")
 
 func Exit() -> void:
 	pass
 
 func Update(delta: float) -> void:
-	_timer -= delta
-	if _timer <= 0.0:
+	var stamina = _get_stamina()
+	if stamina and not stamina.is_exhausted:
 		transition_state.emit(self, "Idle")
 
 func Physics_Update(_delta: float) -> void:
@@ -32,3 +28,8 @@ func Physics_Update(_delta: float) -> void:
 	if player is CharacterBody2D:
 		player.velocity = direction * BASE_SPEED * SPEED_MULT
 		player.move_and_slide()
+
+func _get_stamina() -> Stamina:
+	if owner:
+		return owner.get_node_or_null("Stamina")
+	return null

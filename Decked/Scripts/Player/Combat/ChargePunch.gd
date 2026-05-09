@@ -75,6 +75,9 @@ func Update(delta: float):
 		var stamina = _get_stamina()
 		if stamina:
 			stamina.consume(Stamina.COST_CHARGE_PER_SEC * delta)
+			if stamina.is_exhausted:
+				transition_state.emit(self, "StaminaExhausted")
+				return
 
 	if Input.is_action_just_released(punch) and not punchReleased:
 		punchReleased = true

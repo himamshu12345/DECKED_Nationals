@@ -43,6 +43,11 @@ func take_damage(amount: int, enemy_state: String, attacker: Node = null) -> voi
 				attacker_sm.force_change_state(stagger_name)
 			
 			parryAudio.play()
+			
+			var defender_stamina = owner.get_node_or_null("Stamina")
+			if defender_stamina:
+				defender_stamina.recover(50.0)
+
 			return
 			
 		if enemy_state == "ChargePunch" or enemy_state == "BossChargePunch":
