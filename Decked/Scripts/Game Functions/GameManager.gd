@@ -10,21 +10,27 @@ var p1_stats = {
 	"damage_bonus": 0,
 	"speed_bonus": 0,
 	"dashspeed_bonus": 0,
-	"dashcooldown_bonus": 0
+	"dashcooldown_bonus": 0,
+	"defense_bonus": 1,
+	"leech": 0
 }
 var p2_stats = {
 	"health_bonus": 0,
 	"damage_bonus": 0,
 	"speed_bonus": 0,
 	"dashspeed_bonus": 0,
-	"dashcooldown_bonus": 0
+	"dashcooldown_bonus": 0,
+	"defense_bonus": 1,
+	"leech": 0
 }
 var boss1_stats = {
 	"health_bonus": 0,
 	"damage_bonus": 0,
 	"speed_bonus": 0,
 	"dashspeed_bonus": 0,
-	"dashcooldown_bonus": 0
+	"dashcooldown_bonus": 0,
+	"defense_bonus": 1,
+	"leech": 0
 }
 
 var boss2_stats = {
@@ -32,7 +38,9 @@ var boss2_stats = {
 	"damage_bonus": 0,
 	"speed_bonus": 0,
 	"dashspeed_bonus": 0,
-	"dashcooldown_bonus": 0
+	"dashcooldown_bonus": 0,
+	"defense_bonus": 1,
+	"leech": 0
 }
 
 var boss3_stats = {
@@ -40,7 +48,9 @@ var boss3_stats = {
 	"damage_bonus": 0,
 	"speed_bonus": 0,
 	"dashspeed_bonus": 0,
-	"dashcooldown_bonus": 0
+	"dashcooldown_bonus": 0,
+	"defense_bonus": 1,
+	"leech": 0
 }
 
 var all_cards = [
@@ -134,6 +144,10 @@ func apply_buff(player_id: int, mod_type: String, value: float):
 			target_stats["dashspeed_bonus"] += value
 		"DashCooldown":
 			target_stats["dashcooldown_bonus"] += value
+		"Defense":
+			target_stats["defense_bonus"] *= value
+		"Leech":
+			target_stats["leech"] += value
 
 func add_card(player_id: int, card_data: Dictionary):
 	if player_id == 1:

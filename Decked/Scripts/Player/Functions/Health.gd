@@ -5,6 +5,8 @@ extends Node
 @export var hit_animation_player: AnimationPlayer
 @export var max_health: int = 100
 @export var parryAudio: AudioStreamPlayer2D
+@export var damageTaken: float = 1
+@export var lifeSteal: float = 0.25
 var current_health: int
 
 signal health_changed(current: int)
@@ -16,8 +18,12 @@ func _ready() -> void:
 	match owner.name:
 		"Player1":
 			max_health += GameManager.p1_stats.get("health_bonus", 0)
+			damageTaken = GameManager.p1_stats.get("defense_bonus", 0)
+			lifeSteal = GameManager.p1_stats.get("leech", 0)
 		"Player2":
 			max_health += GameManager.p2_stats.get("health_bonus", 0)
+			damageTaken = GameManager.p2_stats.get("defense_bonus", 0)
+			lifeSteal = GameManager.p2_stats.get("leech", 0)
 
 	current_health = max_health
 	health_changed.emit(current_health)
@@ -64,7 +70,7 @@ func take_damage(amount: int, enemy_state: String, attacker: Node = null) -> voi
 	if state_name in ["Idle", "DummyIdle", "BossIdle"] and enemy_state in ["Punch", "BossPunch"]:
 		statemachine.current_state.on_idle_hit()
 
-	current_health = max(current_health - amount, 0)
+	current_health = max((current_health - amount)*damageTaken, 0) 
 	health_changed.emit(current_health)
 
 	if current_health == 0:
@@ -82,3 +88,6 @@ func die() -> void:
 		statemachine.force_change_state("Death")
 	else:
 		statemachine.force_change_state("BossDeath")
+		
+func addHealth(amount: int) -> void:
+	current_health = min(current_health+amount*lifeSteal, max_health) 

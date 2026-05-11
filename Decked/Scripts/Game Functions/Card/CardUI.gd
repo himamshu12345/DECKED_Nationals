@@ -14,10 +14,10 @@ func _load_cards():
 		#Hypeercalcemia
 		{
 			"name": "Hypercalcemia",
-			"description": "+50 health",
+			"description": "15% Less Damage",
 			"rarity": "UNCOMMON",
-			"buff_type": "Health",
-			"value": 50.0,
+			"buff_type": "Defense",
+			"value": 0.85,
 			"icon_path": "res://Decked/Assests/Cards/Hypercalcemia-0003.webp"
 		},
 		#Thorns
@@ -41,10 +41,10 @@ func _load_cards():
 		#Vampire
 		{
 			"name": "Vampire",
-			"description": "+0.2 Damage",
+			"description": "Heal by 25% of damage dealt",
 			"rarity": "UNCOMMON",
-			"buff_type": "Damage",
-			"value": 0.2,
+			"buff_type": "Leech",
+			"value": 0.25,
 			"icon_path": "res://Decked/Assests/Cards/Vampire.webp"
 		},
 		#Sprinting

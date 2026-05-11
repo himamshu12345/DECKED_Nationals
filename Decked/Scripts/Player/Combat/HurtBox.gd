@@ -14,6 +14,7 @@ func _on_area_entered(area: Area2D) -> void:
 	if area is HitBox:
 		var hitbox := area as HitBox
 		var health = owner.get_node_or_null("Health")
+		area.get_parent().get_node_or_null("Health").get_node_or_null("Health").addHealth(hitbox.damage)
 		
 		var impact_position = (global_position + hitbox.global_position) / 2
 		var enemy = hitbox.owner

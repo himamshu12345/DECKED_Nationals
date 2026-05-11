@@ -1,99 +1,186 @@
-class_name StaminaWheel
-extends Node2D
+class_name HealthBar
+extends Control
 
+@onready var left_bar = $LeftBar
+@onready var right_bar = $RightBar
 @export var player: CharacterBody2D
+@onready var health: Health = player.find_children("*", "Health")[0]
+@onready var dash_indicator = $DashIndicator
+@export var card_slots: Array[TextureRect]
+@onready var shield_indicator = $ShieldIndicator
 
-@onready var health_bar: TextureProgressBar = $Health
-@onready var stamina_bar: TextureProgressBar = $Stamina
-@onready var indicator: TextureRect = $Indicator
-
-# Charge-level colours (Index 0 is Blue for the initial/neutral state)
-const CHARGE_COLORS: Array[Color] = [
-	Color(0.18, 0.55, 1.0, 1.0),   # 0 – Blue (Initial/Neutral)
-	Color(1.0,  0.894, 0.302, 1.0), # 1 – Yellow
-	Color(1.0,  0.549, 0.0,   1.0), # 2 – Orange
-	Color(1.0,  0.231, 0.0,   1.0), # 3 – Red-orange
-	Color(0.8,  0.0,   0.0,   1.0), # 4 – Deep red
-	Color(0.608, 0.0,   1.0,   1.0), # 5 – Purple
-]
-
-var _health_node: Health = null
-var _stamina_node: Stamina = null
-var _flash_timer: float = 0.0
-const FLASH_DURATION: float = 0.4
+var default_left_tint: Color
+var default_right_tint: Color
+var shield_state
+var dash_state
 
 func _ready() -> void:
-	# Set Health Bar to Yellow (fff00d)
-	health_bar.modulate = Color("fff00d")
-	
-	if not player:
-		return
-		
-	_health_node  = player.get_node_or_null("Health")
-	_stamina_node = player.get_node_or_null("Stamina")
+	# Store default colors
+	default_left_tint = Color("#fff00d")
+	default_right_tint = Color("#fff00d")
 
-	if _health_node:
-		health_bar.max_value = _health_node.max_health
-		health_bar.value     = _health_node.current_health
-		_health_node.health_changed.connect(_on_health_changed)
+	left_bar.tint_progress = default_left_tint
+	right_bar.tint_progress = default_right_tint
 
-	if _stamina_node:
-		stamina_bar.max_value = _stamina_node.max_stamina
-		stamina_bar.value     = _stamina_node.current_stamina
-		_stamina_node.stamina_changed.connect(_on_stamina_changed)
-		_stamina_node.stamina_exhausted.connect(_on_stamina_exhausted)
-		_stamina_node.stamina_exhausted.connect(_trigger_exhaustion_on_statemachine)
+	# Setup health bars
+	left_bar.max_value = health.max_health
+	right_bar.max_value = health.max_health
+	left_bar.value = health.current_health
+	right_bar.value = health.current_health
 
-func _process(delta: float) -> void:
-	# Stamina bar flash on exhaustion
-	if _flash_timer > 0.0:
-		_flash_timer -= delta
-		var t = _flash_timer / FLASH_DURATION
-		# Flashes briefly towards red/white then returns to blue
-		stamina_bar.modulate = Color(1.0, t * 0.2, t * 0.2, 1.0)
+	# Connect health signal
+	health.health_changed.connect(_update_bar)
+
+	# Connect to shield state if it exists
+	shield_state = _find_shield_state(player)
+	if shield_state:
+		shield_state.shielding.connect(_on_shielding_changed)
+		shield_state.shield_hit.connect(_on_shield_hit)
+		shield_state.shield_ready.connect(_on_shield_ready)
+		shield_state.shield_used.connect(_on_shield_used)
 	else:
-		# Keeps the stamina bar blue when not flashing
-		stamina_bar.modulate = CHARGE_COLORS[0]
+		print("No shield state found for ", player.name)
 
-	# Update centre indicator colour from current charge level
-	_update_indicator()
+	# Find and connect dash state
+	dash_state = _find_dash_state(player)
+	if dash_state:
+		dash_state.dash_ready.connect(_on_dash_ready)
+		dash_state.dash_used.connect(_on_dash_used)
+	else:
+		print("No dash state found for ", player.name)
 
-func _update_indicator() -> void:
-	if not player:
-		return
-		
-	var sm = player.get_node_or_null("StateMachine")
-	if not sm:
-		return
-		
-	var state = sm.current_state
-	if state == null:
-		indicator.modulate = CHARGE_COLORS[0]
-		return
-		
-	# Check if we are currently in a ChargePunch state to update color
-	if state.get_class() == "Node" and state.get_script() != null:
-		var script_name = state.get_script().get_global_name()
-		if script_name == "ChargePunch":
-			var level = clamp(state.chargeLevel, 0, CHARGE_COLORS.size() - 1)
-			indicator.modulate = CHARGE_COLORS[level]
-			return
+	if dash_state and dash_state.has_method("is_ready"):
+		if dash_state.is_ready():
+			_on_dash_ready()
+		else:
+			_set_indicator_grayed()
 			
-	# Default back to blue
-	indicator.modulate = CHARGE_COLORS[0]
+	
+	if shield_state and shield_state.has_method("is_ready"):
+		if shield_state.is_ready():
+			_on_shield_ready()
+		else:
+			_set_shield_grayed()
+	update_cards()
 
-func _on_health_changed(new_health: int) -> void:
-	health_bar.value = new_health
 
-func _on_stamina_changed(current: float, _maximum: float) -> void:
-	stamina_bar.value = current
+func update_cards():
+	var cards = []
+	if player.name == "Player1":
+		cards = GameManager.p1_cards
+	elif player.name == "Player2":
+		cards = GameManager.p2_cards
+	elif player.name == "Boss1":
+		cards = GameManager.boss1_cards
+	elif player.name == "Boss2":
+		cards = GameManager.boss2_cards
+	elif player.name == "Boss3":
+		cards = GameManager.boss3_cards
 
-func _on_stamina_exhausted() -> void:
-	_flash_timer = FLASH_DURATION
+	for i in range(min(cards.size(), card_slots.size())):
+		var card_data = cards[i]
+		if card_slots[i]:
+			card_slots[i].expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			card_slots[i].stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			card_slots[i].texture = load(card_data["icon_path"])
+			card_slots[i].visible = true
 
-func _trigger_exhaustion_on_statemachine() -> void:
-	if not player:
+
+func _find_shield_state(node: Node):
+	if node.has_signal("shielding") and node.has_signal("shield_hit"):
+		return node
+	for child in node.get_children():
+		var result = _find_shield_state(child)
+		if result:
+			return result
+	return null
+
+
+func _find_dash_state(node: Node):
+	for child in node.get_children():
+		if child.get_script() != null:
+			# Match by class_name string so we catch both Dash and BossDash
+			var script_path: String = child.get_script().resource_path
+			if "Dash" in child.get_script().get_global_name():
+				return child
+		var result = _find_dash_state(child)
+		if result:
+			return result
+	return null
+
+
+func _set_indicator_grayed():
+	dash_indicator.stop()
+	dash_indicator.frame = 0
+	dash_indicator.modulate = Color(0.35, 0.35, 0.35, 1.0)
+	
+func _set_shield_grayed():
+	shield_indicator.stop()
+	shield_indicator.frame = 0
+	shield_indicator.modulate = Color(0.35, 0.35, 0.35, 1.0)
+
+
+func _update_bar(new_health: int) -> void:
+	left_bar.value = new_health
+	right_bar.value = new_health
+
+
+func _on_shielding_changed(is_shielding: bool) -> void:
+	if is_shielding:
+		var max_hits = shield_state.MAX_SHIELD_HITS if "MAX_SHIELD_HITS" in shield_state else 6
+		var current_hits = shield_state.shieldHits if "shieldHits" in shield_state else 0
+
+		left_bar.max_value = max_hits
+		right_bar.max_value = max_hits
+		left_bar.value = max_hits - current_hits
+		right_bar.value = max_hits - current_hits
+
+		left_bar.tint_progress = Color.LIGHT_SKY_BLUE
+		right_bar.tint_progress = Color.LIGHT_SKY_BLUE
+	else:
+		left_bar.max_value = health.max_health
+		right_bar.max_value = health.max_health
+		left_bar.value = health.current_health
+		right_bar.value = health.current_health
+
+		left_bar.tint_progress = default_left_tint
+		right_bar.tint_progress = default_right_tint
+
+
+func _on_shield_hit(remaining_hits: int) -> void:
+	left_bar.value = remaining_hits
+	right_bar.value = remaining_hits
+
+
+func _on_dash_ready():
+	if not dash_indicator:
 		return
-	var sm = player.get_node_or_null("StateMachine")
-	if sm:
-		sm.force_change_state("StaminaExhausted")
+	dash_indicator.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	dash_indicator.play("default")
+	if not dash_indicator.animation_finished.is_connected(_on_dash_anim_finished):
+		dash_indicator.animation_finished.connect(_on_dash_anim_finished)
+		
+
+func _on_shield_ready():
+	if not shield_indicator:
+		return
+	shield_indicator.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	shield_indicator.play("default")
+	if not shield_indicator.animation_finished.is_connected(_on_shield_anim_finished):
+		shield_indicator.animation_finished.connect(_on_shield_anim_finished)
+
+func _on_dash_anim_finished():
+	# Freeze on last frame, stay bright until used
+	dash_indicator.stop()
+	dash_indicator.frame = 6
+
+func _on_shield_anim_finished():
+	shield_indicator.stop()
+	shield_indicator.frame = 7
+
+func _on_dash_used():
+	# Dash consumed — gray out and reset to frame 0
+	_set_indicator_grayed()
+	
+func _on_shield_used():
+	_set_shield_grayed()

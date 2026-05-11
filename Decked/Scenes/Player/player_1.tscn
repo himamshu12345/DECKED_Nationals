@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://pviiqotj3fpx"]
+[gd_scene format=3 uid="uid://pviiqotj3fpx"]
 
 [ext_resource type="Texture2D" uid="uid://c8ejs54a4kmx7" path="res://Decked/Assests/PlayerBody/Red/ChargePunchRedFixed-sheet.webp" id="1_cqywd"]
 [ext_resource type="Script" uid="uid://d0cgkch2xj4ff" path="res://Decked/Scripts/Player/Functions/Health.gd" id="1_g1f8n"]
@@ -516,9 +516,7 @@ size = Vector2(31, 9)
 [sub_resource type="Resource" id="Resource_ujvst"]
 script = ExtResource("19_wxmr2")
 position = Vector2(-0.5, -10.5)
-disabled = false
 shape = SubResource("RectangleShape2D_sg33i")
-debug_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l7c70"]
 size = Vector2(31, 9)
@@ -526,9 +524,7 @@ size = Vector2(31, 9)
 [sub_resource type="Resource" id="Resource_wtuoc"]
 script = ExtResource("19_wxmr2")
 position = Vector2(-0.5, -10.5)
-disabled = false
 shape = SubResource("RectangleShape2D_l7c70")
-debug_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Resource" id="Resource_qe5sp"]
 script = ExtResource("20_gt6ng")
@@ -553,30 +549,30 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player1" type="CharacterBody2D"]
+[node name="Player1" type="CharacterBody2D" unique_id=621875013]
 script = ExtResource("1_qe5sp")
 
-[node name="Stamina" type="Node" parent="."]
+[node name="Stamina" type="Node" parent="." unique_id=1301392092]
 script = ExtResource("2_7vif1")
 
-[node name="Health" type="Node" parent="." node_paths=PackedStringArray("statemachine", "hit_animation_player", "parryAudio")]
+[node name="Health" type="Node" parent="." unique_id=1253321152 node_paths=PackedStringArray("statemachine", "hit_animation_player", "parryAudio")]
 script = ExtResource("1_g1f8n")
 statemachine = NodePath("../StateMachine")
 hit_animation_player = NodePath("../HitAnimationPlayer")
 parryAudio = NodePath("ParryAudio")
 
-[node name="ParryAudio" type="AudioStreamPlayer2D" parent="Health"]
+[node name="ParryAudio" type="AudioStreamPlayer2D" parent="Health" unique_id=1149939816]
 stream = ExtResource("3_cpgxm")
 volume_db = 5.0
 
-[node name="AnimatedPlayerBody" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedPlayerBody" type="AnimatedSprite2D" parent="." unique_id=2136212813]
 material = SubResource("ShaderMaterial_l7c70")
 sprite_frames = SubResource("SpriteFrames_xurk0")
 animation = &"Idle"
 
-[node name="HitAnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="HitAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1024842849]
 
-[node name="HitParticles" type="CPUParticles2D" parent="."]
+[node name="HitParticles" type="CPUParticles2D" parent="." unique_id=1399935181]
 position = Vector2(0, 25)
 emitting = false
 amount = 6
@@ -591,61 +587,61 @@ gravity = Vector2(0, 0)
 scale_amount_min = 2.0
 scale_amount_max = 2.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=833770140]
 visible = false
 position = Vector2(0, 8)
 rotation = 1.5708
 scale = Vector2(1.16, 1.16)
 shape = SubResource("CapsuleShape2D_qe5sp")
 
-[node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("hitAudio")]
+[node name="HurtBox" type="Area2D" parent="." unique_id=2111144954 node_paths=PackedStringArray("hitAudio")]
 visible = false
 script = ExtResource("8_womvn")
 hitAudio = NodePath("Hit")
 
-[node name="HurtBoxShape2D" type="CollisionShape2D" parent="HurtBox"]
+[node name="HurtBoxShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=131765642]
 position = Vector2(-0.5, 8.5)
 shape = SubResource("RectangleShape2D_g0sjh")
 debug_color = Color(0.693082, 0.496307, 0, 0.42)
 
-[node name="Hit" type="AudioStreamPlayer2D" parent="HurtBox"]
+[node name="Hit" type="AudioStreamPlayer2D" parent="HurtBox" unique_id=770905424]
 stream = ExtResource("12_d4ral")
 volume_db = 5.0
 
-[node name="HitBox" type="Area2D" parent="."]
+[node name="HitBox" type="Area2D" parent="." unique_id=81490752]
 script = ExtResource("9_a8s7n")
 
-[node name="HitBoxShape2D" type="CollisionShape2D" parent="HitBox"]
+[node name="HitBoxShape2D" type="CollisionShape2D" parent="HitBox" unique_id=217661624]
 position = Vector2(-0.5, -14.5)
 shape = SubResource("RectangleShape2D_u2m2q")
 disabled = true
 debug_color = Color(0.990857, 0, 0.273061, 0.42)
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node" parent="." unique_id=2042619929 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("8_cxbs8")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "sprite")]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1468351334 node_paths=PackedStringArray("player", "sprite")]
 script = ExtResource("9_aibyj")
 player = NodePath("../../AnimatedPlayerBody")
 sprite = NodePath("../../DashImage")
 
-[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animator")]
+[node name="Move" type="Node" parent="StateMachine" unique_id=386672904 node_paths=PackedStringArray("player", "animator")]
 script = ExtResource("10_aibyj")
 player = NodePath("../..")
 animator = NodePath("../../AnimatedPlayerBody")
 
-[node name="Punch" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "hitbox", "audio")]
+[node name="Punch" type="Node" parent="StateMachine" unique_id=1200146953 node_paths=PackedStringArray("player", "hitbox", "audio")]
 script = ExtResource("11_erbp0")
 player = NodePath("../../AnimatedPlayerBody")
 input_prefix = null
 hitbox = NodePath("../../HitBox")
 audio = NodePath("PunchSound")
 
-[node name="PunchSound" type="AudioStreamPlayer2D" parent="StateMachine/Punch"]
+[node name="PunchSound" type="AudioStreamPlayer2D" parent="StateMachine/Punch" unique_id=271311604]
 stream = ExtResource("17_qe5sp")
 
-[node name="ChargePunch" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animator", "hitbox", "charge_audio", "projectile_audio", "charge_released_audio")]
+[node name="ChargePunch" type="Node" parent="StateMachine" unique_id=947174643 node_paths=PackedStringArray("player", "animator", "hitbox", "charge_audio", "projectile_audio", "charge_released_audio")]
 script = ExtResource("12_xmmu1")
 player = NodePath("../..")
 animator = NodePath("../../AnimatedPlayerBody")
@@ -654,72 +650,72 @@ charge_audio = NodePath("ChargeAudio")
 projectile_audio = NodePath("ProjectileAudio")
 charge_released_audio = NodePath("ChargePunchReleased")
 
-[node name="ChargeAudio" type="AudioStreamPlayer2D" parent="StateMachine/ChargePunch"]
+[node name="ChargeAudio" type="AudioStreamPlayer2D" parent="StateMachine/ChargePunch" unique_id=797598767]
 stream = ExtResource("21_frq0u")
 
-[node name="ProjectileAudio" type="AudioStreamPlayer2D" parent="StateMachine/ChargePunch"]
+[node name="ProjectileAudio" type="AudioStreamPlayer2D" parent="StateMachine/ChargePunch" unique_id=1936919386]
 stream = ExtResource("20_d4ral")
 
-[node name="ChargePunchReleased" type="AudioStreamPlayer2D" parent="StateMachine/ChargePunch"]
+[node name="ChargePunchReleased" type="AudioStreamPlayer2D" parent="StateMachine/ChargePunch" unique_id=1881834031]
 stream = ExtResource("17_qe5sp")
 volume_db = 10.0
 
-[node name="Shield" type="Node" parent="StateMachine" node_paths=PackedStringArray("animator", "audio")]
+[node name="Shield" type="Node" parent="StateMachine" unique_id=94190703 node_paths=PackedStringArray("animator", "audio")]
 script = ExtResource("13_ld0nm")
 animator = NodePath("../../AnimatedPlayerBody")
 audio = NodePath("ShieldSound")
 
-[node name="ShieldSound" type="AudioStreamPlayer2D" parent="StateMachine/Shield"]
+[node name="ShieldSound" type="AudioStreamPlayer2D" parent="StateMachine/Shield" unique_id=1440829368]
 stream = ExtResource("20_siakh")
 volume_db = -5.0
 
-[node name="Death" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "audio")]
+[node name="Death" type="Node" parent="StateMachine" unique_id=1198324508 node_paths=PackedStringArray("player", "audio")]
 script = ExtResource("18_wxmr2")
 player = NodePath("../../AnimatedPlayerBody")
 audio = NodePath("DeathSound")
 
-[node name="DeathSound" type="AudioStreamPlayer2D" parent="StateMachine/Death"]
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="StateMachine/Death" unique_id=1127484112]
 stream = ExtResource("22_b2ctl")
 
-[node name="QuickStagger" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animator", "audio")]
+[node name="QuickStagger" type="Node" parent="StateMachine" unique_id=826586733 node_paths=PackedStringArray("player", "animator", "audio")]
 script = ExtResource("19_gt6ng")
 player = NodePath("../..")
 animator = NodePath("../../AnimatedPlayerBody")
 audio = NodePath("QuickStaggerSound")
 
-[node name="QuickStaggerSound" type="AudioStreamPlayer2D" parent="StateMachine/QuickStagger"]
+[node name="QuickStaggerSound" type="AudioStreamPlayer2D" parent="StateMachine/QuickStagger" unique_id=732813665]
 stream = ExtResource("24_itot2")
 
-[node name="ConfusedStaggered" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animator", "audio")]
+[node name="ConfusedStaggered" type="Node" parent="StateMachine" unique_id=149285697 node_paths=PackedStringArray("player", "animator", "audio")]
 script = ExtResource("20_sg33i")
 player = NodePath("../..")
 animator = NodePath("../../AnimatedPlayerBody")
 audio = NodePath("ConfusedStaggerSound")
 
-[node name="ConfusedStaggerSound" type="AudioStreamPlayer2D" parent="StateMachine/ConfusedStaggered"]
+[node name="ConfusedStaggerSound" type="AudioStreamPlayer2D" parent="StateMachine/ConfusedStaggered" unique_id=2033045813]
 stream = ExtResource("26_t8gea")
 
-[node name="Dash" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "sprite", "audio")]
+[node name="Dash" type="Node" parent="StateMachine" unique_id=557072366 node_paths=PackedStringArray("player", "sprite", "audio")]
 script = ExtResource("22_l7c70")
 player = NodePath("../..")
 sprite = NodePath("../../DashImage")
 audio = NodePath("DashSound")
 
-[node name="DashSound" type="AudioStreamPlayer2D" parent="StateMachine/Dash"]
+[node name="DashSound" type="AudioStreamPlayer2D" parent="StateMachine/Dash" unique_id=633932873]
 stream = ExtResource("25_u1odx")
 
-[node name="HitBox Animation" type="Node" parent="." node_paths=PackedStringArray("animated_sprite", "collision_shape")]
+[node name="HitBox Animation" type="Node" parent="." unique_id=628602106 node_paths=PackedStringArray("animated_sprite", "collision_shape")]
 script = ExtResource("18_0kpkt")
 animated_sprite = NodePath("../AnimatedPlayerBody")
 collision_shape = NodePath("../HitBox/HitBoxShape2D")
 shape_frames = SubResource("Resource_qe5sp")
 metadata/_custom_type_script = "uid://cbfmux35ubvni"
 
-[node name="DashImage" type="AnimatedSprite2D" parent="."]
+[node name="DashImage" type="AnimatedSprite2D" parent="." unique_id=1226534684]
 show_behind_parent = true
 position = Vector2(0, 8)
 sprite_frames = SubResource("SpriteFrames_wtuoc")
 
-[node name="StaminaWheel" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_83f0n")]
+[node name="StaminaWheel" parent="." unique_id=511213662 node_paths=PackedStringArray("player") instance=ExtResource("3_83f0n")]
 position = Vector2(10, -16)
 player = NodePath("..")
