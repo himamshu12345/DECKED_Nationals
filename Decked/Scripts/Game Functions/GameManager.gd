@@ -6,51 +6,71 @@ var boss1_cards = []
 var boss2_cards = []
 var boss3_cards = []
 var p1_stats = {
-	"health_bonus": 0,
+	"health_bonus": 1,
 	"damage_bonus": 0,
 	"speed_bonus": 0,
 	"dashspeed_bonus": 0,
 	"dashcooldown_bonus": 0,
 	"defense_bonus": 1,
-	"leech": 0
+	"leech": 0,
+	"thorns": 0,
+	"gaurdbreaker": 1,
+	"punchSpeed":1,
+	"knockback_bonus":1
 }
 var p2_stats = {
-	"health_bonus": 0,
+	"health_bonus": 1,
 	"damage_bonus": 0,
 	"speed_bonus": 0,
 	"dashspeed_bonus": 0,
 	"dashcooldown_bonus": 0,
 	"defense_bonus": 1,
-	"leech": 0
+	"leech": 0,
+	"thorns": 0,
+	"gaurdbreaker": 1,
+	"punchSpeed":1,
+	"knockback_bonus":1
 }
 var boss1_stats = {
-	"health_bonus": 0,
+	"health_bonus": 1,
 	"damage_bonus": 0,
 	"speed_bonus": 0,
 	"dashspeed_bonus": 0,
 	"dashcooldown_bonus": 0,
 	"defense_bonus": 1,
-	"leech": 0
+	"leech": 0,
+	"thorns": 0,
+	"gaurdbreaker": 1,
+	"punchSpeed":1,
+	"knockback_bonus":1
 }
 
 var boss2_stats = {
-	"health_bonus": 0,
+	"health_bonus": 1,
 	"damage_bonus": 0,
 	"speed_bonus": 0,
 	"dashspeed_bonus": 0,
 	"dashcooldown_bonus": 0,
 	"defense_bonus": 1,
-	"leech": 0
+	"leech": 0,
+	"thorns": 0,
+	"gaurdbreaker": 1,
+	"punchSpeed":1,
+	"knockback_bonus":1
 }
 
 var boss3_stats = {
-	"health_bonus": 0,
+	"health_bonus": 1,
 	"damage_bonus": 0,
 	"speed_bonus": 0,
 	"dashspeed_bonus": 0,
 	"dashcooldown_bonus": 0,
 	"defense_bonus": 1,
-	"leech": 0
+	"leech": 0,
+	"thorns": 0,
+	"gaurdbreaker": 1,
+	"punchSpeed":1,
+	"knockback_bonus":1
 }
 
 var all_cards = [
@@ -135,7 +155,7 @@ func apply_buff(player_id: int, mod_type: String, value: float):
 	
 	match mod_type:
 		"Health":
-			target_stats["health_bonus"] += value
+			target_stats["health_bonus"] *= value
 		"Damage":
 			target_stats["damage_bonus"] += value
 		"Speed":
@@ -148,6 +168,21 @@ func apply_buff(player_id: int, mod_type: String, value: float):
 			target_stats["defense_bonus"] *= value
 		"Leech":
 			target_stats["leech"] += value
+		"Thorns":
+			target_stats["thorns"] += value
+		"Gaurdbreaker":
+			target_stats["gaurdbreaker"] *= value
+		"Caffene":
+			target_stats["punchSpeed"] *= value
+			target_stats["speed_bonus"] *= value
+		"PunchSpeed":
+			target_stats["punchSpeed"] *= value
+		"Knockback":
+			target_stats["knockback_bonus"] *= value
+		"WeightedGloves":
+			target_stats["knockback_bonus"] *= value
+			target_stats["damage_bonus"] *= value
+			target_stats["punchSpeed"] /= value
 
 func add_card(player_id: int, card_data: Dictionary):
 	if player_id == 1:

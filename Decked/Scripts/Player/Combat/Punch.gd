@@ -5,6 +5,7 @@ class_name Punch
 @export var input_prefix := ""
 @export var hitbox: HitBox
 @export var audio: AudioStreamPlayer2D
+@export var punchSpeed: float = 1
 
 const CHARGE_THRESHOLD := 0.3
 const BASE_DAMAGE := 7
@@ -15,6 +16,15 @@ var chargeTime := 0.0
 var isCharging := false
 var punchReleased := false
 
+func _ready() -> void:
+	if owner == null:
+		return
+
+	match owner.name:
+		"Player1":
+			punchSpeed = GameManager.p1_stats.get("punchSpeed", 0)
+		"Player2":
+			punchSpeed = GameManager.p2_stats.get("punchSpeed", 0)
 
 func Enter(): 
 	chargeTime = 0.0
@@ -57,7 +67,8 @@ func perform_punch():
 
 	var anim := "Right Punch" if punchRightNext else "Left Punch"
 	punchRightNext = !punchRightNext
-
+	
+	player.speed_scale = punchSpeed
 	player.play(anim)
 	audio.play()
 	hitbox.enable()

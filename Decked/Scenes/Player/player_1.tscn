@@ -634,7 +634,6 @@ animator = NodePath("../../AnimatedPlayerBody")
 [node name="Punch" type="Node" parent="StateMachine" unique_id=1200146953 node_paths=PackedStringArray("player", "hitbox", "audio")]
 script = ExtResource("11_erbp0")
 player = NodePath("../../AnimatedPlayerBody")
-input_prefix = null
 hitbox = NodePath("../../HitBox")
 audio = NodePath("PunchSound")
 

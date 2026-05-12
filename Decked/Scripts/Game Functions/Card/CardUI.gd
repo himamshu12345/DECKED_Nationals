@@ -12,6 +12,7 @@ func _ready():
 func _load_cards():
 	all_cards = [
 		#Hypeercalcemia
+		#Updated
 		{
 			"name": "Hypercalcemia",
 			"description": "15% Less Damage",
@@ -21,12 +22,13 @@ func _load_cards():
 			"icon_path": "res://Decked/Assests/Cards/Hypercalcemia-0003.webp"
 		},
 		#Thorns
+		#Updated
 		{
 			"name": "Thorns",
-			"description": "+1 Damage",
+			"description": "Reflect 10% of Damage",
 			"rarity": "RARE",
-			"buff_type": "Damage",
-			"value": 1,
+			"buff_type": "Thorns",
+			"value": 0.1,
 			"icon_path": "res://Decked/Assests/Cards/Thorns.webp"
 		},
 		#Habanero
@@ -39,6 +41,7 @@ func _load_cards():
 			"icon_path": "res://Decked/Assests/Cards/Habanero.webp"
 		},
 		#Vampire
+		#Updated
 		{
 			"name": "Vampire",
 			"description": "Heal by 25% of damage dealt",
@@ -67,10 +70,10 @@ func _load_cards():
 		},
 		{
 			"name": "Footwork",
-			"description": "-20% Dash Cooldown",
+			"description": "-25% Dash Cooldown",
 			"rarity": "COMMON",
 			"buff_type": "DashCooldown",
-			"value": 0.4,
+			"value": 0.5,
 			"icon_path": "res://Decked/Assests/Cards/Footwork.webp"
 		},
 		{
@@ -83,18 +86,18 @@ func _load_cards():
 		},
 		{
 			"name": "Caffeinated",
-			"description": "+100 movement speed",
-			"rarity": "Common",
-			"buff_type": "Speed",
-			"value": 100,
+			"description": "+50% movement and punch speed",
+			"rarity": "UNCOMMON",
+			"buff_type": "Caffene",
+			"value": 1.5,
 			"icon_path": "res://Decked/Assests/Cards/caffeinated.webp"
 		},
 		{
 			"name": "Hearty",
-			"description": "+50 Health",
-			"rarity": "Common",
+			"description": "+50% Health",
+			"rarity": "COMMON",
 			"buff_type": "Health",
-			"value": 50,
+			"value": 1.5,
 			"icon_path": "res://Decked/Assests/Cards/Heartyveiny.webp"
 		},
 		{
@@ -131,12 +134,20 @@ func _load_cards():
 		},
 		{
 			"name": "Weighted Gloves",
-			"description": "+0.5 Damage",
-			"rarity": "Uncommon",
-			"buff_type": "Damage",
-			"value": 0.5,
+			"description": "-30% AttackSpeed +50% Damage +50% knockback",
+			"rarity": "UNCOMMON",
+			"buff_type": "WeightedGloves",
+			"value": 1.5,
 			"icon_path": "res://Decked/Assests/Cards/weightedGloves.webp"
 		},
+		{
+			"name": "Gaurdbreaker",
+			"description": "+25% Damage when Enemy is Blocking",
+			"rarity": "COMMON",
+			"buff_type": "Gaurdbreaker",
+			"value": 1.25,
+			"icon_path": "res://Decked/Assests/Cards/Guardbreaker.png"
+		}
 	]
 
 func _generate_options():

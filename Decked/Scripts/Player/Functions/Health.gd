@@ -3,11 +3,15 @@ extends Node
 
 @export var statemachine: StateMachine
 @export var hit_animation_player: AnimationPlayer
-@export var max_health: int = 100
+@export var max_health: int = base_health
 @export var parryAudio: AudioStreamPlayer2D
 @export var damageTaken: float = 1
-@export var lifeSteal: float = 0.25
+@export var lifeSteal: float = 0
+@export var thorns: float = 0
+@export var gaurdbreaker: float = 0
+@export var knockback_bonus: float =0
 var current_health: int
+var base_health: int = 100
 
 signal health_changed(current: int)
 
@@ -17,13 +21,19 @@ func _ready() -> void:
 
 	match owner.name:
 		"Player1":
-			max_health += GameManager.p1_stats.get("health_bonus", 0)
+			max_health = base_health * GameManager.p1_stats.get("health_bonus", 0)
+			print(max_health)
 			damageTaken = GameManager.p1_stats.get("defense_bonus", 0)
 			lifeSteal = GameManager.p1_stats.get("leech", 0)
+			thorns = GameManager.p1_stats.get("thorns", 0)
+			gaurdbreaker = GameManager.p1_stats.get("gaurdbreaker", 0)
 		"Player2":
-			max_health += GameManager.p2_stats.get("health_bonus", 0)
+			max_health = base_health * GameManager.p2_stats.get("health_bonus", 0)
+			print(max_health)
 			damageTaken = GameManager.p2_stats.get("defense_bonus", 0)
 			lifeSteal = GameManager.p2_stats.get("leech", 0)
+			thorns = GameManager.p2_stats.get("thorns", 0)
+			gaurdbreaker = GameManager.p2_stats.get("gaurdbreaker", 0)
 
 	current_health = max_health
 	health_changed.emit(current_health)
@@ -70,7 +80,7 @@ func take_damage(amount: int, enemy_state: String, attacker: Node = null) -> voi
 	if state_name in ["Idle", "DummyIdle", "BossIdle"] and enemy_state in ["Punch", "BossPunch"]:
 		statemachine.current_state.on_idle_hit()
 
-	current_health = max((current_health - amount)*damageTaken, 0) 
+	current_health = max(current_health - amount*damageTaken, 0) 
 	health_changed.emit(current_health)
 
 	if current_health == 0:
@@ -90,4 +100,5 @@ func die() -> void:
 		statemachine.force_change_state("BossDeath")
 		
 func addHealth(amount: int) -> void:
-	current_health = min(current_health+amount*lifeSteal, max_health) 
+	current_health = min(current_health+amount*lifeSteal, max_health)
+	health_changed.emit(current_health)

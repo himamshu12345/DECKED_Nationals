@@ -14,7 +14,10 @@ func _on_area_entered(area: Area2D) -> void:
 	if area is HitBox:
 		var hitbox := area as HitBox
 		var health = owner.get_node_or_null("Health")
-		area.get_parent().get_node_or_null("Health").get_node_or_null("Health").addHealth(hitbox.damage)
+		var otherHealth = area.get_parent().get_node_or_null("Health")
+		
+		
+		
 		
 		var impact_position = (global_position + hitbox.global_position) / 2
 		var enemy = hitbox.owner
@@ -25,14 +28,19 @@ func _on_area_entered(area: Area2D) -> void:
 		
 		if "instigator" in enemy and enemy.instigator == owner:
 			return
-
-		if health:
+			
+		otherHealth.addHealth(hitbox.damage)
+		otherHealth.take_damage(hitbox.damage*health.thorns, enemy_state, enemy)
+		
+		if get_parent().get_node_or_null("StateMachine").current_state.name in ["Shield", "BossShield", "DummyShield"]:
+			health.take_damage(hitbox.damage*otherHealth.gaurdbreaker, enemy_state, enemy)
+		elif health:
 			_play_animation(impact_position, hitbox.damage)
 			health.take_damage(hitbox.damage, enemy_state, enemy)
 			hitAudio.play()
 		
 		var knockback_direction = (owner.global_position - hitbox.owner.global_position).normalized()
-		owner.apply_knockback(knockback_direction, 50.0, 0.12)
+		owner.apply_knockback(knockback_direction, 50.0*otherHealth.knockback_bonus, 0.12)
 				
 func _play_animation(impact_position: Vector2, damage: int) -> void:
 	
