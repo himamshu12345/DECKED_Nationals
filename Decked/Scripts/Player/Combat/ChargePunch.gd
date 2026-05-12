@@ -8,7 +8,7 @@ class_name ChargePunch
 @export var speed = 25
 @export var charge_audio: AudioStreamPlayer2D
 @export var projectile_audio: AudioStreamPlayer2D
-@export var charge_released_audio: AudioStreamPlayer2D
+@export var charge_released_audio: AudioStreamPlayer2
 
 const PROJECTILE_SCENE = preload("res://Decked/Scenes/Player/projectile.tscn")
 
@@ -44,8 +44,10 @@ func Enter():
 	
 	if input_prefix == "":
 		damage += GameManager.p1_stats["damage_bonus"]
+		damage *= GameManager.p1_stats["uppercut"]
 	else:
 		damage += GameManager.p2_stats["damage_bonus"]
+		damage *= GameManager.p1_stats["uppercut"]
 
 	if not animator.animation_finished.is_connected(_on_animation_finished):
 		animator.animation_finished.connect(_on_animation_finished)

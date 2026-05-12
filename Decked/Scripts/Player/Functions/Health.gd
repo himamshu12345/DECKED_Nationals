@@ -10,6 +10,8 @@ extends Node
 @export var thorns: float = 0
 @export var gaurdbreaker: float = 0
 @export var knockback_bonus: float =0
+@export var uppercut: float = 1
+@export var coupdegras: float = 1
 var current_health: int
 var base_health: int = 100
 
@@ -27,6 +29,8 @@ func _ready() -> void:
 			lifeSteal = GameManager.p1_stats.get("leech", 0)
 			thorns = GameManager.p1_stats.get("thorns", 0)
 			gaurdbreaker = GameManager.p1_stats.get("gaurdbreaker", 0)
+			uppercut = GameManager.p1_stats.get("uppercut",0)
+			coupdegras = GameManager.p1_stats.get("uppercut",0)
 		"Player2":
 			max_health = base_health * GameManager.p2_stats.get("health_bonus", 0)
 			print(max_health)
@@ -34,6 +38,8 @@ func _ready() -> void:
 			lifeSteal = GameManager.p2_stats.get("leech", 0)
 			thorns = GameManager.p2_stats.get("thorns", 0)
 			gaurdbreaker = GameManager.p2_stats.get("gaurdbreaker", 0)
+			uppercut = GameManager.p2_stats.get("uppercut",0)
+			coupdegras = GameManager.p2_stats.get("uppercut",0)
 
 	current_health = max_health
 	health_changed.emit(current_health)

@@ -644,10 +644,13 @@ stream = ExtResource("17_qe5sp")
 script = ExtResource("12_xmmu1")
 player = NodePath("../..")
 animator = NodePath("../../AnimatedPlayerBody")
+input_prefix = null
 hitbox = NodePath("../../HitBox")
+speed = null
 charge_audio = NodePath("ChargeAudio")
 projectile_audio = NodePath("ProjectileAudio")
 charge_released_audio = NodePath("ChargePunchReleased")
+uppercut = null
 
 [node name="ChargeAudio" type="AudioStreamPlayer2D" parent="StateMachine/ChargePunch" unique_id=797598767]
 stream = ExtResource("21_frq0u")

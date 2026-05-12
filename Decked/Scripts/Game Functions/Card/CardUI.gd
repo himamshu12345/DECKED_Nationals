@@ -53,7 +53,7 @@ func _load_cards():
 		#Sprinting
 		{
 			"name": "Sprinting",
-			"description": "+100 Movement Speed",
+			"description": "+100% Movement Speed",
 			"rarity": "COMMON",
 			"buff_type": "Speed",
 			"value": 100.0,
@@ -62,10 +62,10 @@ func _load_cards():
 		#Bulldozer
 		{
 			"name": "Bulldozer",
-			"description": "+2 damages",
+			"description": "+10% max Health to Damage",
 			"rarity": "LEGENDARY",
-			"buff_type": "Damage",
-			"value": 2.0,
+			"buff_type": "Bulldozer",
+			"value": 0.1,
 			"icon_path": "res://Decked/Assests/Cards/Bulldozer.webp"
 		},
 		{
@@ -78,10 +78,10 @@ func _load_cards():
 		},
 		{
 			"name": "Ninja",
-			"description": "-75% Dash Cooldown",
+			"description": "-75% Dash Cooldown +75% Damage and Speed",
 			"rarity": "LEGENDARY",
-			"buff_type": "DashCooldown",
-			"value": 1.5,
+			"buff_type": "Ninja",
+			"value": 0.75,
 			"icon_path": "res://Decked/Assests/Cards/Ninjawhitewashed.webp"
 		},
 		{
@@ -147,6 +147,22 @@ func _load_cards():
 			"buff_type": "Gaurdbreaker",
 			"value": 1.25,
 			"icon_path": "res://Decked/Assests/Cards/Guardbreaker.png"
+		},
+		{
+			"name": "UpperCut",
+			"description": "+50% Damage and Knockback with charge punches",
+			"rarity": "RARE",
+			"buff_type": "UpperCut",
+			"value": 1.5,
+			"icon_path": "res://Decked/Assests/Cards/Uppercut.png"
+		},
+		{
+			"name": "Coup De Gras",
+			"description": "+25% Damage if Enemy under half health",
+			"rarity": "RARE",
+			"buff_type": "CoupDeGras",
+			"value": 1.25,
+			"icon_path": "res://Decked/Assests/Cards/Coup_De_Gras.png"
 		}
 	]
 

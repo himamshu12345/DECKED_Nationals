@@ -32,15 +32,20 @@ func _on_area_entered(area: Area2D) -> void:
 		otherHealth.addHealth(hitbox.damage)
 		otherHealth.take_damage(hitbox.damage*health.thorns, enemy_state, enemy)
 		
+		var damageMultiplier = 1
+		
+		if health.current_health/health.max_health < 0.5:
+			damageMultiplier *= otherHealth.coupdegras
+		
 		if get_parent().get_node_or_null("StateMachine").current_state.name in ["Shield", "BossShield", "DummyShield"]:
-			health.take_damage(hitbox.damage*otherHealth.gaurdbreaker, enemy_state, enemy)
+			health.take_damage(hitbox.damage*otherHealth.gaurdbreaker*damageMultiplier, enemy_state, enemy)
 		elif health:
 			_play_animation(impact_position, hitbox.damage)
-			health.take_damage(hitbox.damage, enemy_state, enemy)
+			health.take_damage(hitbox.damage*damageMultiplier, enemy_state, enemy)
 			hitAudio.play()
 		
 		var knockback_direction = (owner.global_position - hitbox.owner.global_position).normalized()
-		owner.apply_knockback(knockback_direction, 50.0*otherHealth.knockback_bonus, 0.12)
+		owner.apply_knockback(knockback_direction, 50.0*otherHealth.knockback_bonus*otherHealth.uppercut, 0.12)
 				
 func _play_animation(impact_position: Vector2, damage: int) -> void:
 	

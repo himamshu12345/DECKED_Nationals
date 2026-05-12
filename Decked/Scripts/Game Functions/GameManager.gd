@@ -16,7 +16,10 @@ var p1_stats = {
 	"thorns": 0,
 	"gaurdbreaker": 1,
 	"punchSpeed":1,
-	"knockback_bonus":1
+	"knockback_bonus":1,
+	"bulldozer":1,
+	"uppercut":1,
+	"coupdegras":1
 }
 var p2_stats = {
 	"health_bonus": 1,
@@ -29,7 +32,10 @@ var p2_stats = {
 	"thorns": 0,
 	"gaurdbreaker": 1,
 	"punchSpeed":1,
-	"knockback_bonus":1
+	"knockback_bonus":1,
+	"bulldozer":1,
+	"uppercut":1,
+	"coupdegras":1
 }
 var boss1_stats = {
 	"health_bonus": 1,
@@ -42,7 +48,10 @@ var boss1_stats = {
 	"thorns": 0,
 	"gaurdbreaker": 1,
 	"punchSpeed":1,
-	"knockback_bonus":1
+	"knockback_bonus":1,
+	"bulldozer":1,
+	"uppercut":1,
+	"coupdegras":1
 }
 
 var boss2_stats = {
@@ -56,7 +65,10 @@ var boss2_stats = {
 	"thorns": 0,
 	"gaurdbreaker": 1,
 	"punchSpeed":1,
-	"knockback_bonus":1
+	"knockback_bonus":1,
+	"bulldozer":1,
+	"uppercut":1,
+	"coupdegras":1
 }
 
 var boss3_stats = {
@@ -70,7 +82,10 @@ var boss3_stats = {
 	"thorns": 0,
 	"gaurdbreaker": 1,
 	"punchSpeed":1,
-	"knockback_bonus":1
+	"knockback_bonus":1,
+	"bulldozer":1,
+	"uppercut":1,
+	"coupdegras":1
 }
 
 var all_cards = [
@@ -181,8 +196,18 @@ func apply_buff(player_id: int, mod_type: String, value: float):
 			target_stats["knockback_bonus"] *= value
 		"WeightedGloves":
 			target_stats["knockback_bonus"] *= value
-			target_stats["damage_bonus"] *= value
+			target_stats["damage_bonus"] += value/3 * 7
 			target_stats["punchSpeed"] /= value
+		"Bulldozer":
+			target_stats["bulldozer"] *= value
+		"Ninja":
+			target_stats["dashcooldown_bonus"] += value*2
+			target_stats["speed_bonus"] += value*100
+			target_stats["damage_bonus"] += value*7
+		"UpperCut":
+			target_stats["uppercut"] *= value
+		"CoupDeGras":
+			target_stats["coupdegras"] *= value
 
 func add_card(player_id: int, card_data: Dictionary):
 	if player_id == 1:

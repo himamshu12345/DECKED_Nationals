@@ -6,6 +6,7 @@ class_name Punch
 @export var hitbox: HitBox
 @export var audio: AudioStreamPlayer2D
 @export var punchSpeed: float = 1
+@export var bulldozer_buff: float = 1
 
 const CHARGE_THRESHOLD := 0.3
 const BASE_DAMAGE := 7
@@ -16,16 +17,6 @@ var chargeTime := 0.0
 var isCharging := false
 var punchReleased := false
 
-func _ready() -> void:
-	if owner == null:
-		return
-
-	match owner.name:
-		"Player1":
-			punchSpeed = GameManager.p1_stats.get("punchSpeed", 0)
-		"Player2":
-			punchSpeed = GameManager.p2_stats.get("punchSpeed", 0)
-
 func Enter(): 
 	chargeTime = 0.0
 	isCharging = false
@@ -34,12 +25,17 @@ func Enter():
 	damage = BASE_DAMAGE
 	if input_prefix == "":
 		damage += GameManager.p1_stats["damage_bonus"]
+		punchSpeed = GameManager.p1_stats.get("punchSpeed", 0)
+		bulldozer_buff = GameManager.p1_stats.get("bulldozer", 0)
 	else:
 		damage += GameManager.p2_stats["damage_bonus"]
+		punchSpeed = GameManager.p2_stats.get("punchSpeed", 0)
+		bulldozer_buff = GameManager.p2_stats.get("bulldozer", 0)
 
 	if not player.animation_finished.is_connected(_on_animation_finished):
 		player.animation_finished.connect(_on_animation_finished)
-
+		
+	damage *= bulldozer_buff*owner.owner.get_node_or_null("Health").max_health
 
 func Exit():
 	if player.animation_finished.is_connected(_on_animation_finished):
