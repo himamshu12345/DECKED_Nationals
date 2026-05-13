@@ -51,8 +51,9 @@ func _on_area_entered(area: Area2D) -> void:
 		var other_coupdegras = otherHealth.coupdegras if (otherHealth and "coupdegras" in otherHealth) else 1.0
 		var other_guardbreaker = otherHealth.gaurdbreaker if (otherHealth and "gaurdbreaker" in otherHealth) else 1.0
 		
-		if health and health.current_health / health.max_health < 0.5:
-			damageMultiplier *= other_coupdegras
+		if health and health.max_health > 0:
+			if health.current_health / health.max_health < 0.5:
+				damageMultiplier *= other_coupdegras
 		
 		if get_parent().get_node_or_null("StateMachine").current_state.name in ["Shield", "BossShield", "DummyShield"]:
 			if health:
@@ -68,15 +69,17 @@ func _on_area_entered(area: Area2D) -> void:
 			var knockback_direction = (owner.global_position - enemy.global_position).normalized()
 			
 			# Safe defaults if stats are missing
-			var kb_bonus = otherHealth.knockback_bonus if (otherHealth and "knockback_bonus" in otherHealth) else 1.0
-			var uppercut = otherHealth.uppercut if (otherHealth and "uppercut" in otherHealth) else 1.0
-			var explosion = otherHealth.explosion if (otherHealth and "explosion" in otherHealth) else 1.0
+			var kb_bonus = otherHealth.knockback_bonus
+			var uppercut = otherHealth.uppercut
+			var explosion = otherHealth.explosion
 			
-			var final_kb = 50.0 * kb_bonus * uppercut * pow(explosion, 4)
+			print(enemy, "explosion", explosion)
+			print(owner, "knockback total", 50.0 * kb_bonus * uppercut * explosion*explosion*explosion)
+			
+			var final_kb = 50.0 * kb_bonus * uppercut * explosion*explosion*explosion
 			
 			if owner.has_method("apply_knockback"):
 				owner.apply_knockback(knockback_direction, final_kb, 0.12)
-			print(50.0 * kb_bonus * uppercut)
 				
 func _play_animation(impact_position: Vector2, damage: int) -> void:
 	

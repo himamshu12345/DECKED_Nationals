@@ -121,7 +121,7 @@ func _evaluate_shield() -> Dictionary:
 	
 	if consecutive_hits_taken >= 2:
 		priority += 90 * caution
-	
+		
 	if player_attack_count > 2:
 		priority += 70
 		

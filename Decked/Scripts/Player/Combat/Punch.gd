@@ -63,7 +63,7 @@ func Update(delta: float):
 
 func perform_punch():
 	hitbox.damage = damage * explosion
-	print(hitbox.damage)
+	print("PLayer Damage",hitbox.damage)
 	var health = get_parent().get_parent().get_node_or_null("Health")
 	var anim := "Right Punch" if punchRightNext else "Left Punch"
 	punchRightNext = !punchRightNext

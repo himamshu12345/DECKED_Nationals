@@ -1,6 +1,7 @@
 class_name Health
 extends Node
 
+var base_health: int = 100
 @export var statemachine: StateMachine
 @export var hit_animation_player: AnimationPlayer
 @export var max_health: int = base_health
@@ -15,7 +16,6 @@ extends Node
 @export var unstoppable: float = 0
 @export var explosion: float = 1
 var current_health: int
-var base_health: int = 100
 var unstopableBool: bool = false
 
 signal health_changed(current: int)
@@ -49,8 +49,45 @@ func _ready() -> void:
 			knockback_bonus = GameManager.p2_stats.get("knockback_bonus",0)
 			unstoppable = GameManager.p2_stats.get("unstoppable",0)
 			explosion = GameManager.p2_stats.get("explosion", 0)
+		"Boss1":
+			max_health = base_health * GameManager.boss1_stats.get("health_bonus", 0)
+			print(max_health)
+			damageTaken = GameManager.boss1_stats.get("defense_bonus", 0)
+			lifeSteal = GameManager.boss1_stats.get("leech", 0)
+			thorns = GameManager.boss1_stats.get("thorns", 0)
+			gaurdbreaker = GameManager.boss1_stats.get("gaurdbreaker", 0)
+			uppercut = GameManager.boss1_stats.get("uppercut",0)
+			coupdegras = GameManager.boss1_stats.get("uppercut",0)
+			knockback_bonus = GameManager.boss1_stats.get("knockback_bonus",0)
+			unstoppable = GameManager.boss1_stats.get("unstoppable",0)
+			explosion = GameManager.boss1_stats.get("explosion", 0)
+		"Boss2":
+			max_health = base_health * GameManager.boss2_stats.get("health_bonus", 0)
+			print(max_health)
+			damageTaken = GameManager.boss2_stats.get("defense_bonus", 0)
+			lifeSteal = GameManager.boss2_stats.get("leech", 0)
+			thorns = GameManager.boss2_stats.get("thorns", 0)
+			gaurdbreaker = GameManager.boss2_stats.get("gaurdbreaker", 0)
+			uppercut = GameManager.boss2_stats.get("uppercut",0)
+			coupdegras = GameManager.boss2_stats.get("uppercut",0)
+			knockback_bonus = GameManager.boss2_stats.get("knockback_bonus",0)
+			unstoppable = GameManager.boss2_stats.get("unstoppable",0)
+			explosion = GameManager.boss2_stats.get("explosion", 0)
+		"Boss3":
+			max_health = base_health * GameManager.boss3_stats.get("health_bonus", 0)
+			print(max_health)
+			damageTaken = GameManager.boss3_stats.get("defense_bonus", 0)
+			lifeSteal = GameManager.boss3_stats.get("leech", 0)
+			thorns = GameManager.boss3_stats.get("thorns", 0)
+			gaurdbreaker = GameManager.boss3_stats.get("gaurdbreaker", 0)
+			uppercut = GameManager.boss3_stats.get("uppercut",0)
+			coupdegras = GameManager.boss3_stats.get("uppercut",0)
+			knockback_bonus = GameManager.boss3_stats.get("knockback_bonus",0)
+			unstoppable = GameManager.boss3_stats.get("unstoppable",0)
+			explosion = GameManager.boss3_stats.get("explosion", 0)
 
 	current_health = max_health
+	print("Health",current_health)
 	health_changed.emit(current_health)
 
 func take_damage(amount: int, enemy_state: String, attacker: Node = null) -> void:
@@ -84,7 +121,9 @@ func take_damage(amount: int, enemy_state: String, attacker: Node = null) -> voi
 	
 	if statemachine.current_state.name in ["ChargePunch", "BossChargePunch", "DummyCharging"]:
 		if enemy_state in ["ChargePunch", "BossChargePunch", "DummyCharging"]:
-			statemachine.current_state.on_charge_interrupted()
+			if statemachine and statemachine.current_state:
+				if statemachine.current_state.has_method("on_charge_interrupted"):
+					statemachine.current_state.on_charge_interrupted()
 		else:
 			statemachine.current_state.on_charge_hit()
 
@@ -96,13 +135,14 @@ func take_damage(amount: int, enemy_state: String, attacker: Node = null) -> voi
 		statemachine.current_state.on_idle_hit()
 
 	current_health = max(current_health - amount*damageTaken, 0) 
+	print(owner, " damage from hit ", amount*damageTaken)
 	health_changed.emit(current_health)
 
 	
 	if current_health*1.0/ max_health <= 0.33 and not unstopableBool:
 		damageTaken -= unstoppable
 		unstopableBool = true
-	print(damageTaken)
+	print(owner, " damage taken ", damageTaken)
 
 	if current_health == 0:
 		if owner.name == "Dummy_Idle":
@@ -123,6 +163,7 @@ func die() -> void:
 func addHealth(amount: int) -> void:
 	var below033 = current_health/ max_health <= 0.33
 	current_health = min(current_health+amount*lifeSteal, max_health)
+	print("Doing Vampire ", amount*lifeSteal)
 	health_changed.emit(current_health)
 	if current_health*1.0/ max_health > 0.33 and below033:
 		damageTaken += unstoppable
