@@ -9,9 +9,10 @@ extends Node
 @export var lifeSteal: float = 0
 @export var thorns: float = 0
 @export var gaurdbreaker: float = 0
-@export var knockback_bonus: float =0
+@export var knockback_bonus: float =1
 @export var uppercut: float = 1
 @export var coupdegras: float = 1
+@export var unstoppable: float = 1
 var current_health: int
 var base_health: int = 100
 
@@ -31,6 +32,8 @@ func _ready() -> void:
 			gaurdbreaker = GameManager.p1_stats.get("gaurdbreaker", 0)
 			uppercut = GameManager.p1_stats.get("uppercut",0)
 			coupdegras = GameManager.p1_stats.get("uppercut",0)
+			knockback_bonus = GameManager.p1_stats.get("knockback_bonus",0)
+			unstoppable = GameManager.p1_stats.get("unstoppable",0)
 		"Player2":
 			max_health = base_health * GameManager.p2_stats.get("health_bonus", 0)
 			print(max_health)
@@ -40,6 +43,8 @@ func _ready() -> void:
 			gaurdbreaker = GameManager.p2_stats.get("gaurdbreaker", 0)
 			uppercut = GameManager.p2_stats.get("uppercut",0)
 			coupdegras = GameManager.p2_stats.get("uppercut",0)
+			knockback_bonus = GameManager.p2_stats.get("knockback_bonus",0)
+			unstoppable = GameManager.p2_stats.get("unstoppable",0)
 
 	current_health = max_health
 	health_changed.emit(current_health)
@@ -88,6 +93,9 @@ func take_damage(amount: int, enemy_state: String, attacker: Node = null) -> voi
 
 	current_health = max(current_health - amount*damageTaken, 0) 
 	health_changed.emit(current_health)
+	
+	if current_health/ max_health <= 0.33:
+		damageTaken -= unstoppable
 
 	if current_health == 0:
 		if owner.name == "Dummy_Idle":
@@ -106,5 +114,10 @@ func die() -> void:
 		statemachine.force_change_state("BossDeath")
 		
 func addHealth(amount: int) -> void:
+	var below033 = false
+	if current_health/ max_health <= 0.33:
+		below033 = true
 	current_health = min(current_health+amount*lifeSteal, max_health)
 	health_changed.emit(current_health)
+	if current_health/ max_health > 0.33 and below033:
+		damageTaken += unstoppable

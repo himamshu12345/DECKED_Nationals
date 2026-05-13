@@ -17,9 +17,10 @@ var p1_stats = {
 	"gaurdbreaker": 1,
 	"punchSpeed":1,
 	"knockback_bonus":1,
-	"bulldozer":1,
+	"bulldozer":0,
 	"uppercut":1,
-	"coupdegras":1
+	"coupdegras":1,
+	"unstoppable":1
 }
 var p2_stats = {
 	"health_bonus": 1,
@@ -33,9 +34,10 @@ var p2_stats = {
 	"gaurdbreaker": 1,
 	"punchSpeed":1,
 	"knockback_bonus":1,
-	"bulldozer":1,
+	"bulldozer":0,
 	"uppercut":1,
-	"coupdegras":1
+	"coupdegras":1,
+	"unstoppable":1
 }
 var boss1_stats = {
 	"health_bonus": 1,
@@ -49,9 +51,10 @@ var boss1_stats = {
 	"gaurdbreaker": 1,
 	"punchSpeed":1,
 	"knockback_bonus":1,
-	"bulldozer":1,
+	"bulldozer":0,
 	"uppercut":1,
-	"coupdegras":1
+	"coupdegras":1,
+	"unstoppable":1
 }
 
 var boss2_stats = {
@@ -66,9 +69,10 @@ var boss2_stats = {
 	"gaurdbreaker": 1,
 	"punchSpeed":1,
 	"knockback_bonus":1,
-	"bulldozer":1,
+	"bulldozer":0,
 	"uppercut":1,
-	"coupdegras":1
+	"coupdegras":1,
+	"unstoppable":1
 }
 
 var boss3_stats = {
@@ -83,9 +87,10 @@ var boss3_stats = {
 	"gaurdbreaker": 1,
 	"punchSpeed":1,
 	"knockback_bonus":1,
-	"bulldozer":1,
+	"bulldozer":0,
 	"uppercut":1,
-	"coupdegras":1
+	"coupdegras":1,
+	"unstoppable":1
 }
 
 var all_cards = [
@@ -208,6 +213,8 @@ func apply_buff(player_id: int, mod_type: String, value: float):
 			target_stats["uppercut"] *= value
 		"CoupDeGras":
 			target_stats["coupdegras"] *= value
+		"Unstoppable":
+			target_stats["unstoppable"] *= value
 
 func add_card(player_id: int, card_data: Dictionary):
 	if player_id == 1:

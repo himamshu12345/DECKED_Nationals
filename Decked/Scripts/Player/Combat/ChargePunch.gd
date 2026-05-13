@@ -8,7 +8,7 @@ class_name ChargePunch
 @export var speed = 25
 @export var charge_audio: AudioStreamPlayer2D
 @export var projectile_audio: AudioStreamPlayer2D
-@export var charge_released_audio: AudioStreamPlayer2
+@export var charge_released_audio: AudioStreamPlayer2D
 
 const PROJECTILE_SCENE = preload("res://Decked/Scenes/Player/projectile.tscn")
 

@@ -35,7 +35,7 @@ func Enter():
 	if not player.animation_finished.is_connected(_on_animation_finished):
 		player.animation_finished.connect(_on_animation_finished)
 		
-	damage *= bulldozer_buff*owner.owner.get_node_or_null("Health").max_health
+	damage += bulldozer_buff*get_parent().get_parent().get_node_or_null("Health").max_health
 
 func Exit():
 	if player.animation_finished.is_connected(_on_animation_finished):
@@ -60,11 +60,15 @@ func Update(delta: float):
 
 func perform_punch():
 	hitbox.damage = damage
-
+	var health = get_parent().get_parent().get_node_or_null("Health")
 	var anim := "Right Punch" if punchRightNext else "Left Punch"
 	punchRightNext = !punchRightNext
 	
-	player.speed_scale = punchSpeed
+	var speed = punchSpeed
+	if health.current_health/ health.max_health <= 0.33:
+		speed *= 1+health.unstoppable*2
+	
+	player.speed_scale = punchSpeed*speed
 	player.play(anim)
 	audio.play()
 	hitbox.enable()

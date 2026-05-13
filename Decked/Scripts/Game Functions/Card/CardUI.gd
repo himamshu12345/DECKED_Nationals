@@ -110,10 +110,10 @@ func _load_cards():
 		},
 		{
 			"name": "Unstoppable",
-			"description": "+50 Health",
+			"description": "When below 33% max health, increase defense by 25% and increase attack speed by a lot",
 			"rarity": "Uncommon",
-			"buff_type": "Health",
-			"value": 50,
+			"buff_type": "Unstoppable",
+			"value": 0.25,
 			"icon_path": "res://Decked/Assests/Cards/unstoppable.webp"
 		},
 		{

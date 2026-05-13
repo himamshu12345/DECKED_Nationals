@@ -46,6 +46,7 @@ func _on_area_entered(area: Area2D) -> void:
 		
 		var knockback_direction = (owner.global_position - hitbox.owner.global_position).normalized()
 		owner.apply_knockback(knockback_direction, 50.0*otherHealth.knockback_bonus*otherHealth.uppercut, 0.12)
+		print(50.0*otherHealth.knockback_bonus*otherHealth.uppercut)
 				
 func _play_animation(impact_position: Vector2, damage: int) -> void:
 	
