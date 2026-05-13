@@ -7,6 +7,7 @@ class_name Punch
 @export var audio: AudioStreamPlayer2D
 @export var punchSpeed: float = 1
 @export var bulldozer_buff: float = 1
+@export var explosion: float = 1
 
 const CHARGE_THRESHOLD := 0.3
 const BASE_DAMAGE := 7
@@ -27,10 +28,12 @@ func Enter():
 		damage += GameManager.p1_stats["damage_bonus"]
 		punchSpeed = GameManager.p1_stats.get("punchSpeed", 0)
 		bulldozer_buff = GameManager.p1_stats.get("bulldozer", 0)
+		explosion = GameManager.p1_stats.get("explosion", 0)
 	else:
 		damage += GameManager.p2_stats["damage_bonus"]
 		punchSpeed = GameManager.p2_stats.get("punchSpeed", 0)
 		bulldozer_buff = GameManager.p2_stats.get("bulldozer", 0)
+		explosion = GameManager.p2_stats.get("explosion", 0)
 
 	if not player.animation_finished.is_connected(_on_animation_finished):
 		player.animation_finished.connect(_on_animation_finished)
@@ -59,7 +62,8 @@ func Update(delta: float):
 
 
 func perform_punch():
-	hitbox.damage = damage
+	hitbox.damage = damage * explosion
+	print(hitbox.damage)
 	var health = get_parent().get_parent().get_node_or_null("Health")
 	var anim := "Right Punch" if punchRightNext else "Left Punch"
 	punchRightNext = !punchRightNext

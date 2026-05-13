@@ -4,6 +4,7 @@ class_name BossChargePunch
 @export var animator: AnimatedSprite2D
 @export var hitbox: Area2D
 @export var boss: Boss
+@export var speed: float = 20.0 # Ported: Boss can now move slowly while charging
 @export var chargeAudio: AudioStreamPlayer2D
 @export var projectileAudio: AudioStreamPlayer2D
 @export var charge_released_audio: AudioStreamPlayer2D
@@ -38,12 +39,18 @@ func Enter():
 	animation_done = false
 	hit_landed = false
 	
-	if boss and boss.name == "Boss3":
-		can_shoot = true
-	else:
-		can_shoot = false
+	# Boss 3 logic remains, but now influenced by stats
+	can_shoot = (boss and boss.name == "Boss3")
 	
-	damage = BASE_DAMAGE + GameManager.boss1_stats.get("damage_bonus", 0)
+	# Ported Logic: Damage + Multiplier (Uppercut stat)
+	var bonus = GameManager.boss1_stats.get("damage_bonus", 0)
+	var multiplier = GameManager.boss1_stats.get("uppercut", 1.0)
+	damage = (BASE_DAMAGE + bonus) * multiplier
+	
+	# Ported Logic: Pause Stamina Regen
+	var stamina = _get_stamina()
+	if stamina:
+		stamina.pause_regen(true)
 	
 	target_charge_level = _calculate_target_charge()
 	
@@ -58,30 +65,24 @@ func Enter():
 			hitbox.hit_landed.connect(_on_hit_landed)
 
 func _calculate_target_charge() -> int:
-	"""AI determines optimal charge level based on situation"""
 	var distance = boss.get_distance_to_opponent()
-	var health_percent = boss.get_health_percent()
-	var aggression = boss.aggression if boss else 0.7
-	
 	if distance < boss.attack_distance:
 		return randi_range(1, 2)
-
 	elif distance < boss.attack_distance * 1.5:
-		return 2
-
+		return 3
 	else:
-		if can_shoot:
-			return randi_range(1, 2)
-		return 0
-
-
+		return 4 if can_shoot else 0
 
 func Update(_delta: float):
 	if charge_released or is_attacking:
 		if is_attacking and animation_done:
-			var next_action = boss.get_next_action()
-			transition_state.emit(self, next_action)
+			transition_state.emit(self, boss.get_next_action())
 		return
+	
+	# Ported Logic: Stamina drain while holding charge
+	var stamina = _get_stamina()
+	if stamina:
+		stamina.consume(Stamina.COST_CHARGE_PER_SEC * _delta)
 	
 	chargeFrames += _delta * 60.0
 	chargeLevel = int(chargeFrames / FRAMES_PER_CHARGE)
@@ -91,22 +92,27 @@ func Update(_delta: float):
 		charge_released = true
 		perform_punch()
 
+func Physics_Update(_delta: float):
+	# Ported Logic: Slow movement toward player while charging
+	if not charge_released and not is_attacking:
+		var direction = boss.get_direction_to_opponent()
+		boss.velocity = direction * speed
+	else:
+		boss.velocity = Vector2.ZERO
+		
+	if boss is CharacterBody2D:
+		boss.move_and_slide()
+
 func on_charge_hit():
 	chargeHits += 1
 	if chargeHits >= MAX_CHARGE_HITS:
 		break_charge()
 
-func on_charge_interrupted():
-	break_charge()
-
 func break_charge():
-	animation_done = true
-	hit_landed = false
 	transition_state.emit(self, "BossConfusedStagger")
 
 func perform_punch():
 	is_attacking = true
-	
 	var final_damage = damage + (chargeLevel * DAMAGE_PER_LEVEL)
 	
 	if hitbox:
@@ -125,49 +131,46 @@ func _on_hit_landed():
 	hit_landed = true
 
 func _on_animation_finished():
-	if animator.animation == "Left Punch" or animator.animation == "Right Punch":
+	if animator.animation in ["Left Punch", "Right Punch"]:
 		animation_done = true
-		
 		if hitbox:
 			hitbox.disable()
-
-		if can_shoot:
-			if chargeLevel > 0:
-				shoot_projectile()
+		if can_shoot and chargeLevel > 0:
+			shoot_projectile()
 		
 		is_attacking = false
-		transition_state.emit(self, "Bossidle")
+		transition_state.emit(self, "BossIdle")
+
 func shoot_projectile():
-	if not PROJECTILE_SCENE:
-		push_error("BossChargePunch: Projectile scene not found!")
-		return
-	
 	var projectile = PROJECTILE_SCENE.instantiate()
 	get_tree().current_scene.add_child(projectile)
 	projectileAudio.play()
-	
 	projectile.global_position = hitbox.global_position if hitbox else boss.global_position
 	
 	var forward_direction = Vector2(0, -1).rotated(boss.rotation)
-	
 	projectile.instigator = boss
+	# Projectile damage matches the charge level
 	projectile.initialize(forward_direction, damage + (chargeLevel * DAMAGE_PER_LEVEL))
 
 func Exit():
+	# Ported Logic: Resume Stamina Regen
+	var stamina = _get_stamina()
+	if stamina:
+		stamina.pause_regen(false)
+
 	if boss.has_method("record_successful_action"):
 		if hit_landed:
 			boss.record_successful_action("BossChargePunch")
-			if boss.has_method("on_successful_hit"):
-				boss.on_successful_hit()
 		else:
-			if is_attacking:
-				boss.record_failed_action("BossChargePunch")
+			boss.record_failed_action("BossChargePunch")
 	
 	if animator.animation_finished.is_connected(_on_animation_finished):
 		animator.animation_finished.disconnect(_on_animation_finished)
 	
-	if hitbox and hitbox.has_signal("hit_landed"):
-		if hitbox.is_connected("hit_landed", _on_hit_landed):
-			hitbox.hit_landed.disconnect(_on_hit_landed)
 	chargeAudio.stop()
 	charge_released_audio.play()
+
+func _get_stamina() -> Stamina:
+	if boss:
+		return boss.get_node_or_null("Stamina")
+	return null

@@ -78,7 +78,7 @@ func _load_cards():
 		},
 		{
 			"name": "Ninja",
-			"description": "-75% Dash Cooldown +75% Damage and Speed",
+			"description": "Train with the Monks",
 			"rarity": "LEGENDARY",
 			"buff_type": "Ninja",
 			"value": 0.75,
@@ -163,6 +163,14 @@ func _load_cards():
 			"buff_type": "CoupDeGras",
 			"value": 1.25,
 			"icon_path": "res://Decked/Assests/Cards/Coup_De_Gras.png"
+		},
+		{
+			"name": "Explosive Force",
+			"description": "Explosive Attacks",
+			"rarity": "LEGENDARY",
+			"buff_type": "Explosion",
+			"value": 2,
+			"icon_path": "res://Decked/Assests/Cards/explosive_force.png" 
 		}
 	]
 

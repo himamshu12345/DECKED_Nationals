@@ -12,9 +12,11 @@ extends Node
 @export var knockback_bonus: float =1
 @export var uppercut: float = 1
 @export var coupdegras: float = 1
-@export var unstoppable: float = 1
+@export var unstoppable: float = 0
+@export var explosion: float = 1
 var current_health: int
 var base_health: int = 100
+var unstopableBool: bool = false
 
 signal health_changed(current: int)
 
@@ -34,6 +36,7 @@ func _ready() -> void:
 			coupdegras = GameManager.p1_stats.get("uppercut",0)
 			knockback_bonus = GameManager.p1_stats.get("knockback_bonus",0)
 			unstoppable = GameManager.p1_stats.get("unstoppable",0)
+			explosion = GameManager.p1_stats.get("explosion", 0)
 		"Player2":
 			max_health = base_health * GameManager.p2_stats.get("health_bonus", 0)
 			print(max_health)
@@ -45,6 +48,7 @@ func _ready() -> void:
 			coupdegras = GameManager.p2_stats.get("uppercut",0)
 			knockback_bonus = GameManager.p2_stats.get("knockback_bonus",0)
 			unstoppable = GameManager.p2_stats.get("unstoppable",0)
+			explosion = GameManager.p2_stats.get("explosion", 0)
 
 	current_health = max_health
 	health_changed.emit(current_health)
@@ -93,9 +97,12 @@ func take_damage(amount: int, enemy_state: String, attacker: Node = null) -> voi
 
 	current_health = max(current_health - amount*damageTaken, 0) 
 	health_changed.emit(current_health)
+
 	
-	if current_health/ max_health <= 0.33:
+	if current_health*1.0/ max_health <= 0.33 and not unstopableBool:
 		damageTaken -= unstoppable
+		unstopableBool = true
+	print(damageTaken)
 
 	if current_health == 0:
 		if owner.name == "Dummy_Idle":
@@ -114,10 +121,9 @@ func die() -> void:
 		statemachine.force_change_state("BossDeath")
 		
 func addHealth(amount: int) -> void:
-	var below033 = false
-	if current_health/ max_health <= 0.33:
-		below033 = true
+	var below033 = current_health/ max_health <= 0.33
 	current_health = min(current_health+amount*lifeSteal, max_health)
 	health_changed.emit(current_health)
-	if current_health/ max_health > 0.33 and below033:
+	if current_health*1.0/ max_health > 0.33 and below033:
 		damageTaken += unstoppable
+		unstopableBool = false

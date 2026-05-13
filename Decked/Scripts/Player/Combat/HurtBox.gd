@@ -14,39 +14,69 @@ func _on_area_entered(area: Area2D) -> void:
 	if area is HitBox:
 		var hitbox := area as HitBox
 		var health = owner.get_node_or_null("Health")
-		var otherHealth = area.get_parent().get_node_or_null("Health")
 		
+		# --- Fix for Projectiles / Missing Health Nodes ---
+		var enemy = hitbox.owner
 		
-		
+		# If the enemy is a projectile, use its instigator as the true enemy
+		if enemy and "instigator" in enemy and enemy.instigator != null:
+			enemy = enemy.instigator
+			
+		# Check if this object belongs to us (prevents hitting yourself with your own projectile)
+		if enemy == owner:
+			return
+			
+		# Safely find the enemy's health node from the resolved character
+		var otherHealth = enemy.get_node_or_null("Health") if enemy else null
+		# --------------------------------------------------
 		
 		var impact_position = (global_position + hitbox.global_position) / 2
-		var enemy = hitbox.owner
 		var enemy_state: String = ""
 		
 		if enemy and enemy.has_node("StateMachine"):
 			enemy_state = enemy.get_node("StateMachine").current_state.name
 		
-		if "instigator" in enemy and enemy.instigator == owner:
-			return
-			
-		otherHealth.addHealth(hitbox.damage)
-		otherHealth.take_damage(hitbox.damage*health.thorns, enemy_state, enemy)
+		# --- Safety Checks for Thorns & Lifesteal (addHealth) ---
+		# Only run these if the enemy has a valid health node (e.g., isn't a destructible object or broken projectile)
+		if otherHealth and health:
+			if otherHealth.has_method("addHealth"):
+				otherHealth.addHealth(hitbox.damage)
+			if otherHealth.has_method("take_damage"):
+				otherHealth.take_damage(hitbox.damage * health.thorns, enemy_state, enemy)
+		# --------------------------------------------------------
 		
 		var damageMultiplier = 1
 		
-		if health.current_health/health.max_health < 0.5:
-			damageMultiplier *= otherHealth.coupdegras
+		# Extra safety wrapper for player stats
+		var other_coupdegras = otherHealth.coupdegras if (otherHealth and "coupdegras" in otherHealth) else 1.0
+		var other_guardbreaker = otherHealth.gaurdbreaker if (otherHealth and "gaurdbreaker" in otherHealth) else 1.0
+		
+		if health and health.current_health / health.max_health < 0.5:
+			damageMultiplier *= other_coupdegras
 		
 		if get_parent().get_node_or_null("StateMachine").current_state.name in ["Shield", "BossShield", "DummyShield"]:
-			health.take_damage(hitbox.damage*otherHealth.gaurdbreaker*damageMultiplier, enemy_state, enemy)
+			if health:
+				health.take_damage(hitbox.damage * other_guardbreaker * damageMultiplier, enemy_state, enemy)
 		elif health:
 			_play_animation(impact_position, hitbox.damage)
-			health.take_damage(hitbox.damage*damageMultiplier, enemy_state, enemy)
-			hitAudio.play()
+			health.take_damage(hitbox.damage * damageMultiplier, enemy_state, enemy)
+			if hitAudio:
+				hitAudio.play()
 		
-		var knockback_direction = (owner.global_position - hitbox.owner.global_position).normalized()
-		owner.apply_knockback(knockback_direction, 50.0*otherHealth.knockback_bonus*otherHealth.uppercut, 0.12)
-		print(50.0*otherHealth.knockback_bonus*otherHealth.uppercut)
+		# --- Knockback Safety Checks ---
+		if owner and enemy:
+			var knockback_direction = (owner.global_position - enemy.global_position).normalized()
+			
+			# Safe defaults if stats are missing
+			var kb_bonus = otherHealth.knockback_bonus if (otherHealth and "knockback_bonus" in otherHealth) else 1.0
+			var uppercut = otherHealth.uppercut if (otherHealth and "uppercut" in otherHealth) else 1.0
+			var explosion = otherHealth.explosion if (otherHealth and "explosion" in otherHealth) else 1.0
+			
+			var final_kb = 50.0 * kb_bonus * uppercut * pow(explosion, 4)
+			
+			if owner.has_method("apply_knockback"):
+				owner.apply_knockback(knockback_direction, final_kb, 0.12)
+			print(50.0 * kb_bonus * uppercut)
 				
 func _play_animation(impact_position: Vector2, damage: int) -> void:
 	
