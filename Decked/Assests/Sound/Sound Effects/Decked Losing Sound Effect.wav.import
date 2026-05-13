@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cjt3w4fsf1q1n"
+path="res://.godot/imported/Decked Losing Sound Effect.wav-10d6a3f5873e10ae5a95786e5b01a1aa.sample"
+
+[deps]
+
+source_file="res://Decked/Assests/Sound/Sound Effects/Decked Losing Sound Effect.wav"
+dest_files=["res://.godot/imported/Decked Losing Sound Effect.wav-10d6a3f5873e10ae5a95786e5b01a1aa.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

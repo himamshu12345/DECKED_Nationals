@@ -7,7 +7,7 @@ extends State
 @export var audio: AudioStreamPlayer2D
 
 const DASH_SPEED: float = 100
-const DASH_TIME: float  = 0.35
+const DASH_TIME: float = 1
 const DASH_COOLDOWN: float = 2
 const TRAIL_INTERVAL := 0.06
 
@@ -22,17 +22,26 @@ var time := DASH_TIME
 signal dash_ready
 signal dash_used
 
+var _cancel_detector := DoubleTapDetector.new()
+var _dir_actions: Array[String] = []
 
-func _process(delta):
+func _ready() -> void:
+	_dir_actions = [
+		input_prefix + "left",
+		input_prefix + "right",
+		input_prefix + "up",
+		input_prefix + "down",
+	]
+	_cancel_detector.setup(_dir_actions)
+
+func _process(delta: float) -> void:
 	if cooldown_timer > 0.0:
 		cooldown_timer -= delta
-
 		if cooldown_timer <= 0.0:
 			cooldown_timer = 0.0
 			dash_ready.emit()
 
-
-func Enter():
+func Enter() -> void:
 	sprite.visible = true
 	player.visible = false
 
@@ -50,14 +59,8 @@ func Enter():
 		speed += GameManager.p2_stats["dashspeed_bonus"]
 		cooldown -= GameManager.p2_stats["dashcooldown_bonus"]
 
-	var left = input_prefix + "left"
-	var right = input_prefix + "right"
-	var up = input_prefix + "up"
-	var down = input_prefix + "down"
-
-	var x_input: float = Input.get_axis(left, right)
-	var y_input: float = Input.get_axis(up, down)
-
+	var x_input: float = Input.get_axis(input_prefix + "left", input_prefix + "right")
+	var y_input: float = Input.get_axis(input_prefix + "up", input_prefix + "down")
 	dash_direction = Vector2(x_input, y_input).normalized()
 
 	if dash_direction == Vector2.ZERO:
@@ -75,12 +78,24 @@ func Enter():
 
 	audio.play()
 
-
-func Physics_Update(delta: float):
+func Physics_Update(delta: float) -> void:
 	if cooldown_timer > 0.0:
 		cooldown_timer -= delta
 
 	if dash_timer >= 0.0:
+		# Double-tap any direction mid-dash to cancel
+		if _cancel_detector.check(_dir_actions) != "":
+			player.velocity = Vector2.ZERO
+			transition_state.emit(self, "Idle")
+			return
+
+		# Steer freely with live input; hold last direction if no input
+		var x_input: float = Input.get_axis(input_prefix + "left", input_prefix + "right")
+		var y_input: float = Input.get_axis(input_prefix + "up", input_prefix + "down")
+		var live_dir := Vector2(x_input, y_input).normalized()
+		if live_dir != Vector2.ZERO:
+			dash_direction = live_dir
+
 		player.velocity = dash_direction * speed
 		dash_timer -= delta
 		_spawn_trail(delta)
@@ -90,6 +105,9 @@ func Physics_Update(delta: float):
 
 	player.move_and_slide()
 
+func Exit() -> void:
+	sprite.visible = false
+	player.visible = true
 
 func _cyberpunk_color() -> Color:
 	var colors = [
@@ -99,35 +117,26 @@ func _cyberpunk_color() -> Color:
 		Color("#ffffff"),
 		Color("#7bade3"),
 		Color("#5049cb"),
-		Color("#3e1a78")
+		Color("#3e1a78"),
 	]
 	return colors[randi() % colors.size()]
 
-
-func _spawn_trail(delta):
+func _spawn_trail(delta: float) -> void:
 	trail_timer -= delta
-
 	if trail_timer <= 0.0:
 		trail_timer = TRAIL_INTERVAL
-
 		var ghost = Node2D.new()
 		ghost.set_script(preload("res://Decked/Scripts/Player/Functions/AfterImageFade.gd"))
-
 		ghost.global_position = player.global_position
-		ghost.rotation = player.rotation
-
+		ghost.global_rotation = player.global_rotation
+		ghost.scale = sprite.global_transform.get_scale()
 		var ghost_sprite = sprite.duplicate()
 		ghost.add_child(ghost_sprite)
 		ghost_sprite.position = Vector2.ZERO
+		ghost_sprite.rotation = 0.0
+		ghost_sprite.scale = Vector2.ONE
 		ghost_sprite.modulate = _cyberpunk_color()
-
 		get_tree().current_scene.add_child(ghost)
-
-
-func Exit():
-	sprite.visible = false
-	player.visible = true
-
 
 func _get_stamina() -> Stamina:
 	if owner:

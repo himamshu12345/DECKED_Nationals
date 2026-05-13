@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://rwp8rkmuiea2"]
+
+[ext_resource type="Texture2D" uid="uid://d3oy2l0vs77yc" path="res://Decked/Assests/Backgrounds/cutsceneOrigin.webp" id="1_qtlky"]
+[ext_resource type="Texture2D" uid="uid://bj21adpwkfbmb" path="res://Decked/Assests/Backgrounds/cutSceneIntro.webp" id="2_5yohx"]
+[ext_resource type="Texture2D" uid="uid://bk71da5jji6db" path="res://Decked/Assests/Backgrounds/cutSceneMountain.webp" id="3_7xbbx"]
+[ext_resource type="Texture2D" uid="uid://ba4diyhsl5w86" path="res://Decked/Assests/Backgrounds/cutSceneJojo.webp" id="4_ted62"]
+
+[sub_resource type="Animation" id="Animation_qtlky"]
+resource_name = "Cutscene"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Frame 1:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_5yohx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Frame 1:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7xbbx"]
+_data = {
+&"Cutscene": SubResource("Animation_qtlky"),
+&"RESET": SubResource("Animation_5yohx")
+}
+
+[node name="Cutscene" type="Node2D"]
+
+[node name="Frame 1" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(576, 324)
+scale = Vector2(7.2, 7.2)
+texture = ExtResource("1_qtlky")
+
+[node name="Frame 2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(576, 324)
+scale = Vector2(7.2, 7.2)
+texture = ExtResource("2_5yohx")
+
+[node name="Frame 3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(576, 324)
+scale = Vector2(7.2, 7.2)
+texture = ExtResource("3_7xbbx")
+
+[node name="Frame 4" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(3.6, 3.6)
+texture = ExtResource("4_ted62")
+hframes = 3
+vframes = 3
+frame = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7xbbx")
+}

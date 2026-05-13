@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjiodkg58xffl"]
+
+[ext_resource type="Texture2D" uid="uid://dd4ho3d5smdtg" path="res://Decked/Assests/Backgrounds/KOGrave.webp" id="1_76fdr"]
+
+[node name="Death" type="Node2D"]
+
+[node name="KO" type="TextureRect" parent="."]
+offset_right = 1154.0
+offset_bottom = 649.0
+texture = ExtResource("1_76fdr")

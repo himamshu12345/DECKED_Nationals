@@ -1,126 +1,161 @@
 [gd_scene load_steps=12 format=3 uid="uid://dike2xd6526hr"]
 
 [ext_resource type="PackedScene" uid="uid://sqj3s17xci70" path="res://Decked/Scenes/Game/game_manager.tscn" id="1_lgr5f"]
-[ext_resource type="Texture2D" uid="uid://8o5p5he23baj" path="res://Decked/Assests/Backgrounds/cardSelectScreen (1).webp" id="2_j1ebd"]
-[ext_resource type="Texture2D" uid="uid://by13hsk6rbvwt" path="res://Decked/Assests/Cards/Sprinting.webp" id="3_y2cma"]
+[ext_resource type="PackedScene" uid="uid://cuw0f50wmx3f4" path="res://Decked/Scenes/Player/stamina_wheel.tscn" id="1_qo5e5"]
+[ext_resource type="PackedScene" uid="uid://pviiqotj3fpx" path="res://Decked/Scenes/Player/player_1.tscn" id="2_l104w"]
 [ext_resource type="FontFile" uid="uid://bigeflro4ldvu" path="res://Decked/Assests/Fonts/PixeloidMono/PixeloidSans-Bold.ttf" id="4_gyp2y"]
+[ext_resource type="Texture2D" uid="uid://bex84enjve88m" path="res://Decked/Assests/Backgrounds/boxing_ringUPDATED.webp" id="4_lgr5f"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uyumy"]
-atlas = ExtResource("2_j1ebd")
-region = Rect2(0, 0, 480, 320)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o3mjq"]
-atlas = ExtResource("2_j1ebd")
-region = Rect2(480, 0, 480, 320)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_18our"]
-atlas = ExtResource("2_j1ebd")
-region = Rect2(0, 320, 480, 320)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xpj7s"]
-atlas = ExtResource("2_j1ebd")
-region = Rect2(480, 320, 480, 320)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_lboq6"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uyumy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o3mjq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_18our")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xpj7s")
-}],
-"loop": true,
-"name": &"default",
-"speed": 2.5
-}]
-
-[sub_resource type="LabelSettings" id="LabelSettings_phs3g"]
-shadow_color = Color(0, 0.541176, 0, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_l104w"]
+font_size = 34
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_lgr5f"]
-font_color = Color(1, 1, 0, 1)
+font_size = 23
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_j1ebd"]
+font_size = 18
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_y2cma"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j1ebd"]
+size = Vector2(507.198, 11)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gyp2y"]
+font_color = Color(0, 0, 0, 1)
 
 [node name="Tutorial5" type="Node2D" groups=["tutorial"]]
 
 [node name="GameManager" parent="." instance=ExtResource("1_lgr5f")]
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.84, 16.24)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control"]
-position = Vector2(-4.50003, 0)
-scale = Vector2(2.39792, 2)
-sprite_frames = SubResource("SpriteFrames_lboq6")
-autoplay = "default"
+[node name="StaminaWheel" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_qo5e5")]
+position = Vector2(390, 174)
+scale = Vector2(10, 10)
+player = NodePath("../Player1")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -595.0
-offset_top = -23.0
-offset_right = -203.0
-offset_bottom = 105.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(3, 3)
-
-[node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer2"]
-layout_mode = 2
-texture = ExtResource("3_y2cma")
-
-[node name="TextureRect2" type="TextureRect" parent="Control/HBoxContainer2"]
-layout_mode = 2
-texture = ExtResource("3_y2cma")
-
-[node name="TextureRect3" type="TextureRect" parent="Control/HBoxContainer2"]
-layout_mode = 2
-texture = ExtResource("3_y2cma")
-
-[node name="Label" type="Label" parent="Control"]
-layout_mode = 0
-offset_left = -520.0
-offset_top = -240.0
-offset_right = 34.0
-offset_bottom = -193.0
-scale = Vector2(1.92, 1.92)
+[node name="Label2" type="Label" parent="."]
+offset_left = 23.0
+offset_top = 23.0
+offset_right = 716.0
+offset_bottom = 79.0
 theme_override_fonts/font = ExtResource("4_gyp2y")
-text = "At the end of a round, the loser gets to pick a card. Cards apply various buffs in the following round"
-label_settings = SubResource("LabelSettings_phs3g")
+text = "Keep in mind your player wheel"
+label_settings = SubResource("LabelSettings_l104w")
 autowrap_mode = 3
 
-[node name="Camera2D" type="Camera2D" parent="Control"]
+[node name="Label3" type="Label" parent="."]
+offset_left = 496.0
+offset_top = 214.0
+offset_right = 666.0
+offset_bottom = 270.0
+theme_override_fonts/font = ExtResource("4_gyp2y")
+text = "Stamina"
+label_settings = SubResource("LabelSettings_lgr5f")
+autowrap_mode = 3
 
-[node name="Skip" type="Button" parent="Control"]
-layout_mode = 0
-offset_left = -307.0
-offset_top = 203.0
-offset_right = -174.0
-offset_bottom = 232.0
+[node name="Label4" type="Label" parent="."]
+offset_left = 514.0
+offset_top = 269.0
+offset_right = 594.0
+offset_bottom = 296.0
+theme_override_fonts/font = ExtResource("4_gyp2y")
+text = "Health"
+label_settings = SubResource("LabelSettings_j1ebd")
+autowrap_mode = 3
+
+[node name="Label5" type="Label" parent="."]
+offset_left = 517.0
+offset_top = 326.0
+offset_right = 597.0
+offset_bottom = 353.0
+theme_override_fonts/font = ExtResource("4_gyp2y")
+text = "Charge"
+label_settings = SubResource("LabelSettings_y2cma")
+autowrap_mode = 3
+
+[node name="Label6" type="Label" parent="."]
+offset_left = 40.0
+offset_top = 206.0
+offset_right = 353.0
+offset_bottom = 472.0
+theme_override_fonts/font = ExtResource("4_gyp2y")
+text = "If you run out of stamina, you will enter a staggered state"
+label_settings = SubResource("LabelSettings_l104w")
+autowrap_mode = 3
+
+[node name="Label7" type="Label" parent="."]
+offset_left = 869.0
+offset_top = 76.0
+offset_right = 1114.0
+offset_bottom = 207.375
+theme_override_fonts/font = ExtResource("4_gyp2y")
+text = "Try different inputs!"
+label_settings = SubResource("LabelSettings_l104w")
+autowrap_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 798.0
+offset_top = 178.0
+offset_right = 1118.0
+offset_bottom = 498.0
+texture = ExtResource("4_lgr5f")
+
+[node name="Borders" type="StaticBody2D" parent="TextureRect"]
+position = Vector2(376.048, 122.4)
+scale = Vector2(0.447608, 0.447608)
+
+[node name="Left" type="CollisionShape2D" parent="TextureRect/Borders"]
+position = Vector2(-715.019, 87.3247)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_j1ebd")
+debug_color = Color(0, 0, 0, 0.42)
+
+[node name="Left2" type="CollisionShape2D" parent="TextureRect/Borders"]
+position = Vector2(-241.39, 75.0657)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_j1ebd")
+debug_color = Color(0, 0, 0, 0.42)
+
+[node name="Top" type="CollisionShape2D" parent="TextureRect/Borders"]
+position = Vector2(-460.332, -152.812)
+shape = SubResource("RectangleShape2D_j1ebd")
+debug_color = Color(0, 0, 0, 0.42)
+
+[node name="Bottom" type="CollisionShape2D" parent="TextureRect/Borders"]
+position = Vector2(-464.8, 329.753)
+shape = SubResource("RectangleShape2D_j1ebd")
+debug_color = Color(0, 0, 0, 0.42)
+
+[node name="Player1" parent="." instance=ExtResource("2_l104w")]
+position = Vector2(962, 407)
+scale = Vector2(1.5, 1.5)
+
+[node name="Skip" type="Button" parent="."]
+offset_left = 679.0
+offset_top = 516.0
+offset_right = 812.0
+offset_bottom = 545.0
 scale = Vector2(4.6, 4.6)
 theme_override_fonts/font = ExtResource("4_gyp2y")
-text = "End Tutorial"
+text = "Next"
 flat = true
 
-[node name="Label" type="Label" parent="Control/Skip"]
+[node name="Label" type="Label" parent="Skip"]
 layout_mode = 0
-offset_left = 3.69565
-offset_top = 3.69565
-offset_right = 128.696
-offset_bottom = 26.6957
+offset_left = 42.3913
+offset_top = 4.34782
+offset_right = 167.392
+offset_bottom = 27.3478
 theme_override_fonts/font = ExtResource("4_gyp2y")
-text = "End Tutorial"
-label_settings = SubResource("LabelSettings_lgr5f")
+text = "Next"
+label_settings = SubResource("LabelSettings_gyp2y")
 
-[connection signal="pressed" from="Control/Skip" to="GameManager" method="_on_skip_pressed"]
+[connection signal="pressed" from="Skip" to="GameManager" method="_on_nextpt6_pressed"]

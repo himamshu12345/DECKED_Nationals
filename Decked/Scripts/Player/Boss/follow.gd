@@ -2,7 +2,7 @@ extends State
 class_name BossFollow
 
 @export var animator: AnimatedSprite2D
-@export var move_speed: float = 30.0
+@export var move_speed: float = 60.0
 @export var think_interval: float = 0.2
 
 var think_timer: float = 0.0

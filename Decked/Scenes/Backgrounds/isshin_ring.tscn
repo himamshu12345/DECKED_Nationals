@@ -1,9 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://copatgnpt2b25"]
+[gd_scene load_steps=7 format=3 uid="uid://copatgnpt2b25"]
 
-[ext_resource type="Texture2D" uid="uid://dssocmfdrxxi1" path="res://Decked/Assests/Backgrounds/lightningArena.webp" id="1_qdr2l"]
+[ext_resource type="Texture2D" uid="uid://b5qy2fpviu7uc" path="res://Decked/Assests/Backgrounds/IsshinArena.webp" id="1_qdr2l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4khmp"]
 size = Vector2(219.75, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qdr2l"]
+size = Vector2(112.653, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mweju"]
+size = Vector2(90.9861, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6u5uw"]
+size = Vector2(89.3819, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lv3k7"]
+size = Vector2(95.4306, 11)
 
 [node name="Isshin Ring" type="Control"]
 layout_mode = 3
@@ -23,11 +35,20 @@ size_flags_vertical = 4
 
 [node name="Isshin ring" type="TextureRect" parent="."]
 layout_mode = 1
-offset_right = 227.0
-offset_bottom = 240.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -462.0
+offset_top = -211.0
+offset_right = 692.0
+offset_bottom = 438.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_qdr2l")
 
 [node name="Borders" type="StaticBody2D" parent="Isshin ring"]
+position = Vector2(374, 56)
+scale = Vector2(1.8, 1.8)
 
 [node name="Left" type="CollisionShape2D" parent="Isshin ring/Borders"]
 position = Vector2(4, 116.75)
@@ -35,7 +56,19 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_4khmp")
 debug_color = Color(0, 0, 0, 0.42)
 
-[node name="Left2" type="CollisionShape2D" parent="Isshin ring/Borders"]
+[node name="Bottom Left" type="CollisionShape2D" parent="Isshin ring/Borders"]
+position = Vector2(90.0268, 273.34)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_qdr2l")
+debug_color = Color(0, 0, 0, 0.42)
+
+[node name="Bottom Right" type="CollisionShape2D" parent="Isshin ring/Borders"]
+position = Vector2(141.693, 275.778)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_qdr2l")
+debug_color = Color(0, 0, 0, 0.42)
+
+[node name="Right" type="CollisionShape2D" parent="Isshin ring/Borders"]
 position = Vector2(221.5, 109)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_4khmp")
@@ -47,6 +80,16 @@ shape = SubResource("RectangleShape2D_4khmp")
 debug_color = Color(0, 0, 0, 0.42)
 
 [node name="Bottom" type="CollisionShape2D" parent="Isshin ring/Borders"]
-position = Vector2(115, 222)
-shape = SubResource("RectangleShape2D_4khmp")
+position = Vector2(50.0891, 222.444)
+shape = SubResource("RectangleShape2D_mweju")
+debug_color = Color(0, 0, 0, 0.42)
+
+[node name="Bottom2" type="CollisionShape2D" parent="Isshin ring/Borders"]
+position = Vector2(181.384, 223.555)
+shape = SubResource("RectangleShape2D_6u5uw")
+debug_color = Color(0, 0, 0, 0.42)
+
+[node name="Bottom3" type="CollisionShape2D" parent="Isshin ring/Borders"]
+position = Vector2(117.249, 308)
+shape = SubResource("RectangleShape2D_lv3k7")
 debug_color = Color(0, 0, 0, 0.42)

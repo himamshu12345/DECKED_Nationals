@@ -21,18 +21,18 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 [autoload]
 
 GameManager="*res://Decked/Scenes/Game/game_manager.tscn"
-BlackFade="*res://Decked/Scenes/Game/Transitions/black_fade.tscn"
+BlackFade="*res://Decked/Scenes/Game/Transitions/Decked Transition.tscn"
 MenuMusic="*res://Decked/Scenes/Misc/menu_music.tscn"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [display]
 
 window/size/resizable=false
-window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/goutte.animated_shape_2d/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/goutte.animated_shape_2d/plugin.cfg")
 
 [input]
 

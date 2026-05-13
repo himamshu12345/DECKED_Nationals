@@ -6,7 +6,7 @@ class_name Move
 @export var animator: AnimatedSprite2D
 @export var input_prefix := ""
 
-@export var speed = 50
+@export var speed = 500
 @export var rotation_speed = 1.5 
 
 func Enter():

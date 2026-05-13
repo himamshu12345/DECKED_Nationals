@@ -1,15 +1,15 @@
-[gd_scene load_steps=54 format=3 uid="uid://c5f78yunul2y6"]
+[gd_scene load_steps=48 format=3 uid="uid://c5f78yunul2y6"]
 
 [ext_resource type="Script" uid="uid://bo48qlyfnoolv" path="res://Decked/Scripts/Player/player.gd" id="1_q2wba"]
 [ext_resource type="Script" uid="uid://d0cgkch2xj4ff" path="res://Decked/Scripts/Player/Functions/Health.gd" id="2_k03t8"]
 [ext_resource type="Texture2D" uid="uid://cpd0o1uux0eb1" path="res://Decked/Assests/Backgrounds/NPCS/Dummy/dummyConfused.webp" id="3_5plct"]
 [ext_resource type="Shader" uid="uid://bmih6a6rdsfk3" path="res://Decked/Assests/Backgrounds/NPCS/dummy.tres" id="3_518qd"]
+[ext_resource type="AudioStream" uid="uid://bwrc3lpald45a" path="res://Decked/Assests/Sound/Sound Effects/ParryEffect.wav" id="3_etms3"]
 [ext_resource type="Script" uid="uid://h5acffb8kh4u" path="res://Decked/Scripts/Player/Combat/HurtBox.gd" id="3_o7wt4"]
 [ext_resource type="Texture2D" uid="uid://yq52wh00nwt1" path="res://Decked/Assests/Backgrounds/NPCS/Dummy/dummy.webp" id="3_uokci"]
 [ext_resource type="Texture2D" uid="uid://bncvfbphpo404" path="res://Decked/Assests/PlayerBody/Isshin/lightningChargePunch.png" id="4_etms3"]
 [ext_resource type="Texture2D" uid="uid://cruhdrcn70b3s" path="res://Decked/Assests/Backgrounds/NPCS/Dummy/dummyShield.webp" id="4_wj332"]
 [ext_resource type="Script" uid="uid://dr6m376bbawc7" path="res://Decked/Scripts/Game Functions/StateMachine.gd" id="5_dkld5"]
-[ext_resource type="Texture2D" uid="uid://drplq3r38iv1x" path="res://Decked/Assests/Backgrounds/NPCS/Dummy/dummyStagger.webp" id="6_mi44d"]
 [ext_resource type="AudioStream" uid="uid://bxpf54q3l0lmf" path="res://Decked/Assests/Sound/Sound Effects/HitSound.wav" id="9_lclgd"]
 [ext_resource type="Script" uid="uid://cfeaerr8pouwa" path="res://Decked/Scripts/Player/Functions/DummyIdle.gd" id="9_mi44d"]
 [ext_resource type="Script" uid="uid://bytfh54wbp5l4" path="res://Decked/Scripts/Player/Combat/ConfusedStaggered.gd" id="10_518qd"]
@@ -79,32 +79,8 @@ atlas = ExtResource("3_uokci")
 region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ffe6b"]
-atlas = ExtResource("6_mi44d")
-region = Rect2(0, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_neqxs"]
-atlas = ExtResource("6_mi44d")
-region = Rect2(128, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_av6et"]
-atlas = ExtResource("6_mi44d")
-region = Rect2(256, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_palbu"]
-atlas = ExtResource("6_mi44d")
-region = Rect2(0, 128, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vkrbg"]
-atlas = ExtResource("6_mi44d")
-region = Rect2(128, 128, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dabt3"]
-atlas = ExtResource("6_mi44d")
-region = Rect2(256, 128, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s1frg"]
-atlas = ExtResource("6_mi44d")
-region = Rect2(0, 256, 128, 128)
+atlas = ExtResource("3_uokci")
+region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_518qd"]
 atlas = ExtResource("4_wj332")
@@ -204,24 +180,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ffe6b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_neqxs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_av6et")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_palbu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vkrbg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dabt3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s1frg")
 }],
 "loop": false,
 "name": &"QuickStagger",
@@ -304,19 +262,24 @@ _data = {
 }
 
 [node name="Dummy_Idle" type="CharacterBody2D"]
+scale = Vector2(2, 2)
 script = ExtResource("1_q2wba")
 
-[node name="Health" type="Node" parent="." node_paths=PackedStringArray("statemachine", "hit_animation_player")]
+[node name="Health" type="Node" parent="." node_paths=PackedStringArray("statemachine", "hit_animation_player", "parryAudio")]
 script = ExtResource("2_k03t8")
 statemachine = NodePath("../StateMachine")
 hit_animation_player = NodePath("../HitAnimationPlayer")
-max_health = 30
+parryAudio = NodePath("ParryAudio")
 metadata/_custom_type_script = "uid://d0cgkch2xj4ff"
+
+[node name="ParryAudio" type="AudioStreamPlayer2D" parent="Health"]
+stream = ExtResource("3_etms3")
+volume_db = 5.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_22dop")
 sprite_frames = SubResource("SpriteFrames_navb5")
-animation = &"Idle"
+animation = &"QuickStagger"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kh7ep")
@@ -368,3 +331,18 @@ stream = ExtResource("14_lclgd")
 libraries = {
 &"": SubResource("AnimationLibrary_lclgd")
 }
+
+[node name="HitParticles" type="CPUParticles2D" parent="."]
+position = Vector2(0, 25)
+emitting = false
+amount = 6
+lifetime = 0.29
+one_shot = true
+preprocess = 0.03
+explosiveness = 0.5
+randomness = 0.59
+emission_shape = 1
+emission_sphere_radius = 17.7
+gravity = Vector2(0, 0)
+scale_amount_min = 2.0
+scale_amount_max = 2.0

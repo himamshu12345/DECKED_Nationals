@@ -104,24 +104,21 @@ func Exit():
 func _spawn_trail(delta: float):
 	if not sprite:
 		return
-
 	trail_timer -= delta
 	if trail_timer <= 0.0:
 		trail_timer = TRAIL_INTERVAL
-
 		var ghost = Node2D.new()
 		var script_res = load("res://Decked/Scripts/Player/Functions/AfterImageFade.gd")
 		if script_res:
 			ghost.set_script(script_res)
-
 		ghost.global_position = boss.global_position
-		ghost.rotation = boss.rotation
-
+		ghost.global_rotation = boss.global_rotation
+		ghost.scale = sprite.global_transform.get_scale()  # ← true world-space scale
 		var ghost_sprite = sprite.duplicate()
 		ghost.add_child(ghost_sprite)
 		ghost_sprite.position = Vector2.ZERO
-
+		ghost_sprite.rotation = 0.0
+		ghost_sprite.scale = Vector2.ONE  # ← ghost already carries the scale
 		var colors = [Color("#ff004d"), Color("#000000"), Color("#5f574f")]
 		ghost_sprite.modulate = colors[randi() % colors.size()]
-
 		get_tree().current_scene.add_child(ghost)

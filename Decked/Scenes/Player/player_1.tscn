@@ -1,6 +1,5 @@
-[gd_scene load_steps=116 format=3 uid="uid://pviiqotj3fpx"]
+[gd_scene load_steps=119 format=3 uid="uid://pviiqotj3fpx"]
 
-[ext_resource type="Texture2D" uid="uid://c8ejs54a4kmx7" path="res://Decked/Assests/PlayerBody/Red/ChargePunchRedFixed-sheet.webp" id="1_cqywd"]
 [ext_resource type="Script" uid="uid://d0cgkch2xj4ff" path="res://Decked/Scripts/Player/Functions/Health.gd" id="1_g1f8n"]
 [ext_resource type="Script" uid="uid://bo48qlyfnoolv" path="res://Decked/Scripts/Player/player.gd" id="1_qe5sp"]
 [ext_resource type="Texture2D" uid="uid://dif22tdeocoy5" path="res://Decked/Assests/Backgrounds/NPCS/whiteguy.webp" id="1_wtuoc"]
@@ -10,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://bwrc3lpald45a" path="res://Decked/Assests/Sound/Sound Effects/ParryEffect.wav" id="3_cpgxm"]
 [ext_resource type="Texture2D" uid="uid://c4sxo0ce1jed6" path="res://Decked/Assests/PlayerBody/Red/deathAnimationSpriteSheet.webp" id="3_cxbs8"]
 [ext_resource type="Texture2D" uid="uid://u28pouhbpt22" path="res://Decked/Assests/PlayerBody/Red/StaggerFIXEDRED.webp" id="5_erbp0"]
+[ext_resource type="Texture2D" uid="uid://drfeq2mgfa52g" path="res://Decked/Assests/PlayerBody/Red/redChargePunchAnimation.webp" id="6_ud2n2"]
 [ext_resource type="Texture2D" uid="uid://67o3ds2il5yv" path="res://Decked/Assests/PlayerBody/Red/deathAnimationSpriteSheet (1).webp" id="7_0lvlb"]
 [ext_resource type="Texture2D" uid="uid://bmh3d53gup3cs" path="res://Decked/Assests/PlayerBody/Red/rightPunch (1).webp" id="8_cpgxm"]
 [ext_resource type="Script" uid="uid://dr6m376bbawc7" path="res://Decked/Scripts/Game Functions/StateMachine.gd" id="8_cxbs8"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://8b3toc6iwfh" path="res://Decked/Scripts/Player/Combat/Punch.gd" id="11_erbp0"]
 [ext_resource type="Texture2D" uid="uid://b3ffrbrnnhtqy" path="res://Decked/Assests/PlayerBody/Red/blockingMetal.webp" id="12_cpgxm"]
 [ext_resource type="AudioStream" uid="uid://bxpf54q3l0lmf" path="res://Decked/Assests/Sound/Sound Effects/HitSound.wav" id="12_d4ral"]
+[ext_resource type="Texture2D" uid="uid://bpwo1qpbfi2ci" path="res://Decked/Assests/PlayerBody/Red/Parry.webp" id="12_iuuau"]
 [ext_resource type="Script" uid="uid://bjve2ednhskxd" path="res://Decked/Scripts/Player/Combat/ChargePunch.gd" id="12_xmmu1"]
 [ext_resource type="Script" uid="uid://cfiotrl72ai5m" path="res://Decked/Scripts/Player/Combat/Shield.gd" id="13_ld0nm"]
 [ext_resource type="AudioStream" uid="uid://0je17xe5dgy0" path="res://Decked/Assests/Sound/Sound Effects/PunchEffect.wav" id="17_qe5sp"]
@@ -47,37 +48,45 @@ shader = ExtResource("2_ujvst")
 shader_parameter/enabled = false
 shader_parameter/HitColor = Color(0.841672, 0.28246, 0.275532, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_71ew2"]
-atlas = ExtResource("1_cqywd")
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fn2s"]
+atlas = ExtResource("6_ud2n2")
 region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fbhje"]
-atlas = ExtResource("1_cqywd")
+[sub_resource type="AtlasTexture" id="AtlasTexture_da74m"]
+atlas = ExtResource("6_ud2n2")
 region = Rect2(128, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h0y00"]
-atlas = ExtResource("1_cqywd")
+[sub_resource type="AtlasTexture" id="AtlasTexture_0t2ex"]
+atlas = ExtResource("6_ud2n2")
 region = Rect2(256, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_64i0g"]
-atlas = ExtResource("1_cqywd")
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3mxe"]
+atlas = ExtResource("6_ud2n2")
 region = Rect2(384, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8vxff"]
-atlas = ExtResource("1_cqywd")
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhitq"]
+atlas = ExtResource("6_ud2n2")
 region = Rect2(0, 128, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_a0lcg"]
-atlas = ExtResource("1_cqywd")
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2lw5"]
+atlas = ExtResource("6_ud2n2")
 region = Rect2(128, 128, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xgfaa"]
-atlas = ExtResource("1_cqywd")
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2d72"]
+atlas = ExtResource("6_ud2n2")
 region = Rect2(256, 128, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_a0wpg"]
-atlas = ExtResource("1_cqywd")
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ty52"]
+atlas = ExtResource("6_ud2n2")
 region = Rect2(384, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mohe8"]
+atlas = ExtResource("6_ud2n2")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wl66e"]
+atlas = ExtResource("6_ud2n2")
+region = Rect2(128, 256, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_203r6"]
 atlas = ExtResource("8_iuuau")
@@ -96,22 +105,6 @@ atlas = ExtResource("8_iuuau")
 region = Rect2(0, 128, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6wkyu"]
-atlas = ExtResource("8_iuuau")
-region = Rect2(128, 128, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mohe8"]
-atlas = ExtResource("8_iuuau")
-region = Rect2(128, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wl66e"]
-atlas = ExtResource("8_iuuau")
-region = Rect2(256, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_urb2b"]
-atlas = ExtResource("8_iuuau")
-region = Rect2(0, 128, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u0qdn"]
 atlas = ExtResource("8_iuuau")
 region = Rect2(128, 128, 128, 128)
 
@@ -211,6 +204,22 @@ region = Rect2(0, 128, 128, 128)
 atlas = ExtResource("8_frq0u")
 region = Rect2(128, 128, 128, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_urb2b"]
+atlas = ExtResource("12_iuuau")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0qdn"]
+atlas = ExtResource("12_iuuau")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_np252"]
+atlas = ExtResource("12_iuuau")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nj4g0"]
+atlas = ExtResource("12_iuuau")
+region = Rect2(128, 128, 128, 128)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_u6482"]
 atlas = ExtResource("10_cpgxm")
 region = Rect2(0, 0, 128, 128)
@@ -299,30 +308,39 @@ region = Rect2(0, 256, 128, 128)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_71ew2")
+"texture": SubResource("AtlasTexture_6fn2s")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fbhje")
+"texture": SubResource("AtlasTexture_da74m")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_h0y00")
+"texture": SubResource("AtlasTexture_0t2ex")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_64i0g")
+"texture": SubResource("AtlasTexture_t3mxe")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8vxff")
+"texture": SubResource("AtlasTexture_yhitq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_a0lcg")
+"texture": SubResource("AtlasTexture_j2lw5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xgfaa")
+"texture": SubResource("AtlasTexture_l2d72")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_a0wpg")
+"texture": SubResource("AtlasTexture_7ty52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mohe8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wl66e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wl66e")
 }],
-"loop": true,
+"loop": false,
 "name": &"ChargePunch",
 "speed": 10.0
 }, {
@@ -348,16 +366,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mohe8")
+"texture": SubResource("AtlasTexture_65wyq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wl66e")
+"texture": SubResource("AtlasTexture_dnfjl")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_urb2b")
+"texture": SubResource("AtlasTexture_4rec7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u0qdn")
+"texture": SubResource("AtlasTexture_6wkyu")
 }],
 "loop": true,
 "name": &"ConfusedStaggeredLoop",
@@ -448,6 +466,23 @@ animations = [{
 }],
 "loop": false,
 "name": &"Left Punch",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urb2b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0qdn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_np252")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nj4g0")
+}],
+"loop": false,
+"name": &"Parry",
 "speed": 10.0
 }, {
 "frames": [{
@@ -544,31 +579,32 @@ size = Vector2(33, 15)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u2m2q"]
 size = Vector2(31, 21)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sg33i"]
-size = Vector2(31, 9)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iuuau"]
+size = Vector2(31, 21)
 
-[sub_resource type="Resource" id="Resource_ujvst"]
+[sub_resource type="Resource" id="Resource_uwlh1"]
 script = ExtResource("19_wxmr2")
-position = Vector2(-0.5, -10.5)
+position = Vector2(-0.5, -14.5)
 disabled = false
-shape = SubResource("RectangleShape2D_sg33i")
+shape = SubResource("RectangleShape2D_iuuau")
 debug_color = Color(0, 0, 0, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l7c70"]
-size = Vector2(31, 9)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_02uw6"]
+size = Vector2(31, 21)
 
-[sub_resource type="Resource" id="Resource_wtuoc"]
+[sub_resource type="Resource" id="Resource_a8nqc"]
 script = ExtResource("19_wxmr2")
-position = Vector2(-0.5, -10.5)
+position = Vector2(-0.5, -14.5)
 disabled = false
-shape = SubResource("RectangleShape2D_l7c70")
+shape = SubResource("RectangleShape2D_02uw6")
 debug_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Resource" id="Resource_qe5sp"]
 script = ExtResource("20_gt6ng")
 data = {
-&"Left Punch": [SubResource("Resource_ujvst")],
-&"Right Punch": [SubResource("Resource_wtuoc")]
+&"ChargePunch": [null, null, null, null, null, null, null, null, null, null, null],
+&"Left Punch": [null, null, null, SubResource("Resource_uwlh1")],
+&"Right Punch": [null, null, null, SubResource("Resource_a8nqc")]
 }
 metadata/_custom_type_script = "uid://iy0kq2sk02b"
 
@@ -588,6 +624,7 @@ animations = [{
 }]
 
 [node name="Player1" type="CharacterBody2D"]
+scale = Vector2(2, 2)
 script = ExtResource("1_qe5sp")
 
 [node name="Stamina" type="Node" parent="."]
@@ -606,7 +643,7 @@ volume_db = 5.0
 [node name="AnimatedPlayerBody" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_l7c70")
 sprite_frames = SubResource("SpriteFrames_xurk0")
-animation = &"ConfusedStaggeredLoop"
+animation = &"ChargePunch"
 
 [node name="HitAnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -644,7 +681,7 @@ debug_color = Color(0.693082, 0.496307, 0, 0.42)
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="HurtBox"]
 stream = ExtResource("12_d4ral")
-volume_db = 5.0
+volume_db = 15.0
 
 [node name="HitBox" type="Area2D" parent="."]
 script = ExtResource("9_a8s7n")

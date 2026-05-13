@@ -11,15 +11,20 @@ func Enter():
 	audio.play()
 	if not animator.animation_finished.is_connected(_on_animation_finished):
 		animator.animation_finished.connect(_on_animation_finished)
-	
+
+func Exit():
+	if animator.animation_finished.is_connected(_on_animation_finished):
+		animator.animation_finished.disconnect(_on_animation_finished)
+
 func Update(_delta: float):
 	var shield = input_prefix + "Shield"
-	
 	if Input.is_action_just_pressed(shield):
 		transition_state.emit(self, "Shield")
-		
-		
+
 func _on_animation_finished():
+	if animator.animation != "QuickStagger":
+		return  # ignore other animations
 	if player.name.begins_with("Dummy"):
 		transition_state.emit(self, "DummyIdle")
+		return  # <-- was missing
 	transition_state.emit(self, "Idle")

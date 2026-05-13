@@ -7,13 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://dm6p0k5j2v8a" path="res://Decked/Scenes/Player/DashIndicator.tscn" id="5_h74l0"]
 [ext_resource type="PackedScene" uid="uid://dcvbw4rrss3rf" path="res://Decked/Scenes/Player/shield_indicator.tscn" id="6_lakp3"]
 
-[node name="HealthBarRed" type="Control" node_paths=PackedStringArray("card_slots")]
+[node name="HealthBarRed" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_4foqv")
-card_slots = [NodePath("TextureRect"), NodePath("TextureRect2"), NodePath("TextureRect3"), NodePath("TextureRect4"), NodePath("TextureRect5")]
 
 [node name="Frame" type="TextureRect" parent="."]
 layout_mode = 0

@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://by86tk1tuxdum"]
+
+[ext_resource type="Script" uid="uid://ctgf0gwkp0l0q" path="res://Decked/Scripts/Game Functions/BlackFade.gd" id="1_ivtq2"]
+[ext_resource type="Texture2D" uid="uid://dkiu4hh1en7cs" path="res://Decked/Assests/Backgrounds/transitionStart.webp" id="2_hby6v"]
+
+[sub_resource type="Animation" id="Animation_mx0x7"]
+resource_name = "Hide Screen"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+}
+
+[sub_resource type="Animation" id="Animation_24mu0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_0cqro"]
+resource_name = "Reveal Screen"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l0gsj"]
+_data = {
+&"Hide Screen": SubResource("Animation_mx0x7"),
+&"RESET": SubResource("Animation_24mu0"),
+&"Reveal Screen": SubResource("Animation_0cqro")
+}
+
+[node name="Decked Transition" type="CanvasLayer"]
+script = ExtResource("1_ivtq2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(578.416, 325)
+scale = Vector2(3.62921, 3.62921)
+texture = ExtResource("2_hby6v")
+hframes = 5
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_l0gsj")
+}

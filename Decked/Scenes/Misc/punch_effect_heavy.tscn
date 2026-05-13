@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdlps8mvbmpbc"]
+[gd_scene load_steps=14 format=3 uid="uid://bdlps8mvbmpbc"]
 
-[ext_resource type="Texture2D" uid="uid://hrdnmdlo6up1" path="res://Decked/Assests/Effects/POW.webp" id="1_o22wx"]
+[ext_resource type="Texture2D" uid="uid://ba88k6v1fowa0" path="res://Decked/Assests/Effects/ChargePunchHitFX.webp" id="1_o22wx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_14wds"]
 atlas = ExtResource("1_o22wx")
@@ -12,11 +12,39 @@ region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3fscg"]
 atlas = ExtResource("1_o22wx")
-region = Rect2(0, 32, 32, 32)
+region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qddxi"]
 atlas = ExtResource("1_o22wx")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1k6ck"]
+atlas = ExtResource("1_o22wx")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_id34k"]
+atlas = ExtResource("1_o22wx")
 region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hosqa"]
+atlas = ExtResource("1_o22wx")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shrro"]
+atlas = ExtResource("1_o22wx")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwqq1"]
+atlas = ExtResource("1_o22wx")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dl6jb"]
+atlas = ExtResource("1_o22wx")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53x62"]
+atlas = ExtResource("1_o22wx")
+region = Rect2(64, 64, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1k6ck"]
 animations = [{
@@ -32,6 +60,27 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qddxi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1k6ck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_id34k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hosqa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shrro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwqq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dl6jb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53x62")
 }],
 "loop": false,
 "name": &"Heavy",
@@ -42,3 +91,5 @@ animations = [{
 sprite_frames = SubResource("SpriteFrames_1k6ck")
 animation = &"Heavy"
 autoplay = "Heavy"
+frame = 10
+frame_progress = 1.0

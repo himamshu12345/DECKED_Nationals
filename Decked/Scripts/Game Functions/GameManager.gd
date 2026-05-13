@@ -233,6 +233,7 @@ const TUTORIAL_PT2_SCENE = "res://Decked/Scenes/Game/Tutorial/tutorial(2).tscn"
 const TUTORIAL_PT3_SCENE = "res://Decked/Scenes/Game/Tutorial/tutorial_3.tscn"
 const TUTORIAL_PT4_SCENE = "res://Decked/Scenes/Game/Tutorial/tutorial_4.tscn"
 const TUTORIAL_PT5_SCENE = "res://Decked/Scenes/Game/Tutorial/tutorial_5.tscn"
+const TUTORIAL_PT6_SCENE = "res://Decked/Scenes/Game/Tutorial/tutorial_6.tscn"
 const STUDIO_INTRO_SCENE = "res://Decked/Scenes/Game/Transitions/studio_logo.tscn"
 const BOSS_ONE_SCENE = "res://Decked/Scenes/Game/Fights/Joe Fight.tscn"
 const BOSS_TWO_SCENE = "res://Decked/Scenes/Game/Fights/max_fight.tscn"
@@ -263,6 +264,8 @@ func go_to_level(destination_tag: String):
 			scene_to_load = TUTORIAL_PT4_SCENE
 		"Tutorial Part 5":
 			scene_to_load = TUTORIAL_PT5_SCENE
+		"Tutorial Part 6":
+			scene_to_load = TUTORIAL_PT6_SCENE
 		"2 Player":
 			scene_to_load = TWO_PLAYER_SCENE
 			current_mode = "2 Player"
@@ -287,8 +290,6 @@ func go_to_level(destination_tag: String):
 	BlackFade.transition()
 	await BlackFade.on_transition_finished
 	get_tree().change_scene_to_file(scene_to_load)
-
-
 
 
 func restart_round():
@@ -377,3 +378,11 @@ func _on_tutorial_pressed() -> void:
 
 func _on_credits_pressed() -> void:
 	go_to_level("Credits")
+
+
+func _on_nextpt6_pressed() -> void:
+	go_to_level("Tutorial Part 6")
+
+
+func _on_nextpt5_pressed() -> void:
+	go_to_level("Tutorial Part 5")

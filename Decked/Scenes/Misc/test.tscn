@@ -11,14 +11,16 @@ offset_left = -112.048
 offset_top = -117.4
 offset_right = -112.048
 offset_bottom = -117.4
+scale = Vector2(2.04, 2.04)
 metadata/_edit_use_anchors_ = true
 
 [node name="Player1" parent="." instance=ExtResource("1_5lhnc")]
 position = Vector2(2, 60)
 
+[node name="Camera2D" type="Camera2D" parent="Player1"]
+position = Vector2(0, -26)
+scale = Vector2(0.5, 0.5)
+zoom = Vector2(2.25, 2.25)
+
 [node name="Player2" parent="." instance=ExtResource("2_fh02e")]
 position = Vector2(-1, -50)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(2, 8)
-zoom = Vector2(2.25, 2.25)

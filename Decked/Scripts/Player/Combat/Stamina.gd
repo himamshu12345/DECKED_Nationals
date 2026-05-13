@@ -8,9 +8,12 @@ extends Node
 
 const COST_PUNCH: float = 8.0    
 const COST_BLOCK: float = 10.0
-const COST_BLOCK_PER_SEC: float = 15.0
+const COST_BLOCK_HIT: float = 20.0
+const COST_PARRY: float = 30.0
 const COST_DASH: float = 20.0
 const COST_CHARGE_PER_SEC: float = 12.0
+const RECOVER_PARRY: float = 50.0
+const RECOVER_PARRY_CHARGE: float = 75.0
 
 var current_stamina: float
 var is_exhausted: bool = false
@@ -41,8 +44,7 @@ func _process(delta: float) -> void:
 		current_stamina = minf(current_stamina + regen * delta, max_stamina)
 		stamina_changed.emit(current_stamina, max_stamina)
 
-	# Clear exhaustion flag once stamina is meaningfully restored
-	if is_exhausted and current_stamina >= 10.0:
+	if is_exhausted and current_stamina >= 90.0:
 		is_exhausted = false
 
 func consume(amount: float) -> void:

@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://dr7g2fgmpq4ke"]
 
-[ext_resource type="Texture2D" uid="uid://dygiaug7mvhdx" path="res://Decked/Assests/Backgrounds/croppedBoxingRing.webp" id="1_4khmp"]
+[ext_resource type="Texture2D" uid="uid://dhm0di5rohhr0" path="res://Decked/Assests/Backgrounds/boxingRIngArena.webp" id="1_4khmp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4khmp"]
-size = Vector2(219.75, 11)
+size = Vector2(420.125, 11)
 
 [node name="Boxing Ring" type="Control"]
 layout_mode = 3
@@ -23,30 +23,33 @@ size_flags_vertical = 4
 
 [node name="Default ring" type="TextureRect" parent="."]
 layout_mode = 1
-offset_right = 227.0
-offset_bottom = 240.0
+offset_left = -462.0
+offset_top = -211.0
+offset_right = 690.0
+offset_bottom = 437.0
 texture = ExtResource("1_4khmp")
 
 [node name="Borders" type="StaticBody2D" parent="Default ring"]
+position = Vector2(376.048, 122.4)
 
 [node name="Left" type="CollisionShape2D" parent="Default ring/Borders"]
-position = Vector2(4, 116.75)
+position = Vector2(3.99963, 216.937)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_4khmp")
 debug_color = Color(0, 0, 0, 0.42)
 
 [node name="Left2" type="CollisionShape2D" parent="Default ring/Borders"]
-position = Vector2(221.5, 109)
+position = Vector2(396, 212)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_4khmp")
 debug_color = Color(0, 0, 0, 0.42)
 
 [node name="Top" type="CollisionShape2D" parent="Default ring/Borders"]
-position = Vector2(112.875, 4)
+position = Vector2(197, 7)
 shape = SubResource("RectangleShape2D_4khmp")
 debug_color = Color(0, 0, 0, 0.42)
 
 [node name="Bottom" type="CollisionShape2D" parent="Default ring/Borders"]
-position = Vector2(115, 222)
+position = Vector2(202, 422)
 shape = SubResource("RectangleShape2D_4khmp")
 debug_color = Color(0, 0, 0, 0.42)

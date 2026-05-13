@@ -7,7 +7,7 @@ class_name Punch
 @export var audio: AudioStreamPlayer2D
 
 const CHARGE_THRESHOLD := 0.3
-const BASE_DAMAGE := 7
+const BASE_DAMAGE := 5
 
 var damage := BASE_DAMAGE
 var punchRightNext := false

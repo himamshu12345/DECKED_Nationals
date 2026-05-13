@@ -65,7 +65,7 @@ animations = [{
 radius = 9.42809
 
 [node name="Projectile" type="AnimatedSprite2D"]
-scale = Vector2(1.5, 1.5)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_xpvdr")
 frame_progress = 0.688051
 script = ExtResource("2_xpvdr")

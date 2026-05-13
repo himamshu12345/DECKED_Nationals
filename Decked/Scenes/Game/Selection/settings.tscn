@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://sqj3s17xci70" path="res://Decked/Scenes/Game/game_manager.tscn" id="2_hw2ai"]
 [ext_resource type="FontFile" uid="uid://bigeflro4ldvu" path="res://Decked/Assests/Fonts/PixeloidMono/PixeloidSans-Bold.ttf" id="2_pyvqx"]
 [ext_resource type="LabelSettings" uid="uid://bw1u7351aaamo" path="res://Decked/Assests/Fonts/menu.tres" id="3_eorlr"]
-[ext_resource type="Texture2D" uid="uid://q6cn32uy0neh" path="res://Decked/Assests/Backgrounds/settingsMenu.webp" id="3_hw2ai"]
+[ext_resource type="Texture2D" uid="uid://de0orvdsgebcx" path="res://Decked/Assests/Backgrounds/settingsMenuNew.webp" id="3_jgo5p"]
 [ext_resource type="Texture2D" uid="uid://dosldsnqcolj3" path="res://Decked/Assests/Backgrounds/GoldBar.webp" id="6_jgo5p"]
 [ext_resource type="Texture2D" uid="uid://wjwtdbgtxo6k" path="res://Decked/Assests/Backgrounds/Slider Icon.png" id="7_jgo5p"]
 
@@ -32,7 +32,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_hw2ai")
+texture = ExtResource("3_jgo5p")
 
 [node name="Back" type="Button" parent="."]
 layout_mode = 1
@@ -41,10 +41,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -305.0
-offset_top = -160.0
-offset_right = -228.0
-offset_bottom = -84.0
+offset_left = -300.0
+offset_top = -175.0
+offset_right = -223.0
+offset_bottom = -99.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(2.56091, 2.56091)

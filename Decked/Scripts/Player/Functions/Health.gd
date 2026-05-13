@@ -5,6 +5,7 @@ extends Node
 @export var hit_animation_player: AnimationPlayer
 @export var max_health: int = 100
 @export var parryAudio: AudioStreamPlayer2D
+
 var current_health: int
 
 signal health_changed(current: int)
@@ -12,13 +13,11 @@ signal health_changed(current: int)
 func _ready() -> void:
 	if owner == null:
 		return
-
 	match owner.name:
 		"Player1":
 			max_health += GameManager.p1_stats.get("health_bonus", 0)
 		"Player2":
 			max_health += GameManager.p2_stats.get("health_bonus", 0)
-
 	current_health = max_health
 	health_changed.emit(current_health)
 
@@ -28,57 +27,74 @@ func take_damage(amount: int, enemy_state: String, attacker: Node = null) -> voi
 
 	var state_name := statemachine.current_state.name
 
-	if statemachine.current_state.name in ["Shield", "BossShield", "DummyShield"]:
+	# ── Already stunned — take raw damage only, don't extend the stagger ──
+	const STAGGER_STATES := [
+		"ConfusedStaggered", "QuickStagger",
+		"BossConfusedStagger", "BossQuickStagger"
+	]
+	if state_name in STAGGER_STATES:
+		_apply_damage(amount)
+		return
+
+	if state_name in ["Shield", "BossShield", "DummyShield"]:
 		var is_parry = false
 		if statemachine.current_state.has_method("is_parrying"):
 			is_parry = statemachine.current_state.is_parrying()
-			
+
+		# ── Parry success ──────────────────────────────────────────────────
 		if is_parry and attacker and attacker.has_node("StateMachine"):
 			var attacker_sm = attacker.get_node("StateMachine")
-			if enemy_state in ["ChargePunch", "BossChargePunch", "DummyCharging"]:
-				var stagger_name = "BossConfusedStagger" if attacker.is_in_group("enemies") else "ConfusedStaggered"
-				attacker_sm.force_change_state(stagger_name)
-			else:
-				var stagger_name = "BossQuickStagger" if attacker.is_in_group("enemies") else "QuickStagger"
-				attacker_sm.force_change_state(stagger_name)
-			
-			parryAudio.play()
-			
 			var defender_stamina = owner.get_node_or_null("Stamina")
-			if defender_stamina:
-				defender_stamina.recover(50.0)
-
+			if enemy_state in ["ChargePunch", "BossChargePunch", "DummyCharging"]:
+				var stagger = "BossConfusedStagger" if attacker.is_in_group("enemies") else "ConfusedStaggered"
+				attacker_sm.force_change_state(stagger)
+				if defender_stamina:
+					defender_stamina.recover(Stamina.RECOVER_PARRY_CHARGE)
+			else:
+				var stagger = "BossQuickStagger" if attacker.is_in_group("enemies") else "QuickStagger"
+				attacker_sm.force_change_state(stagger)
+				if defender_stamina:
+					defender_stamina.recover(Stamina.RECOVER_PARRY)
+			parryAudio.play()
 			return
-			
-		if enemy_state == "ChargePunch" or enemy_state == "BossChargePunch":
-			statemachine.current_state.on_shield_interrupted()
-		else:
-			statemachine.current_state.on_shield_hit()
-		return
-	
-	if statemachine.current_state.name in ["ChargePunch", "BossChargePunch", "DummyCharging"]:
+
+		# ── Blocked hit (no parry) ─────────────────────────────────────────
 		if enemy_state in ["ChargePunch", "BossChargePunch", "DummyCharging"]:
-			statemachine.current_state.on_charge_interrupted()
+			var shield_state = statemachine.current_state
+			shield_state.on_shield_interrupted()
+			_apply_damage(amount)
 		else:
-			statemachine.current_state.on_charge_hit()
+			var shield_state = statemachine.current_state
+			shield_state.on_shield_hit()
+			var absorb = shield_state.BLOCK_ABSORB if shield_state is Shield else 0.5
+			_apply_damage(int(amount * absorb))
+		return
 
-	if state_name in ["Move", "Idle", "Punch", "DummyIdle", "BossIdle", "BossFollow", "BossPunch",]:
+	if state_name in ["ChargePunch", "BossChargePunch", "DummyCharging"]:
+		if enemy_state in ["ChargePunch", "BossChargePunch", "DummyCharging"]:
+			if statemachine.current_state.has_method("on_charge_interrupted"):
+				statemachine.current_state.on_charge_interrupted()
+		else:
+			if statemachine.current_state.has_method("on_charge_hit"):
+				statemachine.current_state.on_charge_hit()
+
+	if state_name in ["Move", "Idle", "Punch", "DummyIdle", "BossIdle", "BossFollow", "BossPunch"]:
 		if enemy_state in ["ChargePunch", "BossChargePunch"]:
-			statemachine.current_state.on_charge_hit()
-   
-	if state_name in ["Idle", "DummyIdle", "BossIdle"] and enemy_state in ["Punch", "BossPunch"]:
-		statemachine.current_state.on_idle_hit()
+			if statemachine.current_state.has_method("on_charge_hit"):
+				statemachine.current_state.on_charge_hit()
 
+	if state_name in ["Idle", "DummyIdle", "BossIdle"] and enemy_state in ["Punch", "BossPunch"]:
+		if statemachine.current_state.has_method("on_idle_hit"):
+			statemachine.current_state.on_idle_hit()
+
+	_apply_damage(amount)
+
+func _apply_damage(amount: int) -> void:
 	current_health = max(current_health - amount, 0)
 	health_changed.emit(current_health)
-
 	if current_health == 0:
 		if owner.name == "Dummy_Idle":
-			GameManager.go_to_level("Tutorial Part 2")
-		elif owner.name == "Dummy_IdlePt2":
-			GameManager.go_to_level("Tutorial Part 3")
-		elif owner.name == "Dummy_Charging":
-			GameManager.go_to_level("Tutorial Part 5")
+			GameManager.go_to_level("Tutorial Part 4")
 		die()
 
 func die() -> void:

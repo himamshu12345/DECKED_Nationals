@@ -6,18 +6,14 @@ class_name Shield
 @export var speed = 150
 @export var audio: AudioStreamPlayer2D
 
-
 signal shielding(bool)
 signal shield_hit(remaining_hits: int)
 
-const MAX_SHIELD_HITS := 3
-const PARRY_FRAMES := 15
-const PARRY_TIME := PARRY_FRAMES / 60.0
+const BLOCK_ABSORB: float = 0.5
 const SHIELD_COOLDOWN: float = 1.5
 
-var shieldHits = 0
-var parry_timer: float = 0.0
 var cooldown_timer: float = 0.0
+var is_attempting_parry: bool = false
 
 signal shield_ready
 signal shield_used
@@ -37,95 +33,117 @@ func Enter():
 	var stamina = _get_stamina()
 	if stamina:
 		stamina.consume(Stamina.COST_BLOCK)
-		
-	_reset_shield_counter()
+
+	is_attempting_parry = false
 	shielding.emit(true)
-	parry_timer = 0.0
 	animator.play("Shield")
 	audio.play()
 	shield_used.emit()
-	
+
+	if not animator.animation_finished.is_connected(_on_animation_finished):
+		animator.animation_finished.connect(_on_animation_finished)
+
+func _on_animation_finished():
+	if animator.animation == "Parry":
+		is_attempting_parry = false
+		if Input.is_action_pressed(input_prefix + "Shield"):
+			animator.play("Shield")
+		else:
+			transition_state.emit(self, "Idle")
+	elif animator.animation == "ParryExtends":
+		is_attempting_parry = false
+		transition_state.emit(self, "Idle")
+
 func Update(_delta: float):
-	parry_timer += _delta
-	
 	var stamina = _get_stamina()
 	if stamina:
-		stamina.consume(Stamina.COST_BLOCK_PER_SEC * _delta)
 		if stamina.is_exhausted:
 			transition_state.emit(self, "StaminaExhausted")
 			cooldown_timer = SHIELD_COOLDOWN
 			return
 
-	
-	var left = input_prefix + "left"
-	var right = input_prefix + "right"
-	var up = input_prefix + "up"
-	var down = input_prefix + "down"
-	var punch = input_prefix + "Punch"
+	var punch  = input_prefix + "Punch"
 	var shield = input_prefix + "Shield"
-	
-	if(Input.is_action_just_pressed(punch)):
-		transition_state.emit(self, "Punch")
+	var left   = input_prefix + "left"
+	var right  = input_prefix + "right"
+	var up     = input_prefix + "up"
+	var down   = input_prefix + "down"
+
+	if Input.is_action_just_pressed(punch) and not is_attempting_parry:
+		attempt_parry()
 		return
 
 	if Input.is_action_pressed(shield):
 		return
-		
-	if is_parrying():
+
+	if is_attempting_parry:
 		return
 
-	if(Input.get_vector(left, right, up, down)):
+	if Input.get_vector(left, right, up, down):
 		transition_state.emit(self, "Move")
 	else:
 		transition_state.emit(self, "Idle")
-	
+
+# ---------- Parry ----------
+
+func attempt_parry():
+	var stamina = _get_stamina()
+	if stamina == null or stamina.current_stamina < Stamina.COST_PARRY:
+		return
+	stamina.consume(Stamina.COST_PARRY)
+	is_attempting_parry = true
+	animator.play("Parry")
 
 func is_parrying() -> bool:
-	return parry_timer <= PARRY_TIME
+	return is_attempting_parry
+
+# ---------- Hit callbacks (called from Health.gd) ----------
 
 func on_shield_hit():
-	shieldHits += 1
-	var remaining = MAX_SHIELD_HITS - shieldHits
-	shield_hit.emit(remaining)
-	
-	if shieldHits >= MAX_SHIELD_HITS:
-		break_shield()
-		
+	var stamina = _get_stamina()
+	if stamina:
+		stamina.consume(Stamina.COST_BLOCK_HIT)
+		if stamina.is_exhausted:
+			break_shield()
+
 func on_shield_interrupted():
 	break_shield()
 
 func Exit():
 	shielding.emit(false)
 	cooldown_timer = SHIELD_COOLDOWN
+	is_attempting_parry = false
+	if animator.animation_finished.is_connected(_on_animation_finished):
+		animator.animation_finished.disconnect(_on_animation_finished)
 
 func break_shield():
-	transition_state.emit(self, "ConfusedStaggered")
 	cooldown_timer = SHIELD_COOLDOWN
-	
-func _reset_shield_counter() -> void:
-	shieldHits = 0
-	shield_hit.emit(MAX_SHIELD_HITS)
+	transition_state.emit(self, "ConfusedStaggered")
 
 func Physics_Update(_delta: float):
-	var left = input_prefix + "left"
+	var left  = input_prefix + "left"
 	var right = input_prefix + "right"
-	var up = input_prefix + "up" 
-	var down = input_prefix + "down"
+	var up    = input_prefix + "up"
+	var down  = input_prefix + "down"
 	var direction = Input.get_vector(left, right, up, down)
-	
+
 	var base_speed = 50
 	var current_speed = base_speed
 	if input_prefix == "":
 		current_speed = base_speed * (1.0 + GameManager.p1_stats.get("speed_bonus", 0) / 100.0)
 	else:
 		current_speed = base_speed * (1.0 + GameManager.p2_stats.get("speed_bonus", 0) / 100.0)
-		
+
 	if owner is CharacterBody2D:
 		owner.velocity = direction * current_speed
 		owner.move_and_slide()
 
+# ---------- Stamina lookup ----------
 
 func _get_stamina() -> Stamina:
-	if owner:
-		return owner.get_node_or_null("Stamina")
+	var node = self
+	while node and not node is CharacterBody2D:
+		node = node.get_parent()
+	if node is CharacterBody2D:
+		return node.get_node_or_null("Stamina")
 	return null

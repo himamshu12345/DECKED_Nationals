@@ -37,6 +37,8 @@ func _find_opponent() -> void:
 			break
 			
 func apply_knockback(direction: Vector2, force: float, knockback_duration: float) -> void:
+	if name.begins_with("Dummy"):
+		return
 	knockback = direction * force
 	knockback_timer = knockback_duration
 	_emit_hit_particles(direction)

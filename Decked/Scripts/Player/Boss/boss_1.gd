@@ -3,15 +3,22 @@ class_name Boss
 
 
 @export var attack_distance: float = 15.0
-@export var detection_range: float = 300.0
+@export var detection_range: float = 10000.0
 @export var health_node: Health
 
 
 @export_group("AI Personality")
-@export var aggression: float = 0.7 
+@export var aggression: float = 0.7
 @export var caution: float = 0.5
-@export var patience: float = 0.3  
+@export var patience: float = 0.3
 @export var reaction_time: float = 0.15
+
+var knockback: Vector2 = Vector2.ZERO
+var knockback_timer: float = 0.0
+# Tracks whether the current frame's velocity was set by a state's Physics_Update.
+# States that want to move the boss must call _set_velocity(); otherwise the boss
+# stops cleanly after knockback/between actions.
+var _velocity_set_this_frame: bool = false
 
 var opponent: Node2D = null
 
@@ -41,7 +48,7 @@ var successful_actions: Dictionary = {
 
 func _ready() -> void:
 	add_to_group("enemies")
-	
+
 	if health_node:
 		health_node.health_changed.connect(_on_health_changed)
 	else:
@@ -53,20 +60,32 @@ func _physics_process(delta: float) -> void:
 	if opponent != null:
 		var direction = (opponent.global_position - global_position).normalized()
 		rotation = direction.angle() + PI / 2
+
 	if not is_active:
 		return
-		
-	punch_cooldown = max(0, punch_cooldown - delta)
-	dash_cooldown = max(0, dash_cooldown - delta)
-	shield_cooldown = max(0, shield_cooldown - delta)
-	charge_punch_cooldown = max(0, charge_punch_cooldown - delta)
-	time_since_hit += delta
+
+	punch_cooldown         = max(0, punch_cooldown - delta)
+	dash_cooldown          = max(0, dash_cooldown - delta)
+	shield_cooldown        = max(0, shield_cooldown - delta)
+	charge_punch_cooldown  = max(0, charge_punch_cooldown - delta)
+	time_since_hit         += delta
 	time_since_damaged_player += delta
-	
-	
-	
-	
-	
+
+	# ── Knockback ────────────────────────────────────────────────────────────
+	# Apply knockback AFTER states have already set velocity so it always wins.
+	# Importantly we zero velocity first, then assign, so there is no one-frame
+	# bleed when the timer expires mid-frame.
+	if knockback_timer > 0.0:
+		knockback_timer -= delta
+		if knockback_timer <= 0.0:
+			# Timer just expired — clear everything cleanly.
+			knockback_timer = 0.0
+			knockback = Vector2.ZERO
+			velocity = Vector2.ZERO
+		else:
+			velocity = knockback
+	# ── End knockback ─────────────────────────────────────────────────────────
+
 	move_and_slide()
 
 func _find_opponent() -> void:
@@ -77,13 +96,12 @@ func _find_opponent() -> void:
 			return
 
 
-
 func get_next_action() -> String:
 	if opponent == null:
 		return "BossIdle"
-	
+
 	var actions: Array[Dictionary] = []
-	
+
 	actions.append(_evaluate_shield())
 	actions.append(_evaluate_dodge_dash())
 	actions.append(_evaluate_attack_dash())
@@ -93,44 +111,40 @@ func get_next_action() -> String:
 	actions.append(_evaluate_follow())
 
 	actions.sort_custom(func(a, b): return a.priority > b.priority)
-	
-	for i in range(min(3, actions.size())):
-		var a = actions[i]
-	
 
 	for action in actions:
 		if action.available:
 			_record_action(action.name)
 			return action.name
-	
+
 	return "BossIdle"
 
 
 func _evaluate_shield() -> Dictionary:
 	var distance = get_distance_to_opponent()
 	var health_percent = get_health_percent()
-	
+
 	var priority = 0.0
 	var available = (shield_cooldown <= 0)
-	
+
 	if not available:
 		return {"name": "BossShield", "priority": 0, "available": false}
-	
+
 	if health_percent < 0.3:
 		priority += 80 * caution
-	
+
 	if consecutive_hits_taken >= 2:
 		priority += 90 * caution
-	
+
 	if player_attack_count > 2:
 		priority += 70
-		
+
 	if _is_player_attacking():
 		priority += 150 * reaction_time
-	
+
 	if distance > attack_distance and distance < 40:
 		priority += 40 * (1.0 - aggression)
-	
+
 	return {
 		"name": "BossShield",
 		"priority": priority,
@@ -140,22 +154,22 @@ func _evaluate_shield() -> Dictionary:
 func _evaluate_dodge_dash() -> Dictionary:
 	var distance = get_distance_to_opponent()
 	var health_percent = get_health_percent()
-	
+
 	var priority = 0.0
 	var available = (dash_cooldown <= 0)
-	
+
 	if not available:
 		return {"name": "BossDash", "priority": 0, "available": false}
-	
+
 	if health_percent < 0.4 and distance < attack_distance:
 		priority += 85 * caution
-	
+
 	if time_since_hit < 0.5 and distance < attack_distance * 1.5:
 		priority += 75 * caution
-	
+
 	if distance < attack_distance * 0.7:
 		priority += 50 * caution
-	
+
 	if priority > 0:
 		return {
 			"name": "BossDash",
@@ -168,29 +182,29 @@ func _evaluate_dodge_dash() -> Dictionary:
 
 func _evaluate_attack_dash() -> Dictionary:
 	var distance = get_distance_to_opponent()
-	
+
 	var priority = 0.0
 	var available = (dash_cooldown <= 0)
-	
+
 	if not available:
 		return {"name": "BossDash", "priority": 0, "available": false}
-	
+
 	if distance > attack_distance and distance < 80:
 		priority += 60 * aggression
-	
+
 	if _is_player_retreating():
 		priority += 50
-	
+
 	if action_history.size() >= 3:
 		var recent = action_history.slice(-3)
 		var follow_count = recent.filter(func(a): return a.name == "Follow").size()
 		if follow_count >= 2:
-			priority += 40  # Mix it up!
-	
+			priority += 40
+
 	var dash_success = successful_actions.get("BossDash", 0)
 	if dash_success > 2:
 		priority += 15
-	
+
 	return {
 		"name": "BossDash",
 		"priority": priority,
@@ -202,40 +216,40 @@ func _evaluate_charge_punch() -> Dictionary:
 	var distance = get_distance_to_opponent()
 	var health_percent = get_health_percent()
 	var is_isshin = (name == "Boss3")
-	
+
 	var priority = 0.0
 	var available = (charge_punch_cooldown <= 0)
-	
+
 	if not available:
 		return {"name": "BossChargePunch", "priority": 0, "available": false}
-	
+
 	if distance > attack_distance * 1.5 and distance < 100:
 		priority += 65 * aggression
-	
+
 	if distance > 60:
 		if is_isshin:
 			priority += 40
 		else:
 			priority = 0
 			available = false
-	
+
 	if health_percent < 0.4:
 		priority += 50 * aggression
-	
+
 	var charge_success = successful_actions.get("BossChargePunch", 0)
 	if charge_success > 2:
 		priority += 25
-	
+
 	if action_history.size() >= 5:
 		var recent = action_history.slice(-5)
 		var charge_count = recent.filter(func(a): return a.name == "BossChargePunch").size()
 		if charge_count == 0:
 			priority += 20
-	
+
 	if distance < attack_distance:
 		priority = 0
 		available = false
-	
+
 	return {
 		"name": "BossChargePunch",
 		"priority": priority,
@@ -244,24 +258,24 @@ func _evaluate_charge_punch() -> Dictionary:
 
 func _evaluate_punch() -> Dictionary:
 	var distance = get_distance_to_opponent()
-	
+
 	var priority = 0.0
 	var available = (punch_cooldown <= 0 and distance <= attack_distance)
-	
+
 	if not available:
 		return {"name": "BossPunch", "priority": 0, "available": false}
-	
-	priority += 70 * aggression 
-	
+
+	priority += 70 * aggression
+
 	if time_since_damaged_player < 0.8:
-		priority += 50 
-	
+		priority += 50
+
 	var punch_success = successful_actions.get("BossPunch", 0)
 	if punch_success > 3:
 		priority += 20
 	elif punch_success < -2:
 		priority -= 20
-	
+
 	return {
 		"name": "BossPunch",
 		"priority": priority,
@@ -270,16 +284,16 @@ func _evaluate_punch() -> Dictionary:
 
 func _evaluate_counter() -> Dictionary:
 	var distance = get_distance_to_opponent()
-	
+
 	var priority = 0.0
 	var available = (punch_cooldown <= 0 and distance <= attack_distance)
-	
+
 	if not available:
 		return {"name": "BossPunch", "priority": 0, "available": false}
-	
+
 	if time_since_hit < 0.3:
 		priority += 100 * aggression
-	
+
 	if priority > 0:
 		return {
 			"name": "BossPunch",
@@ -292,20 +306,20 @@ func _evaluate_counter() -> Dictionary:
 
 func _evaluate_follow() -> Dictionary:
 	var distance = get_distance_to_opponent()
-	
+
 	var priority = 0.0
-	var available = true 
-	
+	var available = true
+
 	if distance > attack_distance:
 		priority = 35
-		
+
 		if distance > 100:
 			priority += 25
-	
+
 		priority += 20 * patience
 	else:
 		priority = 5
-	
+
 	return {
 		"name": "Follow",
 		"priority": priority,
@@ -320,9 +334,9 @@ func _record_action(action_name: String) -> void:
 		"distance": get_distance_to_opponent(),
 		"health": get_health_percent()
 	}
-	
+
 	action_history.append(record)
-	
+
 	if action_history.size() > 20:
 		action_history.pop_front()
 
@@ -342,12 +356,12 @@ func on_successful_hit() -> void:
 func _is_player_retreating() -> bool:
 	if opponent == null:
 		return false
-	
+
 	var distance = get_distance_to_opponent()
 	var prev_distance = get_meta("previous_distance", distance)
 	set_meta("previous_distance", distance)
-	
-	return distance > prev_distance + 2.0 
+
+	return distance > prev_distance + 2.0
 
 func _is_player_attacking() -> bool:
 	if opponent == null or not opponent.has_node("StateMachine"):
@@ -356,23 +370,22 @@ func _is_player_attacking() -> bool:
 	return opp_state in ["Punch", "ChargePunch"]
 
 
-
 func _on_health_changed(new_health: int) -> void:
 	var previous_health = get_meta("previous_health", new_health)
-	
+
 	if new_health < previous_health:
 		var damage = previous_health - new_health
 		on_damage_taken(damage)
-	
+
 	set_meta("previous_health", new_health)
 
 func on_damage_taken(amount: int) -> void:
 	consecutive_hits_taken += 1
 	time_since_hit = 0.0
-	
+
 	if get_health_percent() < 0.4:
 		caution = min(1.0, caution + 0.05)
-	
+
 	await get_tree().create_timer(1.5).timeout
 	if consecutive_hits_taken > 0:
 		consecutive_hits_taken -= 1
@@ -405,3 +418,11 @@ func get_health_percent() -> float:
 	if health_node == null or health_node.max_health == 0:
 		return 1.0
 	return float(health_node.current_health) / float(health_node.max_health)
+
+func apply_knockback(direction: Vector2, force: float, knockback_duration: float) -> void:
+	# Only apply knockback if not already in a heavier knockback.
+	# This prevents rapid repeated hits from compounding the slide distance.
+	if knockback_timer > knockback_duration:
+		return
+	knockback = direction * force
+	knockback_timer = knockback_duration

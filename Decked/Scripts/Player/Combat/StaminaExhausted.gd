@@ -1,7 +1,7 @@
 extends State
 class_name StaminaExhausted
 
-const SPEED_MULT: float = 0.4
+const SPEED_MULT: float = 0.5
 const BASE_SPEED: float = 50.0
 
 @export var player: CharacterBody2D
@@ -9,10 +9,18 @@ const BASE_SPEED: float = 50.0
 @export var input_prefix: String = ""
 
 func Enter() -> void:
+	if not animator.animation_finished.is_connected(_on_animation_finished):
+		animator.animation_finished.connect(_on_animation_finished)
 	animator.play("ConfusedStaggeredLoop")
 
 func Exit() -> void:
-	pass
+	if animator.animation_finished.is_connected(_on_animation_finished):
+		animator.animation_finished.disconnect(_on_animation_finished)
+	
+	
+func _on_animation_finished() -> void:
+	if animator.animation == "ConfusedStaggeredLoop":
+		animator.play("ConfusedStaggeredLoop")
 
 func Update(delta: float) -> void:
 	var stamina = _get_stamina()

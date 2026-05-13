@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=4 uid="uid://bdbei1j4q8wyb"]
+[gd_scene load_steps=44 format=4 uid="uid://bdbei1j4q8wyb"]
 
 [ext_resource type="Script" uid="uid://kctwi46bood" path="res://Decked/Scripts/Game Functions/2_player_mode.gd" id="1_2l5q1"]
 [ext_resource type="PackedScene" uid="uid://dr7g2fgmpq4ke" path="res://Decked/Scenes/Backgrounds/boxing_ring.tscn" id="1_6gek1"]
@@ -20,11 +20,6 @@
 [ext_resource type="Texture2D" uid="uid://b0t61686y6kw1" path="res://Decked/Assests/Backgrounds/brickGymTileSet (1).webp" id="11_q1fad"]
 [ext_resource type="Texture2D" uid="uid://b3em8ceri0gdx" path="res://Decked/Assests/Backgrounds/NPCS/scott.png" id="12_v0wns"]
 [ext_resource type="PackedScene" uid="uid://vlqgsj46nokx" path="res://Decked/Scenes/Misc/pause_menu.tscn" id="18_6vqcq"]
-[ext_resource type="Texture2D" uid="uid://hf5xscpps0dn" path="res://Decked/Assests/Backgrounds/NPCS/cheering (1).webp" id="19_mv325"]
-[ext_resource type="Texture2D" uid="uid://boamidvngxph5" path="res://Decked/Assests/Backgrounds/NPCS/goBlue.webp" id="20_gp1am"]
-[ext_resource type="Texture2D" uid="uid://dwcwbbvqsbaj4" path="res://Decked/Assests/Backgrounds/NPCS/goRed.webp" id="21_fgwqw"]
-[ext_resource type="Texture2D" uid="uid://2gpyp11o27wx" path="res://Decked/Assests/Backgrounds/NPCS/handsup.webp" id="22_6tpcs"]
-[ext_resource type="Texture2D" uid="uid://bplfb7otdftua" path="res://Decked/Assests/Backgrounds/NPCS/spinningGuy.webp" id="23_y6gqg"]
 [ext_resource type="PackedScene" uid="uid://b4t705wynmid7" path="res://Decked/Scenes/Backgrounds/score_counter.tscn" id="26_i7t12"]
 [ext_resource type="PackedScene" uid="uid://b0txwgeh3rvps" path="res://Decked/Scenes/Backgrounds/ready_go.tscn" id="27_tk7m7"]
 [ext_resource type="Texture2D" uid="uid://dvba3isyrgkub" path="res://Decked/Assests/Backgrounds/redKeyCap.webp" id="28_ynui0"]
@@ -158,167 +153,6 @@ sources/8 = SubResource("TileSetAtlasSource_gp1am")
 sources/9 = SubResource("TileSetAtlasSource_fgwqw")
 sources/10 = SubResource("TileSetAtlasSource_i7t12")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_madbs"]
-atlas = ExtResource("19_mv325")
-region = Rect2(0, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0c65d"]
-atlas = ExtResource("19_mv325")
-region = Rect2(48, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jhmbt"]
-atlas = ExtResource("19_mv325")
-region = Rect2(0, 48, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b1d1j"]
-atlas = ExtResource("20_gp1am")
-region = Rect2(0, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_baesd"]
-atlas = ExtResource("20_gp1am")
-region = Rect2(48, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1nr7k"]
-atlas = ExtResource("20_gp1am")
-region = Rect2(0, 48, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7vply"]
-atlas = ExtResource("20_gp1am")
-region = Rect2(48, 48, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qnw3e"]
-atlas = ExtResource("21_fgwqw")
-region = Rect2(0, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_271i7"]
-atlas = ExtResource("21_fgwqw")
-region = Rect2(48, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sgf82"]
-atlas = ExtResource("22_6tpcs")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nfats"]
-atlas = ExtResource("22_6tpcs")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_abrtw"]
-atlas = ExtResource("23_y6gqg")
-region = Rect2(0, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_td0gn"]
-atlas = ExtResource("23_y6gqg")
-region = Rect2(48, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dcgat"]
-atlas = ExtResource("23_y6gqg")
-region = Rect2(96, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1yrtn"]
-atlas = ExtResource("23_y6gqg")
-region = Rect2(0, 48, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wicaw"]
-atlas = ExtResource("23_y6gqg")
-region = Rect2(48, 48, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iggpr"]
-atlas = ExtResource("23_y6gqg")
-region = Rect2(96, 48, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_edbav"]
-atlas = ExtResource("23_y6gqg")
-region = Rect2(0, 96, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gpwqe"]
-atlas = ExtResource("23_y6gqg")
-region = Rect2(48, 96, 48, 48)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_08pyd"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_madbs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0c65d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jhmbt")
-}],
-"loop": true,
-"name": &"Cheer",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b1d1j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_baesd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1nr7k")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7vply")
-}],
-"loop": true,
-"name": &"Go Blue",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qnw3e")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_271i7")
-}],
-"loop": true,
-"name": &"Go Red",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sgf82")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nfats")
-}],
-"loop": true,
-"name": &"Hands Up",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_abrtw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_td0gn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dcgat")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1yrtn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wicaw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iggpr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_edbav")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gpwqe")
-}],
-"loop": true,
-"name": &"Spinning",
-"speed": 7.0
-}]
-
 [sub_resource type="LabelSettings" id="LabelSettings_i7t12"]
 font_color = Color(0.807843, 0.172549, 0.0431373, 1)
 shadow_color = Color(1, 1, 1, 1)
@@ -361,130 +195,46 @@ grow_vertical = 2
 
 [node name="Boxing Ring" parent="Control" instance=ExtResource("1_6gek1")]
 layout_mode = 1
-offset_left = -105.0
-offset_top = -127.0
-offset_right = -105.0
-offset_bottom = -127.0
+offset_left = -114.0
+offset_top = -113.0
+offset_right = -114.0
+offset_bottom = -113.0
 
 [node name="Player1" parent="Control/Boxing Ring" instance=ExtResource("2_g2bny")]
-position = Vector2(26.472, 200.576)
+position = Vector2(-38, 261)
 
 [node name="Player2" parent="Control/Boxing Ring" instance=ExtResource("3_gvo4n")]
-position = Vector2(199.972, 18.076)
+position = Vector2(261, -62)
+scale = Vector2(2, 2)
 
 [node name="HealthBarRed" parent="Control/Boxing Ring" node_paths=PackedStringArray("player") instance=ExtResource("6_u0qsw")]
-offset_left = -154.028
-offset_top = 197.576
-offset_right = -114.028
-offset_bottom = 237.576
+offset_left = -382.0
+offset_top = 248.0
+offset_right = -342.0
+offset_bottom = 288.0
+scale = Vector2(2, 2)
 player = NodePath("../Player1")
 
 [node name="HealthBarBlue" parent="Control/Boxing Ring" node_paths=PackedStringArray("player") instance=ExtResource("7_nard7")]
-offset_left = 237.972
-offset_top = -27.424
-offset_right = 277.972
-offset_bottom = 12.576
+offset_left = 321.0
+offset_top = -146.0
+offset_right = 361.0
+offset_bottom = -106.0
+scale = Vector2(2, 2)
 player = NodePath("../Player2")
 
 [node name="Camera2D" type="Camera2D" parent="Control/Boxing Ring"]
 position = Vector2(114.048, 113.724)
-zoom = Vector2(2, 2)
-
-[node name="Cheerers" type="Control" parent="Control/Boxing Ring"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/Boxing Ring/Cheerers"]
-position = Vector2(-21.7917, 85.9931)
-rotation = 1.5708
-sprite_frames = SubResource("SpriteFrames_08pyd")
-animation = &"Cheer"
-autoplay = "Cheer"
-frame_progress = 0.605241
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Control/Boxing Ring/Cheerers"]
-position = Vector2(-19.8832, 121.405)
-rotation = 1.5708
-sprite_frames = SubResource("SpriteFrames_08pyd")
-animation = &"Hands Up"
-autoplay = "Hands Up"
-
-[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Control/Boxing Ring/Cheerers"]
-position = Vector2(-19.6712, 156.393)
-rotation = 1.5708
-sprite_frames = SubResource("SpriteFrames_08pyd")
-animation = &"Cheer"
-autoplay = "Cheer"
-
-[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="Control/Boxing Ring/Cheerers"]
-position = Vector2(-43.7672, 101.543)
-rotation = 1.5708
-sprite_frames = SubResource("SpriteFrames_08pyd")
-animation = &"Hands Up"
-autoplay = "Hands Up"
-
-[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="Control/Boxing Ring/Cheerers"]
-position = Vector2(-49.5893, 139.871)
-rotation = 1.5708
-sprite_frames = SubResource("SpriteFrames_08pyd")
-animation = &"Cheer"
-autoplay = "Cheer"
-
-[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="Control/Boxing Ring/Cheerers"]
-position = Vector2(-94.9677, 82.1936)
-rotation = 1.5708
-sprite_frames = SubResource("SpriteFrames_08pyd")
-animation = &"Cheer"
-autoplay = "Cheer"
-
-[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="Control/Boxing Ring/Cheerers"]
-position = Vector2(-95.4809, 136.588)
-rotation = 1.5708
-sprite_frames = SubResource("SpriteFrames_08pyd")
-animation = &"Hands Up"
-autoplay = "Hands Up"
-
-[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="Control/Boxing Ring/Cheerers"]
-position = Vector2(-172.475, -4.36078)
-rotation = 1.5708
-sprite_frames = SubResource("SpriteFrames_08pyd")
-animation = &"Spinning"
-autoplay = "Spinning"
-
-[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="Control/Boxing Ring/Cheerers"]
-position = Vector2(-68.9798, 71.7055)
-sprite_frames = SubResource("SpriteFrames_08pyd")
-animation = &"Go Red"
-autoplay = "Go Red"
-
-[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="Control/Boxing Ring/Cheerers"]
-position = Vector2(-23.2129, 131.811)
-sprite_frames = SubResource("SpriteFrames_08pyd")
-animation = &"Go Blue"
-autoplay = "Go Blue"
-
-[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="Control/Boxing Ring/Cheerers"]
-position = Vector2(-50.5334, 107.905)
-sprite_frames = SubResource("SpriteFrames_08pyd")
-animation = &"Go Red"
-autoplay = "Go Red"
-
-[node name="AnimatedSprite2D12" type="AnimatedSprite2D" parent="Control/Boxing Ring/Cheerers"]
-position = Vector2(-49.5089, 164.254)
-sprite_frames = SubResource("SpriteFrames_08pyd")
-animation = &"Go Blue"
-autoplay = "Go Blue"
 
 [node name="StartGame" parent="Control/Boxing Ring" instance=ExtResource("27_tk7m7")]
 position = Vector2(114, 114)
 
 [node name="score_counter" parent="Control/Boxing Ring" instance=ExtResource("26_i7t12")]
 layout_mode = 0
-offset_left = 18.0
-offset_top = -23.0
-offset_right = 209.0
-offset_bottom = 0.0
+offset_left = 13.0
+offset_top = -124.0
+offset_right = 204.0
+offset_bottom = -101.0
 text = "2 Player"
 label_settings = SubResource("LabelSettings_i7t12")
 horizontal_alignment = 1
@@ -498,20 +248,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -329.0
-offset_top = -187.0
-offset_right = 823.0
-offset_bottom = 461.0
-scale = Vector2(0.585376, 0.539354)
+offset_left = -576.0
+offset_top = -328.0
+offset_right = 580.0
+offset_bottom = 382.0
+scale = Vector2(1, 0.921)
 
 [node name="WASD" type="Control" parent="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 343.0
-offset_top = 326.0
-offset_right = 386.0
-offset_bottom = 326.0
-scale = Vector2(0.303945, 0.303945)
+offset_left = 148.0
+offset_top = 266.0
+offset_right = 191.0
+offset_bottom = 266.0
 
 [node name="W" type="TextureRect" parent="Control/WASD"]
 layout_mode = 2
@@ -601,10 +350,10 @@ text = "Move With"
 [node name="Dash" type="Control" parent="Control/WASD"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -6.58022
-offset_top = -101.992
-offset_right = 33.4198
-offset_bottom = -61.9922
+offset_left = -12.5802
+offset_top = -118.992
+offset_right = 27.4198
+offset_bottom = -78.9922
 
 [node name="Label" type="Label" parent="Control/WASD/Dash"]
 layout_mode = 0
@@ -648,10 +397,10 @@ vertical_alignment = 1
 [node name="Punch" type="Control" parent="Control/WASD"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 98.702
-offset_top = 16.4504
-offset_right = 138.702
-offset_bottom = 56.4504
+offset_left = -11.298
+offset_top = -250.55
+offset_right = 28.702
+offset_bottom = -210.55
 
 [node name="Space" type="TextureRect" parent="Control/WASD/Punch"]
 layout_mode = 0
@@ -687,10 +436,10 @@ vertical_alignment = 1
 [node name="Shield" type="Control" parent="Control/WASD"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 101.992
-offset_top = -101.992
-offset_right = 141.992
-offset_bottom = -61.9922
+offset_left = -13.008
+offset_top = -374.992
+offset_right = 26.992
+offset_bottom = -334.992
 
 [node name="Label" type="Label" parent="Control/WASD/Shield"]
 layout_mode = 0
@@ -737,17 +486,16 @@ vertical_alignment = 1
 layout_mode = 3
 anchors_preset = 0
 offset_left = 737.0
-offset_top = 206.0
+offset_top = 308.0
 offset_right = 780.0
-offset_bottom = 206.0
-scale = Vector2(0.303945, 0.303945)
+offset_bottom = 308.0
 
 [node name="W" type="TextureRect" parent="Control/WASD2"]
 layout_mode = 2
-offset_left = -92.0
-offset_top = 139.0
-offset_right = -28.0
-offset_bottom = 203.0
+offset_left = 301.0
+offset_top = 199.0
+offset_right = 365.0
+offset_bottom = 263.0
 texture = ExtResource("30_v0wns")
 
 [node name="Label" type="Label" parent="Control/WASD2/W"]
@@ -763,10 +511,10 @@ vertical_alignment = 1
 
 [node name="A" type="TextureRect" parent="Control/WASD2"]
 layout_mode = 2
-offset_left = -124.0
-offset_top = 171.0
-offset_right = -60.0
-offset_bottom = 235.0
+offset_left = 269.0
+offset_top = 231.0
+offset_right = 333.0
+offset_bottom = 295.0
 texture = ExtResource("30_v0wns")
 
 [node name="Label" type="Label" parent="Control/WASD2/A"]
@@ -782,10 +530,10 @@ vertical_alignment = 1
 
 [node name="S" type="TextureRect" parent="Control/WASD2"]
 layout_mode = 2
-offset_left = -92.0
-offset_top = 171.0
-offset_right = -28.0
-offset_bottom = 235.0
+offset_left = 301.0
+offset_top = 231.0
+offset_right = 365.0
+offset_bottom = 295.0
 texture = ExtResource("30_v0wns")
 
 [node name="Label" type="Label" parent="Control/WASD2/S"]
@@ -801,10 +549,10 @@ vertical_alignment = 1
 
 [node name="D" type="TextureRect" parent="Control/WASD2"]
 layout_mode = 2
-offset_left = -60.0
-offset_top = 171.0
-offset_right = 4.0
-offset_bottom = 235.0
+offset_left = 333.0
+offset_top = 231.0
+offset_right = 397.0
+offset_bottom = 295.0
 texture = ExtResource("30_v0wns")
 
 [node name="Label" type="Label" parent="Control/WASD2/D"]
@@ -820,20 +568,20 @@ vertical_alignment = 1
 
 [node name="Label" type="Label" parent="Control/WASD2"]
 layout_mode = 0
-offset_left = -112.0
-offset_top = 130.0
-offset_right = -8.0
-offset_bottom = 153.0
+offset_left = 285.0
+offset_top = 189.0
+offset_right = 389.0
+offset_bottom = 212.0
 theme_override_fonts/font = ExtResource("29_f2sf3")
 text = "Move With"
 
 [node name="Dash" type="Control" parent="Control/WASD2"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -6.58022
-offset_top = -101.992
-offset_right = 33.4198
-offset_bottom = -61.9922
+offset_left = 380.0
+offset_top = -37.0
+offset_right = 420.0
+offset_bottom = 2.9998
 
 [node name="Label" type="Label" parent="Control/WASD2/Dash"]
 layout_mode = 0
@@ -877,10 +625,10 @@ vertical_alignment = 1
 [node name="Punch" type="Control" parent="Control/WASD2"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 121.733
-offset_top = 19.7402
-offset_right = 161.733
-offset_bottom = 59.7402
+offset_left = 382.0
+offset_top = -153.0
+offset_right = 422.0
+offset_bottom = -113.0
 
 [node name="Space" type="TextureRect" parent="Control/WASD2/Punch"]
 layout_mode = 0
@@ -916,10 +664,10 @@ vertical_alignment = 1
 [node name="Shield" type="Control" parent="Control/WASD2"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 121.733
-offset_top = -101.992
-offset_right = 161.733
-offset_bottom = -61.9924
+offset_left = 384.0
+offset_top = -258.0
+offset_right = 424.0
+offset_bottom = -218.0
 
 [node name="Label" type="Label" parent="Control/WASD2/Shield"]
 layout_mode = 0

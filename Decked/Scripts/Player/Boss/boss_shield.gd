@@ -105,19 +105,22 @@ func on_shield_hit():
 	blocked_hits += 1
 	var remaining = MAX_SHIELD_HITS - shieldHits
 	shield_hit.emit(remaining)
-	
+
+
+
 	if shieldHits >= 2 and owner.has_method("get_next_action"):
 		var aggression = owner.aggression if "aggression" in owner else 0.5
-		
 		if randf() < aggression * 0.5:
 			transition_state.emit(self, "BossPunch")
 			return
-	
+
 	if shieldHits >= MAX_SHIELD_HITS:
 		break_shield()
 
 func on_shield_interrupted():
-	break_shield()
+	# Charge punch breaks the block – boss is briefly stunned (ConfusedStagger)
+	cooldown_timer = SHIELD_COOLDOWN
+	transition_state.emit(self, "BossConfusedStagger")
 
 func Exit():
 	shielding.emit(false)

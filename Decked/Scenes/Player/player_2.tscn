@@ -1,14 +1,13 @@
-[gd_scene load_steps=105 format=3 uid="uid://cxviwmlnfjaw6"]
+[gd_scene load_steps=100 format=3 uid="uid://cxviwmlnfjaw6"]
 
 [ext_resource type="Script" uid="uid://bo48qlyfnoolv" path="res://Decked/Scripts/Player/player.gd" id="1_g6e5w"]
 [ext_resource type="Texture2D" uid="uid://jcv8k6p8f458" path="res://Decked/Assests/PlayerBody/Blue/ChargePunchAnimationBluegif.webp" id="1_wernh"]
-[ext_resource type="Script" uid="uid://e6rgke0v6idw" path="res://Decked/Scripts/Player/Functions/Stamina.gd" id="2_01tny"]
+[ext_resource type="Script" uid="uid://e6rgke0v6idw" path="res://Decked/Scripts/Player/Combat/Stamina.gd" id="2_01tny"]
 [ext_resource type="Texture2D" uid="uid://dif22tdeocoy5" path="res://Decked/Assests/Backgrounds/NPCS/whiteguy.webp" id="2_5f5mv"]
 [ext_resource type="Script" uid="uid://d0cgkch2xj4ff" path="res://Decked/Scripts/Player/Functions/Health.gd" id="2_vsavn"]
 [ext_resource type="Shader" uid="uid://csv8i78vr8dks" path="res://Decked/Assests/PlayerBody/Blue/Player2Flash.tres" id="3_alyxy"]
 [ext_resource type="AudioStream" uid="uid://bwrc3lpald45a" path="res://Decked/Assests/Sound/Sound Effects/ParryEffect.wav" id="3_rf0up"]
 [ext_resource type="Texture2D" uid="uid://cfby40kr1qhgh" path="res://Decked/Assests/PlayerBody/Blue/ConfusedFIXEDBLUE.webp" id="5_5f5mv"]
-[ext_resource type="Texture2D" uid="uid://dkscjevcwbdax" path="res://Decked/Assests/PlayerBody/Blue/StaggerFIXEDBlue.webp" id="5_p7p3p"]
 [ext_resource type="Texture2D" uid="uid://va2dcsfupas1" path="res://Decked/Assests/PlayerBody/Blue/deathAnimationBlue.webp" id="7_rf0up"]
 [ext_resource type="Script" uid="uid://h5acffb8kh4u" path="res://Decked/Scripts/Player/Combat/HurtBox.gd" id="8_2jrx8"]
 [ext_resource type="Texture2D" uid="uid://ct188aklo8fnw" path="res://Decked/Assests/PlayerBody/Blue/BlueRightPunch (1).webp" id="8_i4qkb"]
@@ -232,33 +231,17 @@ region = Rect2(256, 128, 128, 128)
 atlas = ExtResource("12_rf0up")
 region = Rect2(0, 256, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ypemn"]
-atlas = ExtResource("5_p7p3p")
+[sub_resource type="AtlasTexture" id="AtlasTexture_rf0up"]
+atlas = ExtResource("10_rf0up")
 region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rtw3w"]
-atlas = ExtResource("5_p7p3p")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypemn"]
+atlas = ExtResource("10_rf0up")
 region = Rect2(128, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t36dc"]
-atlas = ExtResource("5_p7p3p")
-region = Rect2(256, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dj84r"]
-atlas = ExtResource("5_p7p3p")
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtw3w"]
+atlas = ExtResource("10_rf0up")
 region = Rect2(0, 128, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mtkdg"]
-atlas = ExtResource("5_p7p3p")
-region = Rect2(128, 128, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3gxi1"]
-atlas = ExtResource("5_p7p3p")
-region = Rect2(256, 128, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vetid"]
-atlas = ExtResource("5_p7p3p")
-region = Rect2(0, 256, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jvpui"]
 animations = [{
@@ -445,25 +428,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_rf0up")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ypemn")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rtw3w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_t36dc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dj84r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mtkdg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3gxi1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vetid")
 }],
 "loop": false,
 "name": &"Stagger",
@@ -544,9 +515,7 @@ volume_db = 5.0
 [node name="AnimatedPlayerBody" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_alyxy")
 sprite_frames = SubResource("SpriteFrames_jvpui")
-animation = &"Death"
-frame = 14
-frame_progress = 1.0
+animation = &"Stagger"
 
 [node name="HitAnimationPlayer" type="AnimationPlayer" parent="."]
 

@@ -1,13 +1,11 @@
 extends Node2D
 
+@onready var ready_go_instance: AnimatedSprite2D = $StartGame
+
 func _ready():
 	MenuMusic.stop_music()
 	GameManager.current_mode = "Joe"
-	
-	var ready_go_scene = preload("res://Decked/Scenes/Backgrounds/ready_go.tscn")
-	var ready_go_instance = ready_go_scene.instantiate()
-	$Control.add_child(ready_go_instance)
-	
+
 	var player = $"Control/Boxing Ring/Player1"
 	var boss = $"Control/Boxing Ring/Boss1"
 	
