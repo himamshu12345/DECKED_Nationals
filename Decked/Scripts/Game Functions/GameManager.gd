@@ -5,43 +5,38 @@ var p2_cards = []
 var boss1_cards = []
 var boss2_cards = []
 var boss3_cards = []
-var p1_stats = {
-	"health_bonus": 0,
-	"damage_bonus": 0,
-	"speed_bonus": 0,
-	"dashspeed_bonus": 0,
-	"dashcooldown_bonus": 0
-}
-var p2_stats = {
-	"health_bonus": 0,
-	"damage_bonus": 0,
-	"speed_bonus": 0,
-	"dashspeed_bonus": 0,
-	"dashcooldown_bonus": 0
-}
-var boss1_stats = {
-	"health_bonus": 0,
-	"damage_bonus": 0,
-	"speed_bonus": 0,
-	"dashspeed_bonus": 0,
-	"dashcooldown_bonus": 0
-}
+var p1_stats = create_default_stats()
+var p2_stats = create_default_stats()
+var boss1_stats = create_default_stats()
+var boss2_stats = create_default_stats()
+var boss3_stats = create_default_stats()
 
-var boss2_stats = {
-	"health_bonus": 0,
-	"damage_bonus": 0,
-	"speed_bonus": 0,
-	"dashspeed_bonus": 0,
-	"dashcooldown_bonus": 0
-}
-
-var boss3_stats = {
-	"health_bonus": 0,
-	"damage_bonus": 0,
-	"speed_bonus": 0,
-	"dashspeed_bonus": 0,
-	"dashcooldown_bonus": 0
-}
+func create_default_stats() -> Dictionary:
+	return {
+		"dash_cooldown_buff": 1.0,
+		"max_health_buff": 1.0,
+		"move_speed_buff": 1.0,
+		"counter": 0.0,
+		"defense": 1.0,
+		"salad": 0.0,
+		"trickshot": 1.0,
+		"guardbreaker": 1.0,
+		"attack_speed_buff": 1.0,
+		"oiled_up": 0.0,
+		"vampire": 0.0,
+		"bob_and_weave": 0.0,
+		"unstoppable": 1.0,
+		"coup_de_gras": 1.0,
+		"charge_damage_buff": 1.0,
+		"charge_knockback_buff": 1.0,
+		"knockback_buff": 1.0,
+		"wizard_fistfight": 0.0,
+		"thorns": 0.0,
+		"habenero": 0.0,
+		"recycling": 0.0,
+		"bulldozer": 0.0,
+		"explosion": 0.0
+	}
 
 var all_cards = [
 	{

@@ -15,6 +15,8 @@ var chargeTime := 0.0
 var isCharging := false
 var punchReleased := false
 
+var buffs = owner.get_node_or_null("Buffs")
+
 
 func Enter(): 
 	chargeTime = 0.0

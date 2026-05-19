@@ -7,17 +7,12 @@ extends Node
 @export var parryAudio: AudioStreamPlayer2D
 
 var current_health: int
+var buffs = owner.get_node_or_null("Buffs")
 
 signal health_changed(current: int)
 
 func _ready() -> void:
-	if owner == null:
-		return
-	match owner.name:
-		"Player1":
-			max_health += GameManager.p1_stats.get("health_bonus", 0)
-		"Player2":
-			max_health += GameManager.p2_stats.get("health_bonus", 0)
+	max_health *= buffs.max_health_buff
 	current_health = max_health
 	health_changed.emit(current_health)
 
