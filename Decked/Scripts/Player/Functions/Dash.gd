@@ -19,6 +19,9 @@ var speed := DASH_SPEED
 var cooldown := DASH_COOLDOWN
 var time := DASH_TIME
 
+#Add to boss
+var buffs
+
 signal dash_ready
 signal dash_used
 
@@ -33,6 +36,7 @@ func _ready() -> void:
 		input_prefix + "down",
 	]
 	_cancel_detector.setup(_dir_actions)
+	buffs = owner.get_node_or_null("Buffs")
 
 func _process(delta: float) -> void:
 	if cooldown_timer > 0.0:
@@ -51,13 +55,9 @@ func Enter() -> void:
 
 	speed = DASH_SPEED
 	cooldown = DASH_COOLDOWN
-
-	if input_prefix == "":
-		speed += GameManager.p1_stats["dashspeed_bonus"]
-		cooldown -= GameManager.p1_stats["dashcooldown_bonus"]
-	else:
-		speed += GameManager.p2_stats["dashspeed_bonus"]
-		cooldown -= GameManager.p2_stats["dashcooldown_bonus"]
+	#Add to boss
+	speed *= buffs.dash_speed_buff
+	cooldown *= buffs.dash_cooldown_buff
 
 	var x_input: float = Input.get_axis(input_prefix + "left", input_prefix + "right")
 	var y_input: float = Input.get_axis(input_prefix + "up", input_prefix + "down")

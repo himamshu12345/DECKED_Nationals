@@ -1,8 +1,10 @@
 extends Node
 
 @export var dash_cooldown_buff: float = 1.0
+@export var dash_speed_buff: float = 1.0
 @export var max_health_buff: float = 1.0
 @export var move_speed_buff: float = 1.0
+@export var damage_buff: float = 1.0
 @export var counter: float = 0.0
 @export var defense: float = 1.0
 @export var salad: float = 0.0
@@ -23,6 +25,8 @@ extends Node
 @export var recycling: float = 0.0
 @export var bulldozer: float = 0.0
 @export var explosion: float = 0.0
+
+var trickshot_punch: bool = false
 
 func _ready() -> void:
 	if owner == null:

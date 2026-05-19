@@ -35,10 +35,9 @@ func Enter():
 	var stamina = _get_stamina()
 	if stamina:
 		stamina.pause_regen(true)
-	if input_prefix == "":
-		damage += GameManager.p1_stats["damage_bonus"]
-	else:
-		damage += GameManager.p2_stats["damage_bonus"]
+	
+	#add damage multiplier
+	
 	if not animator.animation_finished.is_connected(_on_animation_finished):
 		animator.animation_finished.connect(_on_animation_finished)
 

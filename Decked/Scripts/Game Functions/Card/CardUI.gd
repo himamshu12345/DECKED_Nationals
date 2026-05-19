@@ -11,14 +11,96 @@ func _ready():
 
 func _load_cards():
 	all_cards = [
+		{
+			"name": "Footwork",
+			"description": "-30% Dash Cooldown",
+			"rarity": "COMMON",
+			"buff_type": "dash_cooldown_buff",
+			"value": 0.7,
+			"icon_path": "res://Decked/Assests/Cards/Footwork.webp"
+		},
+		{
+			"name": "Hearty",
+			"description": "+50% Health",
+			"rarity": "Common",
+			"buff_type": "max_health_buff",
+			"value": 1.5,
+			"icon_path": "res://Decked/Assests/Cards/Heartyveiny.webp"
+		},
+		#Sprinting
+		{
+			"name": "Sprinting",
+			"description": "+100% Movement Speed",
+			"rarity": "COMMON",
+			"buff_type": "move_speed_buff",
+			"value": 2.0,
+			"icon_path": "res://Decked/Assests/Cards/Sprinting.webp"
+		},
+		{
+			"name": "Counter",
+			"description": "If Hit when blocking Deal Damage",
+			"rarity": "Common",
+			"buff_type": "counter",
+			"value": 1.1,
+			"icon_path": "res://Decked/Assests/Cards/Counter.webp"
+		},
 		#Hypeercalcemia
 		{
 			"name": "Hypercalcemia",
-			"description": "+50 health",
+			"description": "+30% defense",
 			"rarity": "UNCOMMON",
-			"buff_type": "Health",
-			"value": 50.0,
+			"buff_type": "defense",
+			"value": 0.7,
 			"icon_path": "res://Decked/Assests/Cards/Hypercalcemia-0003.webp"
+		},
+		{
+			"name": "Trickshot",
+			"description": "+100% Damage After a Succseful Parry",
+			"rarity": "COMMON",
+			"buff_type": "trickshot",
+			"value": 2.0,
+			"icon_path": "res://Decked/Assests/Cards/trickshot.webp"
+		},
+		{
+			"name": "Caffeinated",
+			"description": "+50% Movement and Attack Speed",
+			"rarity": "Common",
+			"buff_type": "Speed",
+			"value": 1.5,
+			"icon_path": "res://Decked/Assests/Cards/caffeinated.webp"
+		},
+		{
+			"name": "Weighted Gloves",
+			"description": "This feels Like Cheating",
+			"rarity": "Uncommon",
+			"buff_type": "Damage",
+			"value": 1.5,
+			"icon_path": "res://Decked/Assests/Cards/weightedGloves.webp"
+		},
+		#Vampire
+		{
+			"name": "Vampire",
+			"description": "+25% Leech",
+			"rarity": "UNCOMMON",
+			"buff_type": "Damage",
+			"value": 1.25,
+			"icon_path": "res://Decked/Assests/Cards/Vampire.webp"
+		},
+		{
+			"name": "Bob and Weave",
+			"description": "Chance to Dodge Hits",
+			"rarity": "Uncommon",
+			"buff_type": "DashCooldown",
+			"value": 1.1,
+			"icon_path": "res://Decked/Assests/Cards/Bob_N_Weave.webp"
+		},
+		{
+			"name": "Unstoppable",
+			"description": "+50% defense when below 33% health",
+			"rarity": "Uncommon",
+			"buff_type": "Health",
+			"value": 0.5,
+			"icon_path": "res://Decked/Assests/Cards/unstoppable.webp"
 		},
 		#Thorns
 		{
@@ -38,23 +120,13 @@ func _load_cards():
 			"value": 2.0,
 			"icon_path": "res://Decked/Assests/Cards/Habanero.webp"
 		},
-		#Vampire
 		{
-			"name": "Vampire",
-			"description": "+0.2 Damage",
-			"rarity": "UNCOMMON",
-			"buff_type": "Damage",
-			"value": 0.2,
-			"icon_path": "res://Decked/Assests/Cards/Vampire.webp"
-		},
-		#Sprinting
-		{
-			"name": "Sprinting",
-			"description": "+100 Movement Speed",
-			"rarity": "COMMON",
-			"buff_type": "Speed",
-			"value": 100.0,
-			"icon_path": "res://Decked/Assests/Cards/Sprinting.webp"
+			"name": "Ninja",
+			"description": "-75% Dash Cooldown",
+			"rarity": "LEGENDARY",
+			"buff_type": "DashCooldown",
+			"value": 1.5,
+			"icon_path": "res://Decked/Assests/Cards/Ninjawhitewashed.webp"
 		},
 		#Bulldozer
 		{
@@ -64,79 +136,7 @@ func _load_cards():
 			"buff_type": "Damage",
 			"value": 2.0,
 			"icon_path": "res://Decked/Assests/Cards/Bulldozer.webp"
-		},
-		{
-			"name": "Footwork",
-			"description": "-20% Dash Cooldown",
-			"rarity": "COMMON",
-			"buff_type": "DashCooldown",
-			"value": 0.4,
-			"icon_path": "res://Decked/Assests/Cards/Footwork.webp"
-		},
-		{
-			"name": "Ninja",
-			"description": "-75% Dash Cooldown",
-			"rarity": "LEGENDARY",
-			"buff_type": "DashCooldown",
-			"value": 1.5,
-			"icon_path": "res://Decked/Assests/Cards/Ninjawhitewashed.webp"
-		},
-		{
-			"name": "Caffeinated",
-			"description": "+100 movement speed",
-			"rarity": "Common",
-			"buff_type": "Speed",
-			"value": 100,
-			"icon_path": "res://Decked/Assests/Cards/caffeinated.webp"
-		},
-		{
-			"name": "Hearty",
-			"description": "+50 Health",
-			"rarity": "Common",
-			"buff_type": "Health",
-			"value": 50,
-			"icon_path": "res://Decked/Assests/Cards/Heartyveiny.webp"
-		},
-		{
-			"name": "Trickshot",
-			"description": "+50 Movement Speed",
-			"rarity": "COMMON",
-			"buff_type": "Speed",
-			"value": 50,
-			"icon_path": "res://Decked/Assests/Cards/trickshot.webp"
-		},
-		{
-			"name": "Unstoppable",
-			"description": "+50 Health",
-			"rarity": "Uncommon",
-			"buff_type": "Health",
-			"value": 50,
-			"icon_path": "res://Decked/Assests/Cards/unstoppable.webp"
-		},
-		{
-			"name": "Counter",
-			"description": "+0.2 Damage",
-			"rarity": "Common",
-			"buff_type": "Damage",
-			"value": 0.2,
-			"icon_path": "res://Decked/Assests/Cards/Counter.webp"
-		},
-		{
-			"name": "Bob and Weave",
-			"description": "-30% Dash Cooldown",
-			"rarity": "Uncommon",
-			"buff_type": "DashCooldown",
-			"value": 0.6,
-			"icon_path": "res://Decked/Assests/Cards/Bob_N_Weave.webp"
-		},
-		{
-			"name": "Weighted Gloves",
-			"description": "+0.5 Damage",
-			"rarity": "Uncommon",
-			"buff_type": "Damage",
-			"value": 0.5,
-			"icon_path": "res://Decked/Assests/Cards/weightedGloves.webp"
-		},
+		}
 	]
 
 func _generate_options():

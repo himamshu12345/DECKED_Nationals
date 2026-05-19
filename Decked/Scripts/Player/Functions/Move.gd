@@ -9,12 +9,16 @@ class_name Move
 @export var speed = 500
 @export var rotation_speed = 1.5 
 
+#Add to boss
+var buffs
+
+func _ready() -> void:
+	buffs = owner.get_node_or_null("Buffs")
+
 func Enter():
 	var base_speed = 50
-	if input_prefix == "":
-		speed = base_speed * (1.0 + GameManager.p1_stats["speed_bonus"] / 100.0)
-	else:
-		speed = base_speed * (1.0 + GameManager.p2_stats["speed_bonus"] / 100.0)
+	#Add to boss
+	speed = base_speed * buffs.move_speed_buff
 		
 	animator.play("Idle")
 	

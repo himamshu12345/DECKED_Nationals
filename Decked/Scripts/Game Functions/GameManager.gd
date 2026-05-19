@@ -16,26 +16,27 @@ func create_default_stats() -> Dictionary:
 		"dash_cooldown_buff": 1.0,
 		"max_health_buff": 1.0,
 		"move_speed_buff": 1.0,
-		"counter": 0.0,
+		"damage_buff": 1.0,
+		"counter": 1.0,
 		"defense": 1.0,
-		"salad": 0.0,
+		"salad": 1.0,
 		"trickshot": 1.0,
 		"guardbreaker": 1.0,
 		"attack_speed_buff": 1.0,
-		"oiled_up": 0.0,
-		"vampire": 0.0,
-		"bob_and_weave": 0.0,
+		"oiled_up": 1.0,
+		"vampire": 1.0,
+		"bob_and_weave": 1.0,
 		"unstoppable": 1.0,
 		"coup_de_gras": 1.0,
 		"charge_damage_buff": 1.0,
 		"charge_knockback_buff": 1.0,
 		"knockback_buff": 1.0,
-		"wizard_fistfight": 0.0,
-		"thorns": 0.0,
-		"habenero": 0.0,
-		"recycling": 0.0,
-		"bulldozer": 0.0,
-		"explosion": 0.0
+		"wizard_fistfight": 1.0,
+		"thorns": 1.0,
+		"habenero": 1.0,
+		"recycling": 1.0,
+		"bulldozer": 1.0,
+		"explosion": 1.0
 	}
 
 var all_cards = [
@@ -119,16 +120,56 @@ func apply_buff(player_id: int, mod_type: String, value: float):
 		target_stats = boss3_stats
 	
 	match mod_type:
-		"Health":
-			target_stats["health_bonus"] += value
-		"Damage":
-			target_stats["damage_bonus"] += value
-		"Speed":
-			target_stats["speed_bonus"] += value
-		"DashSpeed":
-			target_stats["dashspeed_bonus"] += value
-		"DashCooldown":
-			target_stats["dashcooldown_bonus"] += value
+		"dash_cooldown_buff": 
+			target_stats["dash_cooldown_buff"] *= value
+		"max_health_buff":
+			target_stats["max_health_buff"] *= value
+		"move_speed_buff":
+			target_stats["move_speed_buff"] *= value
+		"counter":
+			target_stats["counter"] *= value
+		"defense":
+			target_stats["defense"] *= value
+		"damage_buff":
+			target_stats["damage_buff"] *= value
+		"salad":
+			target_stats["salad"] *= value
+		"trickshot":
+			target_stats["trickshot"] *= value
+		"guardbreaker":
+			target_stats["guardbreaker"] *= value
+		"caffinated":
+			target_stats["caffinated"] *= value
+		"attack_speed_buff":
+			target_stats["attack_speed_buff"] *= value
+		"oiled_up":
+			target_stats["oiled_up"] *= value
+		"vampire":
+			target_stats["vampire"] *= value
+		"bob_and_weave":
+			target_stats["bob_and_weave"] *= value
+		"unstoppable":
+			target_stats["unstoppable"] *= value
+		"coup_de_gras":
+			target_stats["coup_de_gras"] *= value
+		"charge_damage_buff":
+			target_stats["charge_damage_buff"] *= value
+		"charge_knockback_buff":
+			target_stats["charge_knockback_buff"] *= value
+		"knockback_buff":
+			target_stats["knockback_buff"] *= value
+		"wizard_fistfight":
+			target_stats["wizard_fistfight"] *= value
+		"thorns":
+			target_stats["thorns"] *= value
+		"habenero":
+			target_stats["habenero"] *= value
+		"recycling":
+			target_stats["recycling"] *= value
+		"bulldozer":
+			target_stats["bulldozer"] *= value
+		"explosion":
+			target_stats["explosion"] *= value
 
 func add_card(player_id: int, card_data: Dictionary):
 	if player_id == 1:
@@ -322,15 +363,15 @@ func reset_game():
 	emit_signal("score_updated", p1_losses, p2_losses, boss1_losses, boss2_losses, boss3_losses)
 	
 	for key in p1_stats.keys():
-		p1_stats[key] = 0
+		p1_stats[key] = 1
 	for key in p2_stats.keys():
-		p2_stats[key] = 0
+		p2_stats[key] = 1
 	for key in boss1_stats.keys():
-		boss1_stats[key] = 0
+		boss1_stats[key] = 1
 	for key in boss2_stats.keys():
-		boss2_stats[key] = 0
+		boss2_stats[key] = 1
 	for key in boss3_stats.keys():
-		boss3_stats[key] = 0
+		boss3_stats[key] = 1
 
 func _on_player_vs_player_pressed() -> void:
 	go_to_level("2 Player")

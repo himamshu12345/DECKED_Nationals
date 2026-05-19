@@ -18,6 +18,12 @@ var is_attempting_parry: bool = false
 signal shield_ready
 signal shield_used
 
+#Add to boss
+var buffs
+
+func _ready() -> void:
+	buffs = owner.get_node_or_null("Buffs")
+
 func _process(delta):
 	if cooldown_timer > 0.0:
 		cooldown_timer -= delta

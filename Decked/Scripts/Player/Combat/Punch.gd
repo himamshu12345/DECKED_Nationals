@@ -15,7 +15,11 @@ var chargeTime := 0.0
 var isCharging := false
 var punchReleased := false
 
-var buffs = owner.get_node_or_null("Buffs")
+#Add to boss
+var buffs
+
+func _ready() -> void:
+	buffs = owner.get_node_or_null("Buffs")
 
 
 func Enter(): 
@@ -24,10 +28,7 @@ func Enter():
 	punchReleased = false
 
 	damage = BASE_DAMAGE
-	if input_prefix == "":
-		damage += GameManager.p1_stats["damage_bonus"]
-	else:
-		damage += GameManager.p2_stats["damage_bonus"]
+	damage *= buffs.damage_buff
 
 	if not player.animation_finished.is_connected(_on_animation_finished):
 		player.animation_finished.connect(_on_animation_finished)

@@ -7,12 +7,17 @@ extends Node
 @export var parryAudio: AudioStreamPlayer2D
 
 var current_health: int
-var buffs = owner.get_node_or_null("Buffs")
+
+#Add to Boss
+var buffs
 
 signal health_changed(current: int)
 
 func _ready() -> void:
+	#add to boss
+	buffs = owner.get_node_or_null("Buffs")
 	max_health *= buffs.max_health_buff
+	
 	current_health = max_health
 	health_changed.emit(current_health)
 
@@ -54,6 +59,7 @@ func take_damage(amount: int, enemy_state: String, attacker: Node = null) -> voi
 			return
 
 		# ── Blocked hit (no parry) ─────────────────────────────────────────
+		attacker.get_node_or_null("Health").take_damage(int(ceil(amount*(buffs.counter-1))),state_name,owner)
 		if enemy_state in ["ChargePunch", "BossChargePunch", "DummyCharging"]:
 			var shield_state = statemachine.current_state
 			shield_state.on_shield_interrupted()
@@ -82,7 +88,7 @@ func take_damage(amount: int, enemy_state: String, attacker: Node = null) -> voi
 		if statemachine.current_state.has_method("on_idle_hit"):
 			statemachine.current_state.on_idle_hit()
 
-	_apply_damage(amount)
+	_apply_damage(amount*buffs.defense)
 
 func _apply_damage(amount: int) -> void:
 	current_health = max(current_health - amount, 0)
