@@ -28,6 +28,7 @@
 [ext_resource type="Script" uid="uid://cfiotrl72ai5m" path="res://Decked/Scripts/Player/Combat/Shield.gd" id="13_ld0nm"]
 [ext_resource type="AudioStream" uid="uid://0je17xe5dgy0" path="res://Decked/Assests/Sound/Sound Effects/PunchEffect.wav" id="17_qe5sp"]
 [ext_resource type="Script" uid="uid://cbfmux35ubvni" path="res://addons/goutte.animated_shape_2d/animated_shape_2d.gd" id="18_0kpkt"]
+[ext_resource type="AudioStream" uid="uid://bvt04s42y5p0f" path="res://Decked/Assests/Sound/Sound Effects/dragon-studio-simple-whoosh-382724.mp3" id="18_02uw6"]
 [ext_resource type="Script" uid="uid://b38n4270pcp78" path="res://Decked/Scripts/Player/Combat/Death.gd" id="18_wxmr2"]
 [ext_resource type="Script" uid="uid://b7ikrseiomyi4" path="res://Decked/Scripts/Player/Combat/QuickStagger.gd" id="19_gt6ng"]
 [ext_resource type="Script" uid="uid://3tg1oj4uwigy" path="res://addons/goutte.animated_shape_2d/shape_frame_2d.gd" id="19_wxmr2"]
@@ -640,7 +641,7 @@ volume_db = 5.0
 [node name="AnimatedPlayerBody" type="AnimatedSprite2D" parent="." unique_id=1604313861]
 material = SubResource("ShaderMaterial_l7c70")
 sprite_frames = SubResource("SpriteFrames_xurk0")
-animation = &"ChargePunch"
+animation = &"Right Punch"
 
 [node name="HitAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1798110937]
 
@@ -666,10 +667,11 @@ rotation = 1.5708
 scale = Vector2(1.16, 1.16)
 shape = SubResource("CapsuleShape2D_qe5sp")
 
-[node name="HurtBox" type="Area2D" parent="." unique_id=537547494 node_paths=PackedStringArray("hitAudio")]
+[node name="HurtBox" type="Area2D" parent="." unique_id=537547494 node_paths=PackedStringArray("hitAudio", "whooshAudio")]
 visible = false
 script = ExtResource("8_womvn")
 hitAudio = NodePath("Hit")
+whooshAudio = NodePath("Whoosh")
 
 [node name="HurtBoxShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=975925790]
 position = Vector2(-0.5, 8.5)
@@ -679,6 +681,10 @@ debug_color = Color(0.693082, 0.496307, 0, 0.42)
 [node name="Hit" type="AudioStreamPlayer2D" parent="HurtBox" unique_id=918312627]
 stream = ExtResource("12_d4ral")
 volume_db = 15.0
+
+[node name="Whoosh" type="AudioStreamPlayer2D" parent="HurtBox" unique_id=1626790723]
+stream = ExtResource("18_02uw6")
+volume_db = 10.0
 
 [node name="HitBox" type="Area2D" parent="." unique_id=2070003102]
 script = ExtResource("9_a8s7n")

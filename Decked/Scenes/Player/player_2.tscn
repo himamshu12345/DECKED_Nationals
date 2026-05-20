@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://d3776evutpngo" path="res://Decked/Scripts/Player/Functions/Move.gd" id="12_ui78d"]
 [ext_resource type="Script" uid="uid://8b3toc6iwfh" path="res://Decked/Scripts/Player/Combat/Punch.gd" id="13_5cxmt"]
 [ext_resource type="Script" uid="uid://bjve2ednhskxd" path="res://Decked/Scripts/Player/Combat/ChargePunch.gd" id="15_024pl"]
+[ext_resource type="AudioStream" uid="uid://bvt04s42y5p0f" path="res://Decked/Assests/Sound/Sound Effects/dragon-studio-simple-whoosh-382724.mp3" id="15_vya14"]
 [ext_resource type="Script" uid="uid://cfiotrl72ai5m" path="res://Decked/Scripts/Player/Combat/Shield.gd" id="16_57myw"]
 [ext_resource type="AudioStream" uid="uid://0je17xe5dgy0" path="res://Decked/Assests/Sound/Sound Effects/PunchEffect.wav" id="17_5f5mv"]
 [ext_resource type="Script" uid="uid://cbfmux35ubvni" path="res://addons/goutte.animated_shape_2d/animated_shape_2d.gd" id="19_5cxmt"]
@@ -531,10 +532,11 @@ gravity = Vector2(0, 0)
 scale_amount_min = 2.0
 scale_amount_max = 2.0
 
-[node name="HurtBox" type="Area2D" parent="." unique_id=210392 node_paths=PackedStringArray("hitAudio")]
+[node name="HurtBox" type="Area2D" parent="." unique_id=210392 node_paths=PackedStringArray("hitAudio", "whooshAudio")]
 visible = false
 script = ExtResource("8_2jrx8")
 hitAudio = NodePath("Hit")
+whooshAudio = NodePath("Whoosh")
 
 [node name="HurtBoxShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=565126172]
 position = Vector2(-0.5, 4.5)
@@ -543,7 +545,10 @@ debug_color = Color(0.693082, 0.496307, 0, 0.42)
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="HurtBox" unique_id=278661062]
 stream = ExtResource("12_hag33")
-volume_db = 5.0
+volume_db = 10.0
+
+[node name="Whoosh" type="AudioStreamPlayer2D" parent="HurtBox" unique_id=1664740875]
+stream = ExtResource("15_vya14")
 
 [node name="HitBox" type="Area2D" parent="." unique_id=427405180]
 script = ExtResource("9_g6e5w")

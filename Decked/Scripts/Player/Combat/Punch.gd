@@ -56,7 +56,7 @@ func Update(delta: float):
 
 
 func perform_punch():
-	hitbox.damage = damage
+	hitbox.damage = damage*buffs.damage_buff
 
 	var anim := "Right Punch" if punchRightNext else "Left Punch"
 	punchRightNext = !punchRightNext

@@ -6,11 +6,15 @@ class_name Move
 @export var animator: AnimatedSprite2D
 @export var input_prefix := ""
 
-@export var speed = 500
+@export var speed = 700
 @export var rotation_speed = 1.5 
+@export var Accel = 0
+@export var Friction = 0
+@export var iceTimer = 0
 
 #Add to boss
 var buffs
+
 
 func _ready() -> void:
 	buffs = owner.get_node_or_null("Buffs")
@@ -35,18 +39,37 @@ func Update(_delta: float):
 	if(Input.is_action_just_pressed(dash)):
 		transition_state.emit(self, "Dash")
 
+
 func Physics_Update(delta: float):
 	var left = input_prefix + "left"
 	var right = input_prefix + "right"
 	var up = input_prefix + "up" 
 	var down = input_prefix + "down"
 	
+	if iceTimer > 0.0:
+		iceTimer -= delta
+		if iceTimer <= 0.0:
+			iceTimer = 0.0
+			Accel = 0
+			Friction = 0
+	
+	#add to boss
 	var direction = Input.get_vector(left, right, up, down)
-	if direction != Vector2.ZERO:
-		player.velocity = direction * speed
+	if Accel == 0 and Friction==0:
+		if direction != Vector2.ZERO:
+			player.velocity = direction * speed
+		else:
+			transition_state.emit(self, "Idle")
 	else:
-		transition_state.emit(self, "Idle")
-
+		if direction != Vector2.ZERO:
+			# Gradually accelerate towards max speed
+			player.velocity = player.velocity.lerp(direction * speed, Accel)
+		else:
+			# Gradually slide to a stop
+			player.velocity = player.velocity.lerp(direction * speed, Accel)
+		if player.velocity.length() < 1.0:
+			player.velocity = Vector2.ZERO
+			transition_state.emit(self, "Idle")
 	player.move_and_slide()
 	
 func on_charge_hit():

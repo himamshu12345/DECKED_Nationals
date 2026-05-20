@@ -144,7 +144,12 @@ func apply_buff(player_id: int, mod_type: String, value: float):
 		"attack_speed_buff":
 			target_stats["attack_speed_buff"] *= value
 		"oiled_up":
-			target_stats["oiled_up"] *= value
+			target_stats["oiled_up"] = min(target_stats["oiled_up"]*value,2)
+			target_stats["knockback_buff"] *= value
+		"weighted_gloves":
+			target_stats["attack_speed_buff"] *= 1-value
+			target_stats["damage_buff"] *= value
+			target_stats["knockback_buff"] *= value
 		"vampire":
 			target_stats["vampire"] *= value
 		"bob_and_weave":

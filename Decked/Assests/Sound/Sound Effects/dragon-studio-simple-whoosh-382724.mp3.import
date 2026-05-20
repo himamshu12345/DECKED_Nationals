@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bvt04s42y5p0f"
+path="res://.godot/imported/dragon-studio-simple-whoosh-382724.mp3-8579f1e025eb9a70ee7c7f4ab88d5ccc.mp3str"
+
+[deps]
+
+source_file="res://Decked/Assests/Sound/Sound Effects/dragon-studio-simple-whoosh-382724.mp3"
+dest_files=["res://.godot/imported/dragon-studio-simple-whoosh-382724.mp3-8579f1e025eb9a70ee7c7f4ab88d5ccc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -66,12 +66,12 @@ func take_damage(amount: int, enemy_state: String, attacker: Node = null) -> voi
 		if enemy_state in ["ChargePunch", "BossChargePunch", "DummyCharging"]:
 			var shield_state = statemachine.current_state
 			shield_state.on_shield_interrupted()
-			_apply_damage(amount)
+			_apply_damage(amount*buffs.defense)
 		else:
 			var shield_state = statemachine.current_state
 			shield_state.on_shield_hit()
 			var absorb = shield_state.BLOCK_ABSORB if shield_state is Shield else 0.5
-			_apply_damage(int(amount * absorb))
+			_apply_damage(int(amount * absorb*buffs.defense))
 		return
 
 	if state_name in ["ChargePunch", "BossChargePunch", "DummyCharging"]:
@@ -90,11 +90,17 @@ func take_damage(amount: int, enemy_state: String, attacker: Node = null) -> voi
 	if state_name in ["Idle", "DummyIdle", "BossIdle"] and enemy_state in ["Punch", "BossPunch"]:
 		if statemachine.current_state.has_method("on_idle_hit"):
 			statemachine.current_state.on_idle_hit()
-
-	_apply_damage(amount*buffs.defense)
+	
+	var damage = amount*buffs.defense
+	
+	if current_health*1.0/ max_health:
+		damage*= buffs.unstoppable
+	
+	_apply_damage(damage)
 
 func _apply_damage(amount: int) -> void:
 	current_health = max(current_health - amount, 0)
+	current_health = min(current_health,max_health)
 	health_changed.emit(current_health)
 	if current_health == 0:
 		if owner.name == "Dummy_Idle":

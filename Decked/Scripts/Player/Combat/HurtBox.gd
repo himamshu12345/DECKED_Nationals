@@ -6,12 +6,15 @@ var camera: Camera2D
 const HIT_EFFECT_LIGHT = preload("res://Decked/Scenes/Misc/punch_effect.tscn")
 const HIT_EFFECT_HEAVY = preload("res://Decked/Scenes/Misc/punch_effect_heavy.tscn")
 @export var hitAudio: AudioStreamPlayer2D
+@export var whooshAudio: AudioStreamPlayer2D
 
 # States in which the owner should not receive hit-processing (animation reset
 # / state re-entry would trap them in a loop).
 const INVULNERABLE_STATES := ["ConfusedStaggered", "StaminaExhausted", "Death", "BossConfusedStagger", "BossQuickStagger"]
+var buffs
 
 func _ready() -> void:
+	buffs = owner.get_node_or_null("Buffs")
 	area_entered.connect(_on_area_entered)
 	camera = get_viewport().get_camera_2d()
 
@@ -23,6 +26,13 @@ func _on_area_entered(area: Area2D) -> void:
 		var impact_position = (global_position + hitbox.global_position) / 2
 		var enemy = hitbox.owner
 		var enemy_state: String = ""
+		var enemy_buffs = enemy.get_node_or_null("Buffs")
+		
+		if randf() < enemy_buffs.oiled_up -1:
+			var EnemyMove = owner.get_node_or_null("StateMachine").get_node_or_null("Move")
+			EnemyMove.Accel = 0.05
+			EnemyMove.Friction = 0.000000001
+			EnemyMove.iceTimer = 5
 
 		if enemy and enemy.has_node("StateMachine"):
 			enemy_state = enemy.get_node("StateMachine").current_state.name
@@ -39,10 +49,15 @@ func _on_area_entered(area: Area2D) -> void:
 			if owner_state in INVULNERABLE_STATES:
 				return
 
+		if randf() < buffs.bob_and_weave - 1:
+			whooshAudio.play()
+			return
+
 		if health:
 			_play_animation(impact_position, hitbox.damage)
 			health.take_damage(hitbox.damage, enemy_state, enemy)
 			hitAudio.play()
+			enemy.get_node_or_null("Health")._apply_damage(-hitbox.damage*(enemy_buffs.vampire-1))
 
 		var knockback_direction = (owner.global_position - hitbox.owner.global_position).normalized()
 		owner.apply_knockback(knockback_direction, 50.0, 0.12)

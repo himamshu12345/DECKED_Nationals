@@ -81,8 +81,16 @@ func _load_cards():
 			"name": "Weighted Gloves",
 			"description": "This feels Like Cheating",
 			"rarity": "Uncommon",
-			"buff_type": "Damage",
+			"buff_type": "weighted_gloves",
 			"value": 1.5,
+			"icon_path": "res://Decked/Assests/Cards/weightedGloves.webp"
+		},
+		{
+			"name": "Oiled Up",
+			"description": "Now That's Just Weird",
+			"rarity": "Common",
+			"buff_type": "oiled_up",
+			"value": 1.3,
 			"icon_path": "res://Decked/Assests/Cards/weightedGloves.webp"
 		},
 		#Vampire
@@ -90,7 +98,7 @@ func _load_cards():
 			"name": "Vampire",
 			"description": "+25% Leech",
 			"rarity": "UNCOMMON",
-			"buff_type": "Damage",
+			"buff_type": "vampire",
 			"value": 1.25,
 			"icon_path": "res://Decked/Assests/Cards/Vampire.webp"
 		},
@@ -98,7 +106,7 @@ func _load_cards():
 			"name": "Bob and Weave",
 			"description": "Chance to Dodge Hits",
 			"rarity": "Uncommon",
-			"buff_type": "DashCooldown",
+			"buff_type": "bob_and_weave",
 			"value": 1.1,
 			"icon_path": "res://Decked/Assests/Cards/Bob_N_Weave.webp"
 		},
@@ -106,7 +114,7 @@ func _load_cards():
 			"name": "Unstoppable",
 			"description": "+50% defense when below 33% health",
 			"rarity": "Uncommon",
-			"buff_type": "Health",
+			"buff_type": "unstoppable",
 			"value": 0.5,
 			"icon_path": "res://Decked/Assests/Cards/unstoppable.webp"
 		},
