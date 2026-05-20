@@ -73,7 +73,7 @@ func _load_cards():
 			"name": "Caffeinated",
 			"description": "+50% Movement and Attack Speed",
 			"rarity": "Common",
-			"buff_type": "Speed",
+			"buff_type": "caffeinated",
 			"value": 1.5,
 			"icon_path": "res://Decked/Assests/Cards/caffeinated.webp"
 		},

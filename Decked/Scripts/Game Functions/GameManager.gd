@@ -138,8 +138,9 @@ func apply_buff(player_id: int, mod_type: String, value: float):
 			target_stats["trickshot"] *= value
 		"guardbreaker":
 			target_stats["guardbreaker"] *= value
-		"caffinated":
-			target_stats["caffinated"] *= value
+		"caffeinated":
+			target_stats["attack_speed_buff"] *= value
+			target_stats["move_speed_buff"] *= value
 		"attack_speed_buff":
 			target_stats["attack_speed_buff"] *= value
 		"oiled_up":

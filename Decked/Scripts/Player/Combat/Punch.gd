@@ -60,7 +60,8 @@ func perform_punch():
 
 	var anim := "Right Punch" if punchRightNext else "Left Punch"
 	punchRightNext = !punchRightNext
-
+	
+	player.speed_scale = buffs.attack_speed_buff
 	player.play(anim)
 	audio.play()
 	hitbox.enable()
