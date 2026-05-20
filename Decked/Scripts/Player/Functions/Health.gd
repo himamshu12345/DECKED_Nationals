@@ -93,8 +93,9 @@ func take_damage(amount: int, enemy_state: String, attacker: Node = null) -> voi
 	
 	var damage = amount*buffs.defense
 	
-	if current_health*1.0/ max_health:
+	if current_health*1.0/ max_health < 0.33:
 		damage*= buffs.unstoppable
+		damage*= enemy_buffs.coup_de_gras
 	
 	_apply_damage(damage)
 

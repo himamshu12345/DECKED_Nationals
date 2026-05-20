@@ -91,7 +91,7 @@ func _load_cards():
 			"rarity": "Common",
 			"buff_type": "oiled_up",
 			"value": 1.3,
-			"icon_path": "res://Decked/Assests/Cards/weightedGloves.webp"
+			"icon_path": "res://Decked/Assests/Cards/Oiled_Up.png"
 		},
 		#Vampire
 		{
@@ -117,6 +117,14 @@ func _load_cards():
 			"buff_type": "unstoppable",
 			"value": 0.5,
 			"icon_path": "res://Decked/Assests/Cards/unstoppable.webp"
+		},
+		{
+			"name": "Coup de Gras",
+			"description": "Kick Em When There Down",
+			"rarity": "Uncommon",
+			"buff_type": "coup_de_gras",
+			"value": 1.5,
+			"icon_path": "res://Decked/Assests/Cards/Coup_De_Gras.png"
 		},
 		#Thorns
 		{
