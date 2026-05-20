@@ -24,7 +24,9 @@ func _ready() -> void:
 func take_damage(amount: int, enemy_state: String, attacker: Node = null) -> void:
 	if statemachine == null or statemachine.current_state == null:
 		return
-
+	
+	var enemy_buffs = attacker.get_node_or_null("Buffs")
+	
 	var state_name := statemachine.current_state.name
 
 	# ── Already stunned — take raw damage only, don't extend the stagger ──
@@ -60,6 +62,7 @@ func take_damage(amount: int, enemy_state: String, attacker: Node = null) -> voi
 
 		# ── Blocked hit (no parry) ─────────────────────────────────────────
 		attacker.get_node_or_null("Health").take_damage(int(ceil(amount*(buffs.counter-1))),state_name,owner)
+		amount*=enemy_buffs.guardbreaker
 		if enemy_state in ["ChargePunch", "BossChargePunch", "DummyCharging"]:
 			var shield_state = statemachine.current_state
 			shield_state.on_shield_interrupted()

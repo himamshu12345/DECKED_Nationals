@@ -62,6 +62,14 @@ func _load_cards():
 			"icon_path": "res://Decked/Assests/Cards/trickshot.webp"
 		},
 		{
+			"name": "Guardbreaker",
+			"description": "More Damage to Blocking Targets",
+			"rarity": "RARE",
+			"buff_type": "guardbreaker",
+			"value": 1.5,
+			"icon_path": "res://Decked/Assests/Cards/Guardbreaker.png"
+		},
+		{
 			"name": "Caffeinated",
 			"description": "+50% Movement and Attack Speed",
 			"rarity": "Common",
