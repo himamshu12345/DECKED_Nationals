@@ -24,6 +24,11 @@ var canShoot := false
 var _charge_frame_timer := 0.0
 const CHARGE_FRAME_INTERVAL := 0.15
 
+var buffs
+
+func _ready() -> void:
+	buffs = owner.get_node_or_null("Buffs")
+
 func Enter():
 	punchReleased = false
 	chargeFrames = 0
@@ -88,7 +93,8 @@ func break_charge():
 	transition_state.emit(self, "QuickStagger")
 
 func perform_punch():
-	hitbox.damage = damage + (chargeLevel * DAMAGE_PER_LEVEL)
+	hitbox.damage = (damage + (chargeLevel * DAMAGE_PER_LEVEL))*buffs.charge_damage_buff
+	hitbox.knockback_multiplier *= buffs.charge_knockback_buff
 	animator.play("Right Punch")
 	animator.frame = 3
 	hitbox.enable()

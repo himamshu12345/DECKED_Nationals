@@ -6,9 +6,9 @@ extends State
 @export var sprite: Node2D
 @export var audio: AudioStreamPlayer2D
 
-const DASH_SPEED: float = 100
+const DASH_SPEED: float = 200
 const DASH_TIME: float = 1
-const DASH_COOLDOWN: float = 2
+const DASH_COOLDOWN: float = 4
 const TRAIL_INTERVAL := 0.06
 
 var dash_timer: float = 0.0

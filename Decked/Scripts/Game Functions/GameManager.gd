@@ -158,6 +158,9 @@ func apply_buff(player_id: int, mod_type: String, value: float):
 			target_stats["unstoppable"] *= value
 		"coup_de_gras":
 			target_stats["coup_de_gras"] *= value
+		"uppercut":
+			target_stats["charge_damage_buff"] *= value
+			target_stats["charge_knockback_buff"] *= value
 		"charge_damage_buff":
 			target_stats["charge_damage_buff"] *= value
 		"charge_knockback_buff":
@@ -170,6 +173,10 @@ func apply_buff(player_id: int, mod_type: String, value: float):
 			target_stats["thorns"] *= value
 		"habenero":
 			target_stats["habenero"] *= value
+		"ninja":
+			target_stats["move_speed_buff"] *= value
+			target_stats["dash_cooldown_buff"] *= value
+			target_stats["damage_buff"] *= value
 		"recycling":
 			target_stats["recycling"] *= value
 		"bulldozer":

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dlf2vg1l4skk0"]
+
+[ext_resource type="Script" uid="uid://castr7t4i3110" path="res://Decked/Scripts/Player/Combat/fire_circle.gd" id="1_xpv6s"]
+[ext_resource type="Script" uid="uid://4wx1addtmbo8" path="res://Decked/Scripts/Player/Combat/fire_effect_circle.gd" id="2_00l6k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s6g1r"]
+radius = 50.635956
+
+[node name="FireCircle" type="Node2D" unique_id=924343898]
+script = ExtResource("1_xpv6s")
+
+[node name="EffectCircle" type="Area2D" parent="." unique_id=1045496785]
+z_index = 5
+script = ExtResource("2_00l6k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EffectCircle" unique_id=767803328]
+shape = SubResource("CircleShape2D_s6g1r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1421836599]
+visible = false
+
+[connection signal="area_entered" from="EffectCircle" to="EffectCircle" method="_on_area_entered"]
+[connection signal="area_exited" from="EffectCircle" to="EffectCircle" method="_on_area_exited"]

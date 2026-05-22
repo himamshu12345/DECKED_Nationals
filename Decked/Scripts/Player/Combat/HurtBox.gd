@@ -5,6 +5,7 @@ var camera: Camera2D
 
 const HIT_EFFECT_LIGHT = preload("res://Decked/Scenes/Misc/punch_effect.tscn")
 const HIT_EFFECT_HEAVY = preload("res://Decked/Scenes/Misc/punch_effect_heavy.tscn")
+const FireCircle = preload("res://Decked/Scenes/Misc/FireCircle.tscn")
 @export var hitAudio: AudioStreamPlayer2D
 @export var whooshAudio: AudioStreamPlayer2D
 
@@ -27,6 +28,13 @@ func _on_area_entered(area: Area2D) -> void:
 		var enemy = hitbox.owner
 		var enemy_state: String = ""
 		var enemy_buffs = enemy.get_node_or_null("Buffs")
+		
+		if enemy_buffs.habenero > 1:
+			var circle = FireCircle.instantiate()
+			owner.owner.call_deferred("add_child", circle)
+			circle.global_position = impact_position
+			print("Made a fire circle")
+			circle.get_node_or_null("EffectCircle").damageRate = 1 / enemy_buffs.habenero
 		
 		if randf() < enemy_buffs.oiled_up -1:
 			var EnemyMove = owner.get_node_or_null("StateMachine").get_node_or_null("Move")
@@ -57,7 +65,9 @@ func _on_area_entered(area: Area2D) -> void:
 			_play_animation(impact_position, hitbox.damage)
 			health.take_damage(hitbox.damage, enemy_state, enemy)
 			hitAudio.play()
-			enemy.get_node_or_null("Health")._apply_damage(-hitbox.damage*(enemy_buffs.vampire-1))
+			var enemyHealth = enemy.get_node_or_null("Health")
+			enemyHealth._apply_damage(-hitbox.damage*(enemy_buffs.vampire-1))
+			enemyHealth._apply_damage(hitbox.damage*(buffs.thorns-1))
 
 		var knockback_direction = (owner.global_position - hitbox.owner.global_position).normalized()
 		owner.apply_knockback(knockback_direction, 50.0, 0.12)

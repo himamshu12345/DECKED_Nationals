@@ -107,7 +107,7 @@ func _load_cards():
 			"description": "Chance to Dodge Hits",
 			"rarity": "Uncommon",
 			"buff_type": "bob_and_weave",
-			"value": 1.1,
+			"value": 1.2,
 			"icon_path": "res://Decked/Assests/Cards/Bob_N_Weave.webp"
 		},
 		{
@@ -126,30 +126,38 @@ func _load_cards():
 			"value": 1.5,
 			"icon_path": "res://Decked/Assests/Cards/Coup_De_Gras.png"
 		},
+		{
+			"name": "Uppercut",
+			"description": "+50% Damage and Knockback with Charge Punches",
+			"rarity": "Uncommon",
+			"buff_type": "uppercut",
+			"value": 1.5,
+			"icon_path": "res://Decked/Assests/Cards/Uppercut.png"
+		},
 		#Thorns
 		{
 			"name": "Thorns",
-			"description": "+1 Damage",
+			"description": "Actions have Repercussions",
 			"rarity": "RARE",
-			"buff_type": "Damage",
-			"value": 1,
+			"buff_type": "thorns",
+			"value": 1.5,
 			"icon_path": "res://Decked/Assests/Cards/Thorns.webp"
 		},
 		#Habanero
 		{
 			"name": "Habanero",
-			"description": "+2 Damage",
+			"description": "Become...       Spicy",
 			"rarity": "LEGENDARY",
-			"buff_type": "Damage",
-			"value": 2.0,
+			"buff_type": "habanero",
+			"value": 1.5,
 			"icon_path": "res://Decked/Assests/Cards/Habanero.webp"
 		},
 		{
 			"name": "Ninja",
-			"description": "-75% Dash Cooldown",
+			"description": "Study With the Monks",
 			"rarity": "LEGENDARY",
-			"buff_type": "DashCooldown",
-			"value": 1.5,
+			"buff_type": "ninja",
+			"value": 2.0,
 			"icon_path": "res://Decked/Assests/Cards/Ninjawhitewashed.webp"
 		},
 		#Bulldozer
