@@ -25,7 +25,7 @@ func _load_cards():
 			"rarity": "Common",
 			"buff_type": "max_health_buff",
 			"value": 1.5,
-			"icon_path": "res://Decked/Assests/Cards/Heartyveiny.webp"
+			"icon_path": "res://Decked/Assests/Cards/Hearty.png"
 		},
 		#Sprinting
 		{
@@ -163,11 +163,21 @@ func _load_cards():
 		#Bulldozer
 		{
 			"name": "Bulldozer",
-			"description": "+2 damages",
+			"description": "Truck dem Kids",
 			"rarity": "LEGENDARY",
-			"buff_type": "Damage",
-			"value": 2.0,
+			"buff_type": "bulldozer",
+			"value": 1.05,
 			"icon_path": "res://Decked/Assests/Cards/Bulldozer.webp"
+		}
+		,
+		#Bulldozer
+		{
+			"name": "Explosive Force",
+			"description": "Now this is Just Illegal",
+			"rarity": "LEGENDARY",
+			"buff_type": "explosion",
+			"value": 2.0,
+			"icon_path": "res://Decked/Assests/Cards/explosive_force.png"
 		}
 	]
 

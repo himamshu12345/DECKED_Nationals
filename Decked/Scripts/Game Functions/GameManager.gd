@@ -36,7 +36,7 @@ func create_default_stats() -> Dictionary:
 		"habenero": 1.0,
 		"recycling": 1.0,
 		"bulldozer": 1.0,
-		"explosion": 1.0
+		"explosion": 2.0
 	}
 
 var all_cards = [

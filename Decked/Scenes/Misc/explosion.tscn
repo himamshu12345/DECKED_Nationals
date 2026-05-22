@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://b6yh3wvnsmntp"]
+
+[ext_resource type="Texture2D" uid="uid://d2nktlcw8r37w" path="res://Decked/Assests/Effects/EXPLOSION.png" id="1_0t4ed"]
+[ext_resource type="Script" uid="uid://6qelfknxhbq5" path="res://Decked/Scripts/Player/Combat/explosion.gd" id="2_f1hoo"]
+[ext_resource type="AudioStream" uid="uid://cdyfj64e56gt" path="res://Decked/Assests/Sound/Sound Effects/freesound_community-medium-explosion-40472.mp3" id="3_bvcu2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffn6h"]
+atlas = ExtResource("1_0t4ed")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vehb"]
+atlas = ExtResource("1_0t4ed")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgvnd"]
+atlas = ExtResource("1_0t4ed")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmaq6"]
+atlas = ExtResource("1_0t4ed")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkqta"]
+atlas = ExtResource("1_0t4ed")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xs3i"]
+atlas = ExtResource("1_0t4ed")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7y2c"]
+atlas = ExtResource("1_0t4ed")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n22f4"]
+atlas = ExtResource("1_0t4ed")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uw7hl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffn6h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vehb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgvnd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmaq6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkqta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xs3i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7y2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n22f4")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="Explosion" type="AnimatedSprite2D" unique_id=423995166]
+sprite_frames = SubResource("SpriteFrames_uw7hl")
+frame = 7
+frame_progress = 1.0
+script = ExtResource("2_f1hoo")
+
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="." unique_id=1653845437]
+stream = ExtResource("3_bvcu2")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

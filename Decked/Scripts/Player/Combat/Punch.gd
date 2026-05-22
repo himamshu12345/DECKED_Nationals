@@ -28,7 +28,8 @@ func Enter():
 	punchReleased = false
 
 	damage = BASE_DAMAGE
-	damage *= buffs.damage_buff
+	damage += (buffs.bulldozer - 1)*owner.get_node_or_null("Health").max_health
+	damage *= buffs.damage_buff * buffs.explosion
 
 	if not player.animation_finished.is_connected(_on_animation_finished):
 		player.animation_finished.connect(_on_animation_finished)

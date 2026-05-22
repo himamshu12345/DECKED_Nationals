@@ -13,7 +13,8 @@ func _ready() -> void:
 	buffs = owner.get_node_or_null("Buffs")
 
 func get_knockback_force() -> float:
-	return damage * knockback_multiplier *  buffs.knockback_buff
+	var knockback = damage * knockback_multiplier *  buffs.knockback_buff * buffs.explosion * buffs.explosion * buffs.explosion 
+	return knockback + owner.get_node_or_null("Health").max_health * buffs.bulldozer/5
 
 func enable():
 	enabled = true

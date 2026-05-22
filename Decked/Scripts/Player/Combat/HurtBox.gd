@@ -5,6 +5,7 @@ var camera: Camera2D
 
 const HIT_EFFECT_LIGHT = preload("res://Decked/Scenes/Misc/punch_effect.tscn")
 const HIT_EFFECT_HEAVY = preload("res://Decked/Scenes/Misc/punch_effect_heavy.tscn")
+const explosionHit = preload("res://Decked/Scenes/Misc/explosion.tscn")
 const FireCircle = preload("res://Decked/Scenes/Misc/FireCircle.tscn")
 @export var hitAudio: AudioStreamPlayer2D
 @export var whooshAudio: AudioStreamPlayer2D
@@ -62,7 +63,7 @@ func _on_area_entered(area: Area2D) -> void:
 			return
 
 		if health:
-			_play_animation(impact_position, hitbox.damage)
+			_play_animation(impact_position, hitbox.damage,enemy_buffs)
 			health.take_damage(hitbox.damage, enemy_state, enemy)
 			hitAudio.play()
 			var enemyHealth = enemy.get_node_or_null("Health")
@@ -70,10 +71,16 @@ func _on_area_entered(area: Area2D) -> void:
 			enemyHealth._apply_damage(hitbox.damage*(buffs.thorns-1))
 
 		var knockback_direction = (owner.global_position - hitbox.owner.global_position).normalized()
-		owner.apply_knockback(knockback_direction, 50.0, 0.12)
+		owner.apply_knockback(knockback_direction, hitbox.get_knockback_force(), 0.12)
 
-func _play_animation(impact_position: Vector2, damage: int) -> void:
-	var effect_scene = HIT_EFFECT_HEAVY if damage > 10 else HIT_EFFECT_LIGHT
+func _play_animation(impact_position: Vector2, damage: int, enemyBuffs: Node) -> void:
+	var effect_scene
+	if enemyBuffs.explosion > 1:
+		effect_scene = explosionHit
+	elif damage > 10:
+		effect_scene = HIT_EFFECT_HEAVY
+	else:
+		effect_scene = HIT_EFFECT_LIGHT
 
 	var effect = effect_scene.instantiate()
 	get_tree().current_scene.add_child(effect)
