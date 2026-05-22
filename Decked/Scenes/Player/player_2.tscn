@@ -493,6 +493,7 @@ animations = [{
 }]
 
 [node name="Player2" type="CharacterBody2D" unique_id=1684394215]
+z_index = 2
 script = ExtResource("1_g6e5w")
 
 [node name="Stamina" type="Node" parent="." unique_id=1952731302]

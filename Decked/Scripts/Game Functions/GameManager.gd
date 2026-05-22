@@ -10,6 +10,7 @@ var p2_stats = create_default_stats()
 var boss1_stats = create_default_stats()
 var boss2_stats = create_default_stats()
 var boss3_stats = create_default_stats()
+var fireCircle = null
 
 func create_default_stats() -> Dictionary:
 	return {
@@ -211,6 +212,13 @@ func get_buffs(player_id: int) -> Dictionary:
 		return boss3_stats
 	else:
 		return {}
+
+func newFireCircle(circle: Node2D):
+	call_deferred("add_child",circle)
+	if fireCircle != null:
+		fireCircle.queue_free()
+		print("deleted old circle")
+	fireCircle = circle
 
 func give_boss_random_card(boss):
 	if all_cards.size() == 0:

@@ -32,10 +32,10 @@ func _on_area_entered(area: Area2D) -> void:
 		
 		if enemy_buffs.habenero > 1:
 			var circle = FireCircle.instantiate()
-			owner.owner.call_deferred("add_child", circle)
+			GameManager.newFireCircle(circle)
 			circle.global_position = impact_position
 			print("Made a fire circle")
-			circle.get_node_or_null("EffectCircle").damageRate = 1 / enemy_buffs.habenero
+			circle.get_node_or_null("EffectCircle").damageRate /= enemy_buffs.habenero
 		
 		if randf() < enemy_buffs.oiled_up -1:
 			var EnemyMove = owner.get_node_or_null("StateMachine").get_node_or_null("Move")

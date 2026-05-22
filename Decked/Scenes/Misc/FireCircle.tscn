@@ -2,22 +2,45 @@
 
 [ext_resource type="Script" uid="uid://castr7t4i3110" path="res://Decked/Scripts/Player/Combat/fire_circle.gd" id="1_xpv6s"]
 [ext_resource type="Script" uid="uid://4wx1addtmbo8" path="res://Decked/Scripts/Player/Combat/fire_effect_circle.gd" id="2_00l6k"]
+[ext_resource type="Texture2D" uid="uid://v0jnk4w5e6ft" path="res://Decked/Assests/Effects/HurtCircle.png" id="3_p2vvg"]
+[ext_resource type="AudioStream" uid="uid://bxpf54q3l0lmf" path="res://Decked/Assests/Sound/Sound Effects/HitSound.wav" id="3_ucc1v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s6g1r"]
 radius = 50.635956
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_ucc1v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_p2vvg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="FireCircle" type="Node2D" unique_id=924343898]
 script = ExtResource("1_xpv6s")
 
-[node name="EffectCircle" type="Area2D" parent="." unique_id=1045496785]
+[node name="EffectCircle" type="Area2D" parent="." unique_id=1045496785 node_paths=PackedStringArray("hitAudio")]
 z_index = 5
 script = ExtResource("2_00l6k")
+hitAudio = NodePath("AudioStreamPlayer2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EffectCircle" unique_id=767803328]
+visible = false
 shape = SubResource("CircleShape2D_s6g1r")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1421836599]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="EffectCircle" unique_id=1318975629]
 visible = false
+stream = ExtResource("3_ucc1v")
+volume_db = 15.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1421836599]
+z_index = 1
+position = Vector2(2, 1.1920929e-07)
+scale = Vector2(2.0285711, 2.0285711)
+sprite_frames = SubResource("SpriteFrames_ucc1v")
 
 [connection signal="area_entered" from="EffectCircle" to="EffectCircle" method="_on_area_entered"]
 [connection signal="area_exited" from="EffectCircle" to="EffectCircle" method="_on_area_exited"]

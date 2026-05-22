@@ -2,8 +2,9 @@ extends Area2D
 
 var players = []
 var timers = []
-var damage = 1
-@export var damageRate = 0.8
+var damage = 3
+@export var damageRate = 0.5
+@export var hitAudio: AudioStreamPlayer2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,6 +17,7 @@ func _process(delta: float) -> void:
 		if timers[index] >= damageRate:
 			timers[index] = 0
 			players[index].get_node_or_null("Health")._apply_damage(damage)
+			hitAudio.play()
 
 
 func _on_area_entered(area: Area2D) -> void:
