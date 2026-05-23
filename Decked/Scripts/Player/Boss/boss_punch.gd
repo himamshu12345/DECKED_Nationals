@@ -12,11 +12,15 @@ var is_attacking: bool = false
 var animation_done: bool = false
 var hit_landed: bool = false
 
+var buffs
+
+func _ready() -> void:
+	buffs = owner.get_node_or_null("Buffs")
+
 func Enter():
 	is_attacking = false
 	animation_done = false
 	hit_landed = false
-	damage += GameManager.boss1_stats["damage_bonus"]
 	if not animator.animation_finished.is_connected(_on_animation_finished):
 		animator.animation_finished.connect(_on_animation_finished)
 	
@@ -32,9 +36,12 @@ func perform_punch():
 	
 	if hitbox:
 		hitbox.damage = damage
+		hitbox.damage += (buffs.bulldozer - 1)*owner.get_node_or_null("Health").max_health
+		hitbox.damage *= buffs.damage_buff * buffs.explosion
 	
 	var anim := "Right Punch" if punchRightNext else "Left Punch"
 	punchRightNext = !punchRightNext
+	animator.speed_scale = buffs.attack_speed_buff
 	animator.play(anim)
 	
 	if hitbox:

@@ -30,6 +30,11 @@ var hit_landed := false
 var can_shoot := false
 var _charge_frame_timer := 0.0
 
+var buffs
+
+func _ready() -> void:
+	buffs = owner.get_node_or_null("Buffs")
+
 func Enter():
 	charge_released = false
 	chargeFrames = 0.0
@@ -45,8 +50,8 @@ func Enter():
 	else:
 		can_shoot = false
 
-	damage = BASE_DAMAGE + GameManager.boss1_stats.get("damage_bonus", 0)
-
+	damage = BASE_DAMAGE
+	
 	target_charge_level = _calculate_target_charge()
 
 	animator.play("ChargePunch")
@@ -115,7 +120,8 @@ func perform_punch():
 	var final_damage = damage + (chargeLevel * DAMAGE_PER_LEVEL)
 
 	if hitbox:
-		hitbox.damage = final_damage
+		hitbox.damage = (final_damage + (chargeLevel * DAMAGE_PER_LEVEL))*buffs.charge_damage_buff
+		hitbox.knockback_multiplier *= buffs.charge_knockback_buff
 
 	animator.play("Right Punch")
 	animator.frame = 3

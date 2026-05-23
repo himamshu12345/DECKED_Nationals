@@ -23,6 +23,11 @@ var blocked_hits: int = 0
 signal shield_ready
 signal shield_used
 
+var buffs
+
+func _ready() -> void:
+	buffs = owner.get_node_or_null("Buffs")
+
 func _process(delta):
 	if cooldown_timer > 0.0:
 		cooldown_timer -= delta

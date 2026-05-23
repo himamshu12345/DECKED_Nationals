@@ -90,7 +90,7 @@ func _load_cards():
 			"description": "Now That's Just Weird",
 			"rarity": "Common",
 			"buff_type": "oiled_up",
-			"value": 1.3,
+			"value": 1.5,
 			"icon_path": "res://Decked/Assests/Cards/Oiled_Up.png"
 		},
 		#Vampire

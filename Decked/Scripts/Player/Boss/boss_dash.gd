@@ -4,10 +4,11 @@ extends State
 @export var boss: Boss
 @export var sprite: Node2D
 @export var cooldown_timer_node: Timer
-@export var dash_cooldown: float = 2.0
+@export var dash_cooldown: float = 4.0
+@export var dash_speed: float = 100.0
 @export var audio: AudioStreamPlayer2D
 
-const DASH_SPEED: float = 100
+const DASH_SPEED: float = 200
 const DASH_TIME: float = 0.35
 const TRAIL_INTERVAL := 0.05
 const MIN_DASH_DISTANCE := 15.0
@@ -18,6 +19,11 @@ var trail_timer: float = 0.0
 
 signal dash_ready
 signal dash_used
+
+var buffs
+
+func _ready() -> void:
+	buffs = owner.get_node_or_null("Buffs")
 
 
 func is_ready() -> bool:
@@ -52,6 +58,9 @@ func Enter():
 
 	dash_timer = DASH_TIME
 	trail_timer = 0.0
+	
+	dash_speed *= buffs.dash_speed_buff
+	dash_cooldown *= buffs.dash_cooldown_buff
 
 	boss.set_dash_cooldown(dash_cooldown)
 
@@ -77,7 +86,7 @@ func Physics_Update(delta: float):
 			boss.velocity = Vector2.ZERO
 			dash_timer = 0.0
 		else:
-			boss.velocity = dash_direction * DASH_SPEED
+			boss.velocity = dash_direction * dash_speed
 			dash_timer -= delta
 			_spawn_trail(delta)
 	else:

@@ -37,9 +37,11 @@ func _on_area_entered(area: Area2D) -> void:
 			print("Made a fire circle")
 			circle.get_node_or_null("EffectCircle").damageRate /= enemy_buffs.habenero
 		
-		if randf() < enemy_buffs.oiled_up -1:
+		if randf() < (enemy_buffs.oiled_up-1):
 			var EnemyMove = owner.get_node_or_null("StateMachine").get_node_or_null("Move")
-			EnemyMove.Accel = 0.05
+			if EnemyMove == null:
+				EnemyMove = owner.get_node_or_null("StateMachine").get_node_or_null("Follow")
+			EnemyMove.Accel = 0.005
 			EnemyMove.Friction = 0.000000001
 			EnemyMove.iceTimer = 5
 

@@ -28,8 +28,6 @@ func Enter():
 	punchReleased = false
 
 	damage = BASE_DAMAGE
-	damage += (buffs.bulldozer - 1)*owner.get_node_or_null("Health").max_health
-	damage *= buffs.damage_buff * buffs.explosion
 
 	if not player.animation_finished.is_connected(_on_animation_finished):
 		player.animation_finished.connect(_on_animation_finished)
@@ -57,7 +55,9 @@ func Update(delta: float):
 
 
 func perform_punch():
-	hitbox.damage = damage*buffs.damage_buff
+	hitbox.damage = damage
+	hitbox.damage += (buffs.bulldozer - 1)*owner.get_node_or_null("Health").max_health
+	hitbox.damage *= buffs.damage_buff * buffs.explosion
 
 	var anim := "Right Punch" if punchRightNext else "Left Punch"
 	punchRightNext = !punchRightNext

@@ -10,6 +10,7 @@ var p2_stats = create_default_stats()
 var boss1_stats = create_default_stats()
 var boss2_stats = create_default_stats()
 var boss3_stats = create_default_stats()
+var dummy_stats = create_default_stats()
 var fireCircle = null
 
 func create_default_stats() -> Dictionary:
@@ -37,7 +38,7 @@ func create_default_stats() -> Dictionary:
 		"habenero": 1.0,
 		"recycling": 1.0,
 		"bulldozer": 1.0,
-		"explosion": 2.0
+		"explosion": 1.0
 	}
 
 var all_cards = [
@@ -393,6 +394,8 @@ func reset_game():
 		boss2_stats[key] = 1
 	for key in boss3_stats.keys():
 		boss3_stats[key] = 1
+	for key in dummy_stats.keys():
+		dummy_stats[key] = 1
 
 func _on_player_vs_player_pressed() -> void:
 	go_to_level("2 Player")

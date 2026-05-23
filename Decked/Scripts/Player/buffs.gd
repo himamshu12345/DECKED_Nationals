@@ -39,6 +39,18 @@ func _ready() -> void:
 			player_stats = GameManager.p1_stats
 		"Player2":
 			player_stats = GameManager.p2_stats
+		"Boss1":
+			player_stats = GameManager.boss1_stats
+		"Boss2":
+			player_stats = GameManager.boss2_stats
+		"Boss3":
+			player_stats = GameManager.boss3_stats
+		"Dummy_Idle":
+			player_stats = GameManager.dummy_stats
+		"Dummy_Charging":
+			player_stats = GameManager.dummy_stats
+		"Dummy_Shield":
+			player_stats = GameManager.dummy_stats
 		_:
 			return # Exit if the owner isn't a recognized player
 			

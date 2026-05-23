@@ -6,7 +6,7 @@ class_name Move
 @export var animator: AnimatedSprite2D
 @export var input_prefix := ""
 
-@export var speed = 700
+@export var speed = 1000
 @export var rotation_speed = 1.5 
 @export var Accel = 0
 @export var Friction = 0
@@ -20,7 +20,7 @@ func _ready() -> void:
 	buffs = owner.get_node_or_null("Buffs")
 
 func Enter():
-	var base_speed = 50
+	var base_speed = 70
 	#Add to boss
 	speed = base_speed * buffs.move_speed_buff
 		
@@ -61,12 +61,13 @@ func Physics_Update(delta: float):
 		else:
 			transition_state.emit(self, "Idle")
 	else:
+		var iceSpeed = speed * 3 
 		if direction != Vector2.ZERO:
 			# Gradually accelerate towards max speed
-			player.velocity = player.velocity.lerp(direction * speed, Accel)
+			player.velocity = player.velocity.lerp(direction * iceSpeed, Accel)
 		else:
 			# Gradually slide to a stop
-			player.velocity = player.velocity.lerp(direction * speed, Accel)
+			player.velocity = player.velocity.lerp(direction * iceSpeed, Accel)
 		if player.velocity.length() < 1.0:
 			player.velocity = Vector2.ZERO
 			transition_state.emit(self, "Idle")
