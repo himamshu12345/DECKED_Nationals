@@ -61,8 +61,10 @@ func take_damage(amount: int, enemy_state: String, attacker: Node = null) -> voi
 			return
 
 		# ── Blocked hit (no parry) ─────────────────────────────────────────
-		attacker.get_node_or_null("Health").take_damage(int(ceil(amount*(buffs.counter-1))),state_name,owner)
-		amount*=enemy_buffs.guardbreaker
+		var otherHealth = attacker.get_node_or_null("Health")
+		if otherHealth != null:
+			otherHealth.take_damage(int(ceil(amount*(buffs.counter-1))),state_name,owner)
+			amount*=enemy_buffs.guardbreaker
 		if enemy_state in ["ChargePunch", "BossChargePunch", "DummyCharging"]:
 			var shield_state = statemachine.current_state
 			shield_state.on_shield_interrupted()
@@ -95,7 +97,8 @@ func take_damage(amount: int, enemy_state: String, attacker: Node = null) -> voi
 	
 	if current_health*1.0/ max_health < 0.33:
 		damage*= buffs.unstoppable
-		damage*= enemy_buffs.coup_de_gras
+		if enemy_buffs != null:
+			damage*= enemy_buffs.coup_de_gras
 	
 	_apply_damage(damage)
 

@@ -32,7 +32,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/goutte.animated_shape_2d/plugin.cfg")
+enabled=PackedStringArray("res://addons/goutte.animated_shape_2d/plugin.cfg")
 
 [input]
 

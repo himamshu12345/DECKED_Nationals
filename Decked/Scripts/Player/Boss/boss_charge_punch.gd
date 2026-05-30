@@ -127,6 +127,7 @@ func perform_punch():
 	animator.frame = 3
 
 	if hitbox:
+		print("Theres a hitbox here")
 		hitbox.enable()
 
 	boss.set_charge_punch_cooldown(2.0)
@@ -158,6 +159,7 @@ func shoot_projectile():
 	projectileAudio.play()
 
 	projectile.global_position = hitbox.global_position if hitbox else boss.global_position
+	projectile.global_position += Vector2(0, -35).rotated(boss.rotation)
 
 	var forward_direction = Vector2(0, -1).rotated(boss.rotation)
 

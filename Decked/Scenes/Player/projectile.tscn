@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dbjq8cptjpwdy"]
+[gd_scene format=3 uid="uid://dbjq8cptjpwdy"]
 
 [ext_resource type="Texture2D" uid="uid://cv76hxnfer5iw" path="res://Decked/Assests/Effects/lightningProjectile.webp" id="1_qbdtd"]
 [ext_resource type="Script" uid="uid://38kidv8b3y5t" path="res://Decked/Scripts/Player/Combat/HitBox.gd" id="2_qbdtd"]
@@ -64,15 +64,15 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ir0w2"]
 radius = 9.42809
 
-[node name="Projectile" type="AnimatedSprite2D"]
+[node name="Projectile" type="AnimatedSprite2D" unique_id=868978102]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_xpvdr")
 frame_progress = 0.688051
 script = ExtResource("2_xpvdr")
 
-[node name="HitBox" type="Area2D" parent="."]
+[node name="HitBox" type="Area2D" parent="." unique_id=1196236063]
 script = ExtResource("2_qbdtd")
 metadata/_custom_type_script = "uid://38kidv8b3y5t"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1739144889]
 shape = SubResource("CircleShape2D_ir0w2")

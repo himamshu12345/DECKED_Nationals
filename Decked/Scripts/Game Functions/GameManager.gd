@@ -173,7 +173,7 @@ func apply_buff(player_id: int, mod_type: String, value: float):
 			target_stats["wizard_fistfight"] *= value
 		"thorns":
 			target_stats["thorns"] *= value
-		"habenero":
+		"habanero":
 			target_stats["habenero"] *= value
 		"ninja":
 			target_stats["move_speed_buff"] *= value

@@ -56,6 +56,7 @@ func _ready() -> void:
 			
 	# 2. Automatically load all stats that exist in the dictionary
 	load_stats_from_manager(player_stats)
+	print_all_buffs()
 
 func load_stats_from_manager(stats_dict: Dictionary) -> void:
 	# Loop through every key in the player's stat dictionary
@@ -66,3 +67,15 @@ func load_stats_from_manager(stats_dict: Dictionary) -> void:
 			# If the key is "dash_cooldown_buff", it does: self.dash_cooldown_buff = value
 			var current_default = self.get(stat_name)
 			self.set(stat_name, stats_dict.get(stat_name, current_default))
+			
+func print_all_buffs() -> void:
+	print("--- [%s] LOADED BUFFS ---" % owner.name)
+	
+	# Loop through all properties defined in this specific script
+	for prop in get_script().get_script_property_list():
+		# TYPE_FLOAT handles all your buff multipliers; TYPE_BOOL handles trickshot_punch
+		if prop.type == TYPE_FLOAT or prop.type == TYPE_BOOL:
+			var value = self.get(prop.name)
+			print("%s: %s" % [prop.name, value])
+			
+	print("---------------------------------")

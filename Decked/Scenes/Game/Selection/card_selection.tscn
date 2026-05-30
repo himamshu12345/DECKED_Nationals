@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://ce0mx6r7gx6c2"]
+[gd_scene format=3 uid="uid://ce0mx6r7gx6c2"]
 
 [ext_resource type="Script" uid="uid://byc372tdhhfji" path="res://Decked/Scripts/Game Functions/Card/CardUI.gd" id="1_uyumy"]
 [ext_resource type="Texture2D" uid="uid://b0sw6c63ocyhy" path="res://Decked/Assests/Backgrounds/cardSelectNewScreen.webp" id="2_5vkg1"]
@@ -236,7 +236,7 @@ animations = [{
 "speed": 20.0
 }]
 
-[node name="CardSelection" type="Control"]
+[node name="CardSelection" type="Control" unique_id=1286172459]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -250,19 +250,19 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_uyumy")
 
-[node name="Audio" type="AudioStreamPlayer2D" parent="."]
+[node name="Audio" type="AudioStreamPlayer2D" parent="." unique_id=18030892]
 position = Vector2(11, 0)
 stream = ExtResource("2_hs0h5")
 autoplay = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=816336712]
 position = Vector2(-2.00002, -62.5)
 scale = Vector2(7.175, 7.18889)
 sprite_frames = SubResource("SpriteFrames_3fxyt")
 autoplay = "default"
 frame_progress = 0.0797318
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2121788542]
 layout_mode = 1
 offset_left = -475.0
 offset_top = -59.0

@@ -542,6 +542,7 @@ animations = [{
 }]
 
 [node name="Boss1" type="CharacterBody2D" unique_id=1068987180 node_paths=PackedStringArray("health_node")]
+z_index = 2
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_gu81k")
@@ -582,6 +583,7 @@ stream = ExtResource("17_ner5a")
 volume_db = 5.0
 
 [node name="HitBox" type="Area2D" parent="." unique_id=1743360439]
+z_index = 3
 script = ExtResource("10_7k33a")
 
 [node name="HitBoxShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1950126636]

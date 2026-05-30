@@ -13,10 +13,14 @@ func _ready() -> void:
 	buffs = owner.get_node_or_null("Buffs")
 
 func get_knockback_force() -> float:
-	var knockback = damage * knockback_multiplier *  buffs.knockback_buff * buffs.explosion * buffs.explosion * buffs.explosion 
-	return knockback + owner.get_node_or_null("Health").max_health * buffs.bulldozer/5
+	if buffs != null:
+		var knockback = damage * knockback_multiplier *  buffs.knockback_buff * buffs.explosion * buffs.explosion * buffs.explosion 
+		return knockback + owner.get_node_or_null("Health").max_health * buffs.bulldozer/5
+	var knockback = damage * knockback_multiplier
+	return knockback
 
 func enable():
+	print(owner, " ENABLING HITBOX ",damage)
 	enabled = true
 	monitoring = true
 	

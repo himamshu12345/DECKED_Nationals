@@ -30,20 +30,21 @@ func _on_area_entered(area: Area2D) -> void:
 		var enemy_state: String = ""
 		var enemy_buffs = enemy.get_node_or_null("Buffs")
 		
-		if enemy_buffs.habenero > 1:
-			var circle = FireCircle.instantiate()
-			GameManager.newFireCircle(circle)
-			circle.global_position = impact_position
-			print("Made a fire circle")
-			circle.get_node_or_null("EffectCircle").damageRate /= enemy_buffs.habenero
-		
-		if randf() < (enemy_buffs.oiled_up-1):
-			var EnemyMove = owner.get_node_or_null("StateMachine").get_node_or_null("Move")
-			if EnemyMove == null:
-				EnemyMove = owner.get_node_or_null("StateMachine").get_node_or_null("Follow")
-			EnemyMove.Accel = 0.005
-			EnemyMove.Friction = 0.000000001
-			EnemyMove.iceTimer = 5
+		if(enemy_buffs != null):
+			if enemy_buffs.habenero > 1:
+				var circle = FireCircle.instantiate()
+				GameManager.newFireCircle(circle)
+				circle.global_position = impact_position
+				print("Made a fire circle")
+				circle.get_node_or_null("EffectCircle").damageRate /= enemy_buffs.habenero
+			
+			if randf() < (enemy_buffs.oiled_up-1):
+				var EnemyMove = owner.get_node_or_null("StateMachine").get_node_or_null("Move")
+				if EnemyMove == null:
+					EnemyMove = owner.get_node_or_null("StateMachine").get_node_or_null("Follow")
+				EnemyMove.Accel = 0.005
+				EnemyMove.Friction = 0.000000001
+				EnemyMove.iceTimer = 5
 
 		if enemy and enemy.has_node("StateMachine"):
 			enemy_state = enemy.get_node("StateMachine").current_state.name
@@ -69,18 +70,24 @@ func _on_area_entered(area: Area2D) -> void:
 			health.take_damage(hitbox.damage, enemy_state, enemy)
 			hitAudio.play()
 			var enemyHealth = enemy.get_node_or_null("Health")
-			enemyHealth._apply_damage(-hitbox.damage*(enemy_buffs.vampire-1))
-			enemyHealth._apply_damage(hitbox.damage*(buffs.thorns-1))
+			if enemy_buffs != null:
+				enemyHealth._apply_damage(-hitbox.damage*(enemy_buffs.vampire-1))
+				enemyHealth._apply_damage(hitbox.damage*(buffs.thorns-1))
 
 		var knockback_direction = (owner.global_position - hitbox.owner.global_position).normalized()
 		owner.apply_knockback(knockback_direction, hitbox.get_knockback_force(), 0.12)
 
 func _play_animation(impact_position: Vector2, damage: int, enemyBuffs: Node) -> void:
 	var effect_scene
-	if enemyBuffs.explosion > 1:
-		effect_scene = explosionHit
+	if enemyBuffs != null:
+		if enemyBuffs.explosion > 1:
+			effect_scene = explosionHit
+		elif damage > 10:
+			effect_scene = HIT_EFFECT_HEAVY
+		else:
+			effect_scene = HIT_EFFECT_LIGHT
 	elif damage > 10:
-		effect_scene = HIT_EFFECT_HEAVY
+			effect_scene = HIT_EFFECT_HEAVY
 	else:
 		effect_scene = HIT_EFFECT_LIGHT
 
