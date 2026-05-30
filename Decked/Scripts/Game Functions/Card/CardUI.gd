@@ -13,7 +13,7 @@ func _load_cards():
 	all_cards = [
 		{
 			"name": "Footwork",
-			"description": "-30% Dash Cooldown",
+			"description": "Can't Touch This",
 			"rarity": "COMMON",
 			"buff_type": "dash_cooldown_buff",
 			"value": 0.7,
@@ -21,7 +21,7 @@ func _load_cards():
 		},
 		{
 			"name": "Hearty",
-			"description": "+50% Health",
+			"description": "His Heart Grew 3 Sizes",
 			"rarity": "Common",
 			"buff_type": "max_health_buff",
 			"value": 1.5,
@@ -30,7 +30,7 @@ func _load_cards():
 		#Sprinting
 		{
 			"name": "Sprinting",
-			"description": "+100% Movement Speed",
+			"description": "Nyyyoom",
 			"rarity": "COMMON",
 			"buff_type": "move_speed_buff",
 			"value": 2.0,
@@ -38,7 +38,7 @@ func _load_cards():
 		},
 		{
 			"name": "Counter",
-			"description": "If Hit when blocking Deal Damage",
+			"description": "How the Tables have Turned",
 			"rarity": "Common",
 			"buff_type": "counter",
 			"value": 1.1,
@@ -47,7 +47,7 @@ func _load_cards():
 		#Hypeercalcemia
 		{
 			"name": "Hypercalcemia",
-			"description": "+30% defense",
+			"description": "Momma Always Said Milk Made You Strong",
 			"rarity": "UNCOMMON",
 			"buff_type": "defense",
 			"value": 0.7,
@@ -55,7 +55,7 @@ func _load_cards():
 		},
 		{
 			"name": "Trickshot",
-			"description": "+100% Damage After a Succseful Parry",
+			"description": "Leeeroy Jenkins",
 			"rarity": "COMMON",
 			"buff_type": "trickshot",
 			"value": 2.0,
@@ -63,7 +63,7 @@ func _load_cards():
 		},
 		{
 			"name": "Guardbreaker",
-			"description": "More Damage to Blocking Targets",
+			"description": "Punch Through",
 			"rarity": "RARE",
 			"buff_type": "guardbreaker",
 			"value": 1.5,
@@ -71,7 +71,7 @@ func _load_cards():
 		},
 		{
 			"name": "Caffeinated",
-			"description": "+50% Movement and Attack Speed",
+			"description": "I am SPEED",
 			"rarity": "Common",
 			"buff_type": "caffeinated",
 			"value": 1.5,
@@ -96,7 +96,7 @@ func _load_cards():
 		#Vampire
 		{
 			"name": "Vampire",
-			"description": "+25% Leech",
+			"description": "Hope the Ref Doesn't Notice",
 			"rarity": "UNCOMMON",
 			"buff_type": "vampire",
 			"value": 1.25,
@@ -112,7 +112,7 @@ func _load_cards():
 		},
 		{
 			"name": "Unstoppable",
-			"description": "+50% defense when below 33% health",
+			"description": "Perservere. For Us!",
 			"rarity": "Uncommon",
 			"buff_type": "unstoppable",
 			"value": 0.5,
@@ -128,7 +128,7 @@ func _load_cards():
 		},
 		{
 			"name": "Uppercut",
-			"description": "+50% Damage and Knockback with Charge Punches",
+			"description": "Switch it Up a Little",
 			"rarity": "Uncommon",
 			"buff_type": "uppercut",
 			"value": 1.5,
